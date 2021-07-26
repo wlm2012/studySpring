@@ -4,7 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 	<modules>
-		<module>mukeWiki</module>
+		<module>service</module>
+		<module>dao</module>
+		<module>controller</module>
+		<module>home</module>
+		<module>home</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
