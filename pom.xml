@@ -5,6 +5,9 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>moocWiki</module>
+		<module>algorithms</module>
+		<module>springCodeAnalyze</module>
+		<module>thinkInSpring</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
