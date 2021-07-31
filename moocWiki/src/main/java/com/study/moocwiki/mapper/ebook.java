@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Builder
 @Data
-public class Book {
+public class ebook {
 
     @Id
     private long id;
