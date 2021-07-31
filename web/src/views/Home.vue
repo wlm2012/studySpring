@@ -7,11 +7,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import {defineComponent} from 'vue';
+import HelloWorld from '@/components/HelloWorld.vue';
+import axios from "axios"; // @ is an alias to /src
 
 export default defineComponent({
   name: 'Home',
+  setup() {
+    console.log("setup")
+    axios.get("").then((response) => {
+      console.log(response)
+    })
+  },
   components: {
     HelloWorld,
   },
