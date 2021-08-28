@@ -1,32 +1,28 @@
-package com.study.algorithms._1_3;
+package com.study.algorithms.algorithms4._1_3;
 
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class Bag<Item> implements Iterable<Item> {
+public class Queue<Item> implements Iterable<Item> {
 
-    private int N = 1;
-    private Item[] items = (Item[]) new Object[1];
-
-    public Bag() {
-
+    public Queue() {
     }
 
+    public void enqueue(Item item) {
+    }
 
-    public void add(Item item) {
-
+    public Item dequeue() {
+        return null;
     }
 
     public boolean isEmpty() {
-
         return false;
     }
 
     public int size() {
-        return N;
+        return 0;
     }
-
 
     @Override
     public Iterator<Item> iterator() {

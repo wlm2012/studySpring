@@ -6,6 +6,18 @@ public class SNode<T> {
 
     private SNode<T> next;
 
+    public void rmByNum(){
+
+    }
+
+    public void rmByValue(){
+
+    }
+
+    public void add(T element){
+
+    }
+
     public SNode(T element) {
         this.element = element;
     }

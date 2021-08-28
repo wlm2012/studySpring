@@ -1,4 +1,4 @@
-package com.study.algorithms._1_3;
+package com.study.algorithms.algorithms4._1_3;
 
 import java.util.Iterator;
 import java.util.Spliterator;
