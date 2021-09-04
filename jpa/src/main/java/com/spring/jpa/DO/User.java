@@ -22,7 +22,12 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
     private int age;
+    @Column(length = 2)
+    private String state;
+    @Column(length = 2)
+    private String sex;
 }
