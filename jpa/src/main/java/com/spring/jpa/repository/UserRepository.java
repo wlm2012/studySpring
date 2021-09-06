@@ -1,6 +1,7 @@
 package com.spring.jpa.repository;
 
 import com.spring.jpa.DO.User;
+import com.spring.jpa.DO.UserOnlyNameEmailDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -15,12 +16,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findByName(String name, Pageable pageable);
 
-    Slice<User> findByAge(long age, Pageable pageable);
+    Slice<User> findByAge(int age, Pageable pageable);
 
     List<User> findByState(String state, Pageable pageable);
 
     List<User> findByState(String state, Sort sort);
 
     List<User> findTop3ByName(String name);
+
+    List<UserOnlyNameEmailDto> findByAge(int age);
 
 }

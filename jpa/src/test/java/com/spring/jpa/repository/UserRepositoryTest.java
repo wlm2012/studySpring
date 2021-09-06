@@ -3,6 +3,7 @@ package com.spring.jpa.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.jpa.DO.User;
+import com.spring.jpa.DO.UserOnlyNameEmailDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.*;
@@ -33,7 +34,7 @@ public class UserRepositoryTest {
             UUID uuid = UUID.randomUUID();
 
             String name = uuid.toString().substring(0, 4);
-            User user = User.builder().age(11).name(name).sex("1").state("0").build();
+            User user = User.builder().age(11).name(name).sex("1").state("0").email(name + ".qq.com").build();
             users.add(user);
         }
 
@@ -61,17 +62,23 @@ public class UserRepositoryTest {
 
         System.out.println("Page---------------------");
         Page<User> page = userRepository.findAll(PageRequest.of(0, 2, Sort.by("name")));
-        System.out.println(page);
+        System.out.println(page.getContent());
 
         System.out.println("Slice---------------------");
         Slice<User> userSlice = userRepository.findByAge(11, PageRequest.of(0, 2, Sort.by("name")));
-        System.out.println(userSlice);
+        System.out.println(userSlice.getContent());
 
-        System.out.println("Slice---------------------");
+        System.out.println("List---------------------");
         Example<User> example = Example.of(User.builder().age(11).build());
-        List<User> list = userRepository.findAll(example, Sort.by("n"));
+        List<User> list = userRepository.findAll(example, Sort.by("id"));
         System.out.println(list);
 
 
+    }
+
+    @Test
+    public void UserOnlyNameEmailDtoTest() {
+        List<UserOnlyNameEmailDto> list = userRepository.findByAge(11);
+        System.out.println(list);
     }
 }
