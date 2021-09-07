@@ -81,4 +81,14 @@ public class UserRepositoryTest {
         List<UserOnlyNameEmailDto> list = userRepository.findByAge(11);
         System.out.println(list);
     }
+
+    @Test
+    public void queryByNameTest() {
+        System.out.println(userRepository.queryByName("", ""));
+    }
+
+    @Test
+    public void queryByUserTest() {
+        System.out.println(userRepository.queryByUserNative(User.builder().name("a589").build()));
+    }
 }

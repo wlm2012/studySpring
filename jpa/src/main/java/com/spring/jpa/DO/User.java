@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "t_user",
@@ -31,4 +33,6 @@ public class User {
     @Column(length = 2)
     private String sex;
     private String email;
+    private LocalDate birthday;
+    private LocalDateTime registeredTime;
 }
