@@ -34,6 +34,9 @@ public class User extends BaseEntity {
     @Column(length = 2)
     private String sex;
     private String email;
+
+    @Version
+    private Integer version;
     private LocalDate birthday;
     private LocalDateTime registeredTime;
 

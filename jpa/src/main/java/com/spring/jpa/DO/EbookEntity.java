@@ -1,10 +1,15 @@
 package com.spring.jpa.DO;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.jpa.repository.Lock;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "ebook", schema = "study")
+@Getter
+@Setter
 public class EbookEntity {
     private long id;
     private long category1Id;
@@ -15,6 +20,9 @@ public class EbookEntity {
     private String name;
     private int viewCount;
     private int voteCount;
+
+    @Version
+    private Integer version;
 
     @Id
     @Column(name = "id")
@@ -106,16 +114,6 @@ public class EbookEntity {
         this.voteCount = voteCount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EbookEntity that = (EbookEntity) o;
-        return id == that.id && category1Id == that.category1Id && category2Id == that.category2Id && docCount == that.docCount && viewCount == that.viewCount && voteCount == that.voteCount && Objects.equals(cover, that.cover) && Objects.equals(description, that.description) && Objects.equals(name, that.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, category1Id, category2Id, cover, description, docCount, name, viewCount, voteCount);
-    }
+
 }

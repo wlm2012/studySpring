@@ -60,6 +60,10 @@ public class UserRepositoryTest {
                 .and(User.builder().age(11).build());
         ageStream.forEach(System.out::println);
 
+/*        Streamable<User> ageStream = userRepository.findAll(PageRequest.of(0, 2, Sort.by("name")))
+                .and(User.builder().age(11).build());
+        ageStream.forEach(System.out::println);*/
+
         System.out.println("Page---------------------");
         Page<User> page = userRepository.findAll(PageRequest.of(0, 2, Sort.by("name")));
         System.out.println(page.getContent());
@@ -90,5 +94,10 @@ public class UserRepositoryTest {
     @Test
     public void queryByUserTest() {
         System.out.println(userRepository.queryByUserNative(User.builder().name("a589").build()));
+    }
+
+    @Test
+    public void versionTest() {
+
     }
 }

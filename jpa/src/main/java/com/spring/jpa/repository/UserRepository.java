@@ -7,10 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.LockModeType;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -18,6 +22,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findByName(String name, Pageable pageable);
 
     Slice<User> findByAge(int age, Pageable pageable);
+
+    Streamable<User> findByAgStream(int age, Pageable pageable);
 
     List<User> findByState(String state, Pageable pageable);
 
@@ -27,11 +33,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<UserOnlyNameEmailDto> findByAge(int age);
 
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Optional<User> findByIdLock(Integer id);
+
     @Query(value = """ 
             select u from User u where (:name is null or :name='' or u.name=:name) 
             and (:email is null or :email ='' or u.email=:email)""")
     List<User> queryByName(String name, String email);
-
 
 
     @Query(value = """
