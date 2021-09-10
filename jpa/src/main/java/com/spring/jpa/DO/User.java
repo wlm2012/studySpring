@@ -1,13 +1,12 @@
 package com.spring.jpa.DO;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_user",
@@ -17,11 +16,13 @@ import java.time.LocalDateTime;
         indexes = {
                 @Index(columnList = "name,age")
         })
-@Data
+@Getter
+@Setter
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,4 +36,6 @@ public class User {
     private String email;
     private LocalDate birthday;
     private LocalDateTime registeredTime;
+
+
 }

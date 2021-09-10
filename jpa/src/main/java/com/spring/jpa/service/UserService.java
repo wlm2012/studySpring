@@ -3,23 +3,19 @@ package com.spring.jpa.service;
 
 import com.spring.jpa.DO.User;
 import com.spring.jpa.repository.UserRepository;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-
     @Resource
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     public void TestUser() {
 
