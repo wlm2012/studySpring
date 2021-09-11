@@ -23,8 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Slice<User> findByAge(int age, Pageable pageable);
 
-    Streamable<User> findByAgStream(int age, Pageable pageable);
-
     List<User> findByState(String state, Pageable pageable);
 
     List<User> findByState(String state, Sort sort);
@@ -34,7 +32,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<UserOnlyNameEmailDto> findByAge(int age);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    Optional<User> findByIdLock(Integer id);
+    @Query(value = """
+            select u from User u where u.id=:id""")
+    Optional<User> findByIdLock(Long id);
 
     @Query(value = """ 
             select u from User u where (:name is null or :name='' or u.name=:name) 

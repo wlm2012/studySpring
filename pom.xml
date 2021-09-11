@@ -9,6 +9,7 @@
 		<module>algorithms</module>
 		<module>springCodeAnalyze</module>
 		<module>thinkInSpring</module>
+		<module>utils</module>
 		<module>javaConcurrencyInPractice</module>
 	</modules>
 	<parent>
@@ -32,23 +33,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,20 +80,6 @@
 		</dependency>
 
 
-
-		<!-- QueryDsl -->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<version>5.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
 	</dependencies>
 
 
@@ -120,24 +97,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.mysema.maven</groupId>
-				<artifactId>apt-maven-plugin</artifactId>
-				<version>1.1.3</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<configuration>
-							<!-- 查询对象的生成路径 -->
-							<outputDirectory>target/generated-sources</outputDirectory>
-							<!-- 生成查询对象的处理器， 使用JPA-->
-							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
