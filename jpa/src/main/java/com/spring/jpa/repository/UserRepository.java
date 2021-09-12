@@ -13,6 +13,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.LockModeType;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,10 +32,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<UserOnlyNameEmailDto> findByAge(int age);
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.PESSIMISTIC_READ)
+    @Transactional
     @Query(value = """
             select u from User u where u.id=:id""")
-    Optional<User> findByIdLock(Long id);
+    User findByIdLock(Long id);
+
+    @Query(value = "select u from User u where u.id=:id for update" ,nativeQuery = true)
+    User findByIdLock2(Long id);
 
     @Query(value = """ 
             select u from User u where (:name is null or :name='' or u.name=:name) 
