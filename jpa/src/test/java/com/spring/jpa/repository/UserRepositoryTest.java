@@ -103,22 +103,21 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void versionTest() {
-        Optional<User> id = userRepository.findById(1L);
-        User user = null;
+    public void versionTest() throws InterruptedException {
+        System.out.println(userRepository.findById(1L).get());
+        User user = userRepository.getById(1L);
+        System.out.println(user);
 
-        if (id.isPresent()) {
-            user = id.get();
-        }
 
-        new Thread(() -> {
-            Optional<User> finalUser = userRepository.findById(1L);
-            User user1 = finalUser.get();
+
+/*        new Thread(() -> {
+            User user1 = userRepository.getById(1L);
             user1.setAge(11);
             userRepository.saveAndFlush(user1);
-        }).start();
+        }).start();*/
         user.setAge(26);
         userRepository.saveAndFlush(user);
+        Thread.sleep(1000);
 
     }
 
