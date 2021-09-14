@@ -1,16 +1,16 @@
 spring:
   profiles:
-    active: dev
+    active: test
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
 
-#server:
-#  port: 9904
+server:
+  port: 9904
 
 
 #配置actuator，开启所有endpoints

@@ -6,7 +6,7 @@
         <groupId>com.spring</groupId>
         <artifactId>studySpring</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.study</groupId>
     <artifactId>utils</artifactId>
@@ -14,7 +14,7 @@
     <name>utils</name>
     <description>utils</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -45,7 +45,16 @@
             <artifactId>okhttp</artifactId>
             <version>4.9.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
     </dependencies>
 
