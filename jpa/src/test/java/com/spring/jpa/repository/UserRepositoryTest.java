@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.*;
 import org.springframework.data.util.Streamable;
+import org.springframework.test.annotation.Commit;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -24,7 +25,6 @@ import java.util.UUID;
 public class UserRepositoryTest {
 
     private UserRepository userRepository;
-    private Optional<User> id;
 
     @Resource
     public void setUserRepository(UserRepository userRepository) {
@@ -103,19 +103,20 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Commit
+    @Transactional
     public void versionTest() throws InterruptedException {
         System.out.println(userRepository.findById(1L).get());
         User user = userRepository.getById(1L);
         System.out.println(user);
 
-
-
-/*        new Thread(() -> {
-            User user1 = userRepository.getById(1L);
+        new Thread(() -> {
+            User user1 = userRepository.findById(1L).get();
             user1.setAge(11);
             userRepository.saveAndFlush(user1);
-        }).start();*/
+        }).start();
         user.setAge(26);
+        Thread.sleep(1000);
         userRepository.saveAndFlush(user);
         Thread.sleep(1000);
 
@@ -127,21 +128,21 @@ public class UserRepositoryTest {
         User user = userRepository.findByIdLock(2L);
         log.info("129" + user.toString());
         user.setBirthday(LocalDate.now());
-        log.info("131" + user.toString());
+        log.info("131" + user);
         new Thread(() -> {
             User user1 = userRepository.findByIdLock(2L);
             log.info("134" + user1.toString());
             user1.setRegisteredTime(LocalDateTime.now());
-            log.info("136" + user1.toString());
+            log.info("136" + user1);
             userRepository.saveAndFlush(user1);
-            log.info("138" + user1.toString());
+            log.info("138" + user1);
         }).start();
         Thread.sleep(1000);
-        log.info("141" + user.toString());
+        log.info("141" + user);
         userRepository.saveAndFlush(user);
-        log.info("143" + user.toString());
+        log.info("143" + user);
         Thread.sleep(1000);
-        log.info("145" + user.toString());
+        log.info("145" + user);
     }
 
 
