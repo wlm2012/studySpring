@@ -31,3 +31,5 @@ logging:
     path: ./log
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    org.hibernate.type..descriptor.sql.BasicBinder: trace
