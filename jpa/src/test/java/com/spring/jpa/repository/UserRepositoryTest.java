@@ -49,6 +49,8 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Commit
+    @Transactional
     public void testStreamUser() {
         Streamable<User> ageStream = userRepository.findAll(PageRequest.of(0, 2, Sort.by("name")))
                 .and(User.builder().age(11).build());
