@@ -20,6 +20,7 @@ public class TransactionalTest {
     }
 
 
+    @Transactional
     public User saveUser(User user) {
         if (user.getRegisteredTime() == null) {
             user.setRegisteredTime(LocalDateTime.now());
@@ -30,7 +31,7 @@ public class TransactionalTest {
     @Test
     @Commit
     @Transactional
-    public void saveTest1() throws Exception {
+    public void saveTest() throws Exception {
         User user = getUser(1);
         saveUser(user);
         throw new Exception("不会回滚");
@@ -39,13 +40,19 @@ public class TransactionalTest {
     @Test
     @Commit
     @Transactional(rollbackFor = Exception.class)
-    public void saveTest2() throws Exception {
-        saveTest1();
+    public void saveTest1() throws Exception {
+        saveUser(getUser(1L));
         throw new Exception("不会回滚");
     }
 
 
-
+    @Test
+    @Commit
+    @Transactional()
+    public void saveTest2() {
+        saveUser(getUser(1L));
+        throw new RuntimeException("不会回滚");
+    }
 
 
 }

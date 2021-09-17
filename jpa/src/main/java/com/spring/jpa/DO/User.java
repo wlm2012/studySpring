@@ -1,12 +1,10 @@
 package com.spring.jpa.DO;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "t_user",

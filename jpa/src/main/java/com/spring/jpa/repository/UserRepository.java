@@ -38,7 +38,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             select u from User u where u.id=:id""")
     User findByIdLock(Long id);
 
-    @Query(value = "select u from User u where u.id=:id for update" ,nativeQuery = true)
+    @Query(value = "select u from User u where u.id=:id for update", nativeQuery = true)
     User findByIdLock2(Long id);
 
     @Query(value = """ 
@@ -53,5 +53,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             and (:#{#user.email} is null or u.email =:#{#user.email})"""
             , nativeQuery = true)
     List<User> queryByUserNative(User user);
+
+
 
 }
