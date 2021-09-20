@@ -2,6 +2,7 @@ package com.spring.jpa.controller;
 
 import com.spring.jpa.DO.User;
 import com.spring.jpa.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Slf4j
 @RestController
 public class UserController {
 
@@ -85,19 +87,19 @@ public class UserController {
     @RequestMapping("/versionTest")
     @Transactional
     public void versionTest() throws InterruptedException {
-        System.out.println(userRepository.findById(1L).get());
+
         User user = userRepository.getById(1L);
-        System.out.println(user);
+        log.info(user.toString());
 
         new Thread(() -> {
-            User user1 = userRepository.findById(1L).get();
-            System.out.println(user1);
+            User user1 = userRepository.getById(1L);
+            log.info(user1.toString());
             user1.setAge(11);
-            System.out.println(userRepository.saveAndFlush(user1));
+            log.info(userRepository.saveAndFlush(user1).toString());
         }).start();
         user.setAge(26);
         Thread.sleep(1000);
-        System.out.println(userRepository.saveAndFlush(user));
+        log.info(userRepository.saveAndFlush(user).toString());
         Thread.sleep(1000);
 
     }

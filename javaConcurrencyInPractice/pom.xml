@@ -13,9 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>javaConcurrencyInPractice</name>
     <description>javaConcurrencyInPractice</description>
-    <properties>
-        <java.version>16</java.version>
-    </properties>
+
     <dependencies>
 
     </dependencies>
