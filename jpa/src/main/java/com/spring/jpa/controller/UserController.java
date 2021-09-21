@@ -2,6 +2,7 @@ package com.spring.jpa.controller;
 
 import com.spring.jpa.DO.User;
 import com.spring.jpa.repository.UserRepository;
+import com.spring.jpa.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private UserService userService;
 
 
     public User getUser(long id) {
@@ -103,6 +107,24 @@ public class UserController {
         Thread.sleep(1000);
 
     }
+
+    @RequestMapping("/versionTestRight")
+    @Transactional
+    public void versionTestRight() throws InterruptedException {
+
+        User user = userRepository.getById(1L);
+        log.info(user.toString());
+
+        new Thread(() -> {
+            userService.UserTransactional();
+        }).start();
+
+        user.setName("Transactional");
+        Thread.sleep(1000);
+        log.info(userRepository.saveAndFlush(user).toString());
+
+    }
+
 
     @RequestMapping("/LockTest")
     @Transactional

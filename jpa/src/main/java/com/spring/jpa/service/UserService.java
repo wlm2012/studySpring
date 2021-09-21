@@ -3,6 +3,7 @@ package com.spring.jpa.service;
 
 import com.spring.jpa.DO.User;
 import com.spring.jpa.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Streamable;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -30,6 +32,14 @@ public class UserService {
 
         userStreamable.forEach(System.out::println);
 
+    }
+
+    @Transactional
+    public void UserTransactional() {
+        User user1 = userRepository.getById(1L);
+        log.info(user1.toString());
+        user1.setAge(11);
+        log.info(userRepository.saveAndFlush(user1).toString());
     }
 
 

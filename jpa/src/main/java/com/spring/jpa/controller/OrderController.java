@@ -2,6 +2,7 @@ package com.spring.jpa.controller;
 
 import com.spring.jpa.DO.Order;
 import com.spring.jpa.repository.OrderRepository;
+import com.spring.jpa.service.OrderService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,9 @@ public class OrderController {
 
     @Resource
     private OrderRepository orderRepository;
+
+    @Resource
+    private OrderService orderService;
 
     @Transactional
     @RequestMapping("/lockOrder")
