@@ -31,6 +31,5 @@ public class OrderController {
         order.setMenuId(2L);
         Thread.sleep(1000);
         orderRepository.saveAndFlush(order);
-        Thread.sleep(1000);
     }
 }

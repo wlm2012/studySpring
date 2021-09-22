@@ -4,6 +4,9 @@ import com.spring.jpa.DO.User;
 import com.spring.jpa.repository.UserRepository;
 import com.spring.jpa.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,28 +92,33 @@ public class UserController {
 
 
     @RequestMapping("/versionTest")
-    @Transactional
     public void versionTest() throws InterruptedException {
 
-        User user = userRepository.getById(1L);
+        User user = userRepository.findById(1L).get();
         log.info(user.toString());
 
         new Thread(() -> {
-            User user1 = userRepository.getById(1L);
+            User user1 = userRepository.findById(1L).get();
             log.info(user1.toString());
             user1.setAge(11);
             log.info(userRepository.saveAndFlush(user1).toString());
         }).start();
-        user.setAge(26);
+        user.setName("version");
         Thread.sleep(1000);
         log.info(userRepository.saveAndFlush(user).toString());
-        Thread.sleep(1000);
 
     }
 
-    @RequestMapping("/versionTestRight")
+/*
+* getById()需要在事务中执行
+* 如需使用在多线程中使用@Transactional，需要调用新的bean的方法，并标记@Transactional
+* @Retryable会拦截相应报错
+* 如果数据相同，则不会更新
+* */
+    @RequestMapping("/versionTest2")
     @Transactional
-    public void versionTestRight() throws InterruptedException {
+    @Retryable(value = ObjectOptimisticLockingFailureException.class, backoff = @Backoff(multiplier = 1.5, random = true))
+    public void versionTest2() throws InterruptedException {
 
         User user = userRepository.getById(1L);
         log.info(user.toString());

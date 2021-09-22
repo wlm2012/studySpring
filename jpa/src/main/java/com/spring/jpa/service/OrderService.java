@@ -19,5 +19,7 @@ public class OrderService {
         Order order1 = orderRepository.findByIdLock(1L);
         order1.setUserId(2L);
         orderRepository.saveAndFlush(order1);
+
+
     }
 }
