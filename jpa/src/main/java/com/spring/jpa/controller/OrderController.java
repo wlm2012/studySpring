@@ -22,14 +22,10 @@ public class OrderController {
     @RequestMapping("/lockOrder")
     public void lockOrder() throws InterruptedException {
         Order order = orderRepository.findByIdLock(1L);
-        new Thread(() -> {
-            Order order1 = orderRepository.findByIdLock(1L);
-            order1.setUserId(2L);
-            orderRepository.saveAndFlush(order1);
-        }).start();
+        new Thread(() -> orderService.OrderTest()).start();
 
         order.setMenuId(2L);
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         orderRepository.saveAndFlush(order);
     }
 }

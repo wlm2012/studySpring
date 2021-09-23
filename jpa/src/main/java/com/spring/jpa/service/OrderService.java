@@ -20,6 +20,5 @@ public class OrderService {
         order1.setUserId(2L);
         orderRepository.saveAndFlush(order1);
 
-
     }
 }
