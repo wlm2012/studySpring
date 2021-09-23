@@ -8,10 +8,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DependencyLookupDemo {
 
     public static void main(String[] args) {
-        BeanFactory beanFactory=new ClassPathXmlApplicationContext("META-INF/dependency-lookup-context.xml");
-        User user= (User) beanFactory.getBean("user");
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("META-INF/dependency-lookup-context.xml");
+        lookupInRealTime(beanFactory);
+    }
+
+
+    public static void lookupInRealTime(BeanFactory beanFactory) {
+        User user = (User) beanFactory.getBean("user");
         System.out.println(user);
-
-
     }
 }
