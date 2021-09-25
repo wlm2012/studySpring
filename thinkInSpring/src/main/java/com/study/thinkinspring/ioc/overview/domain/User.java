@@ -1,4 +1,4 @@
-package com.study.thinkinspring.overview.domain;
+package com.study.thinkinspring.ioc.overview.domain;
 
 import lombok.Data;
 

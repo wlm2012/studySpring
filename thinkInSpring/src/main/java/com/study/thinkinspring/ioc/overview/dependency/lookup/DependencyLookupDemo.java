@@ -1,6 +1,7 @@
-package com.study.thinkinspring.overview.lookup;
+package com.study.thinkinspring.ioc.overview.dependency.lookup;
 
-import com.study.thinkinspring.overview.domain.User;
+import com.study.thinkinspring.ioc.overview.annotation.Super;
+import com.study.thinkinspring.ioc.overview.domain.User;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
@@ -13,18 +14,30 @@ public class DependencyLookupDemo {
 
     public static void main(String[] args) {
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("META-INF/dependency-lookup-context.xml");
-        lookupInRealTime(beanFactory);
-        lookupInLazy(beanFactory);
 
+
+//        lookupInRealTime(beanFactory);
+//
+//        lookupInLazy(beanFactory);
+//
         lookupByType(beanFactory);
 
         lookupCollectionByType(beanFactory);
+
+        lookupByAnnotationType(beanFactory);
+    }
+
+    private static void lookupByAnnotationType(BeanFactory beanFactory) {
+        if (beanFactory instanceof ListableBeanFactory listableBeanFactory) {
+            Map<String, User> beans = (Map) listableBeanFactory.getBeansWithAnnotation(Super.class);
+            System.out.println("lookupByAnnotationType" + beans);
+        }
     }
 
     private static void lookupCollectionByType(BeanFactory beanFactory) {
         if (beanFactory instanceof ListableBeanFactory listableBeanFactory) {
-            Map<String, User> beansOfType = listableBeanFactory.getBeansOfType(User.class);
-            System.out.println("lookupCollectionByType" + beansOfType);
+            Map<String, User> beans = listableBeanFactory.getBeansOfType(User.class);
+            System.out.println("lookupCollectionByType" + beans);
         }
     }
 
