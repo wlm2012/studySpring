@@ -8,12 +8,14 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -109,12 +111,12 @@ public class UserController {
 
     }
 
-/*
-* getById()需要在事务中执行
-* 如需使用在多线程中使用@Transactional，需要调用新的bean的方法，并标记@Transactional
-* @Retryable会拦截相应报错
-* 如果数据相同，则不会更新
-* */
+    /*
+     * getById()需要在事务中执行
+     * 如需使用在多线程中使用@Transactional，需要调用新的bean的方法，并标记@Transactional
+     * @Retryable会拦截相应报错
+     * 如果数据相同，则不会更新
+     * */
     @RequestMapping("/versionTest2")
     @Transactional
     @Retryable(value = ObjectOptimisticLockingFailureException.class, backoff = @Backoff(multiplier = 1.5, random = true))
@@ -123,9 +125,7 @@ public class UserController {
         User user = userRepository.getById(1L);
         log.info(user.toString());
 
-        new Thread(() -> {
-            userService.UserTransactional();
-        }).start();
+        new Thread(() -> userService.UserTransactional()).start();
 
         user.setName("Transactional");
         Thread.sleep(1000);
@@ -144,12 +144,13 @@ public class UserController {
             User user1 = userRepository.findByIdLock(2L);
             user1.setRegisteredTime(LocalDateTime.now());
             userRepository.saveAndFlush(user1);
-
         }).start();
+
         Thread.sleep(1000);
         userRepository.saveAndFlush(user);
-        Thread.sleep(1000);
 
     }
+
+
 
 }
