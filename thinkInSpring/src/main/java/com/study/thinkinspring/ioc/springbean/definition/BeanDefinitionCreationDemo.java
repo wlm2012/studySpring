@@ -3,7 +3,6 @@ package com.study.thinkinspring.ioc.springbean.definition;
 import com.study.thinkinspring.ioc.overview.domain.User;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 
