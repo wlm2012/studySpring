@@ -13,4 +13,8 @@ public class User {
 
     private Long id;
     private String name;
+
+    public static User createUser() {
+        return User.builder().id(1L).name("xiao").build();
+    }
 }

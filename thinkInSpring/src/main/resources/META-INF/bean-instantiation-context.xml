@@ -4,15 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="user" class="com.study.thinkinspring.ioc.overview.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="小马哥"/>
+    </bean>
+
     <!-- 静态方法实例化 Bean -->
-    <bean id="user-by-static-method" class="User"
+    <bean id="user-by-static-method" class="com.study.thinkinspring.ioc.overview.domain.User"
           factory-method="createUser"/>
 
     <!-- 实例（Bean）方法实例化 Bean -->
     <bean id="user-by-instance-method" factory-bean="userFactory" factory-method="createUser"/>
 
     <!-- FactoryBean实例化 Bean -->
-    <bean id="user-by-factory-bean" class="org.geekbang.thinking.in.spring.bean.factory.UserFactoryBean" />
+    <bean id="user-by-factory-bean" class="com.study.thinkinspring.ioc.springbean.factory.UserFactoryBean"/>
 
-    <bean id="userFactory" class="org.geekbang.thinking.in.spring.bean.factory.DefaultUserFactory"/>
+    <bean id="userFactory" class="com.study.thinkinspring.ioc.springbean.factory.DefaultUserFactory"/>
 </beans>
