@@ -12,7 +12,13 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @SpringBootTest
@@ -20,6 +26,9 @@ public class RestTest {
 
     @Resource
     private RestTemplate okhttpRestTemplate;
+
+    @Resource
+    private HttpClient httpClient;
 
     @Test
     public void restTest() throws IOException {
@@ -45,8 +54,8 @@ public class RestTest {
         Gson gson = new Gson();
         String json = gson.toJson(imgRequest);
         String result = HttpUtil.post(url, json);
-        log.info(result.substring(0,10));
-        result=result.substring(10);
+        log.info(result.substring(0, 10));
+        result = result.substring(10);
         log.info(String.valueOf(result.length()));
         FilesUtils.createFile("D:\\1.jpg", result.getBytes());
 
@@ -58,4 +67,17 @@ public class RestTest {
             FilesUtils.createFile("D:\\1.jpg", result.getBytes());
         }*/
     }
+
+    @Test
+    public void java11httpTest() throws ExecutionException, InterruptedException {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://www.baidu.com"))
+                .GET()
+                .build();
+        CompletableFuture<HttpResponse<String>> completableFuture = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
+        String s = completableFuture.thenApply(HttpResponse::body).get();
+        System.out.println(s);
+
+    }
+
 }
