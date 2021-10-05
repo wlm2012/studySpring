@@ -14,7 +14,9 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.*;
 
 @Configuration
 public class RestTemplateConfig {
@@ -40,9 +42,7 @@ public class RestTemplateConfig {
                 .connectionPool(pool)
                 .connectTimeout(HTTP_CONNECTION_TIMEOUT, TimeUnit.SECONDS)
                 .build();
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(new OkHttp3ClientHttpRequestFactory(builder));
-        return restTemplate;
+        return new RestTemplate(new OkHttp3ClientHttpRequestFactory(builder));
 
     }
 
@@ -64,9 +64,8 @@ public class RestTemplateConfig {
                 .setDefaultRequestConfig(requestConfig).build();
 
         ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-
-
         return new RestTemplate(requestFactory);
     }
+
 
 }
