@@ -31,7 +31,7 @@ public class RestTest {
     private HttpClient httpClient;
 
     @Test
-    public void restTest() throws IOException {
+    public void restTest() {
         ImgRequest imgRequest = ImgRequest.builder().ckyt("yes").fjmc("身份证")
                 .lsh("01994b0c523d4ba49b9e47a57b7775b8")
                 .url("http://10.10.60.62:8015/files/images/wx2021.jpg")
