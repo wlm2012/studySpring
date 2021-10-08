@@ -37,7 +37,8 @@ public class AnnotationBeanDefinitionDemo {
     }
 
     // 2. 通过 @Component 方式
-    @Component
+    //注释掉@Component，不然spring无法启动
+//    @Component
     public static class Config {
 
         // 1. 通过 @Bean 方式定义
