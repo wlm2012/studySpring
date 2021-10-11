@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.LockModeType;
+import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -16,4 +17,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Lock(value = LockModeType.PESSIMISTIC_WRITE)
     @Transactional
     Order findByIdLock(Long id);
+
+    @Query("""
+            select o from Order o where o.userId in (:ids)
+            """)
+    List<Order> findByUserIdIn1(List<Long> ids);
 }
