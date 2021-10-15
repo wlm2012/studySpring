@@ -1,6 +1,6 @@
 package com.study.utils.controller;
 
-import com.study.utils.FilesUtils;
+import com.study.utils.fileUtil.FilesUtils;
 import com.study.utils.VO.ImgRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

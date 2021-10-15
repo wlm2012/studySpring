@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 @RestController
 public class SchedulingTest {
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+//    @Scheduled(cron = "0/5 * * * * ? ")
     public void test1() throws InterruptedException {
         LocalDateTime now = LocalDateTime.now();
         log.info("test1  " + now);
         Thread.sleep(18000);
     }
 
-    @Scheduled(cron = "0/6 * * * * ? ")
+//    @Scheduled(cron = "0/6 * * * * ? ")
     public void test2() {
         LocalDateTime now = LocalDateTime.now();
         log.info("test2  " + now);

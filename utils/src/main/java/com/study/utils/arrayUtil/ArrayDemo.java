@@ -1,4 +1,4 @@
-package com.study.utils;
+package com.study.utils.arrayUtil;
 
 public class ArrayDemo {
 

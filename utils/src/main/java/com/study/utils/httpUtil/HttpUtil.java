@@ -1,4 +1,4 @@
-package com.study.utils;
+package com.study.utils.httpUtil;
 
 /*import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;*/

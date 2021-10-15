@@ -2,6 +2,8 @@ package com.study.utils;
 
 import com.google.gson.Gson;
 import com.study.utils.VO.ImgRequest;
+import com.study.utils.fileUtil.FilesUtils;
+import com.study.utils.httpUtil.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
