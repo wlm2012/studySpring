@@ -17,9 +17,6 @@ import java.io.IOException;
 public class RestTemplateController {
 
     @Resource
-    private RestTemplate restTemplate;
-
-    @Resource
     private RestTemplate okhttpRestTemplate;
 
     @RequestMapping("/restTest")
