@@ -23,9 +23,9 @@ public class FunctionalInterface {
         System.out.println(function.apply(3));
     }
 
-/*    public static void function2() {
+    public static void function2() {
         Function<>
-    }*/
+    }
 
 
 }
