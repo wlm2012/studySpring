@@ -19,6 +19,15 @@ public class FunctionalInterfaceTest {
         FunctionalInterface.function1();
     }
 
+    @Test
+    public void function2(){
+        FunctionalInterface.function2();
+    }
+
+    @Test
+    public void predicate1(){
+        FunctionalInterface.predicate1();
+    }
 
 
 
