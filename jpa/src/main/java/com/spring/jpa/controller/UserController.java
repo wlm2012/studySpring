@@ -151,6 +151,10 @@ public class UserController {
 
     }
 
+    @RequestMapping("/sex")
+    public void find(String sex) {
+        System.out.println(userRepository.findBySex(sex));
+    }
 
 
 }

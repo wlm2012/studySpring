@@ -40,18 +40,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByIdLock2(Long id);
 
     @Query(value = """ 
-            select u from User u where (:name is null or :name='' or u.name=:name) 
+            select u from User u where (:name is null or :name='' or u.name=:name)
             and (:email is null or :email ='' or u.email=:email)""")
     List<User> queryByName(String name, String email);
 
 
     @Query(value = """
-            select u.name as name,u.email as email from user u 
+            select u.name as name,u.email as email from user u
             where (:#{#user.name} is null or u.name =:#{#user.name}) 
             and (:#{#user.email} is null or u.email =:#{#user.email})"""
             , nativeQuery = true)
     List<User> queryByUserNative(User user);
 
 
+    List<User> findBySex(String sex);
 
 }
