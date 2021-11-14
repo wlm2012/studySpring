@@ -1,5 +1,6 @@
 package com.study.utils.functional;
 
+import com.study.utils.entity.Album;
 import com.study.utils.entity.Artist;
 
 import java.util.List;
@@ -19,5 +20,10 @@ public class StreamQuestion {
                 .collect(Collectors.toList());
     }
 
+    public static List<Album> getAlbumsWithAtMostThreeTracks(List<Album> list) {
+        return list.stream()
+                .filter(album -> album.getTrackList().size() <= 3)
+                .collect(Collectors.toList());
+    }
 
 }
