@@ -3,7 +3,9 @@ package com.study.utils.functional;
 import com.study.utils.entity.Album;
 import com.study.utils.entity.Artist;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,6 +26,15 @@ public class StreamQuestion {
         return list.stream()
                 .filter(album -> album.getTrackList().size() <= 3)
                 .collect(Collectors.toList());
+    }
+
+    public static long countLowercaseLetters(String s) {
+        return s.chars().filter(Character::isLowerCase).count();
+    }
+
+    public static Optional<String> mostLowercaseString(List<String> stringList) {
+        return stringList.stream()
+                .max(Comparator.comparingLong(StreamQuestion::countLowercaseLetters));
     }
 
 }
