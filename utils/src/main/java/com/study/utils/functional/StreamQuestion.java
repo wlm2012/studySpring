@@ -4,10 +4,7 @@ import com.study.utils.entity.Album;
 import com.study.utils.entity.Artist;
 import com.study.utils.entity.Dog;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -52,6 +49,19 @@ public class StreamQuestion {
         System.out.println(list);
         list.sort(Comparator.comparingInt(Dog::getAge));
         System.out.println(list);
+    }
+
+    public static void computedAges() {
+
+        List<Dog> list =
+                Arrays.asList(new Dog(3, "qq"), new Dog(20, "www"), new Dog(1, "ee"));
+//        int computedAges = list.stream().reduce(0, (init, dog) -> init + dog.getAge());
+        int computedAges = list.stream().reduce(0, (init, dog) -> init + dog.getAge(), Integer::sum);
+
+    }
+
+    public static void MapUsingReduce(){
+
     }
 
 }
