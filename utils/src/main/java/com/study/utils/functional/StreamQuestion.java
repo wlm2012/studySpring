@@ -2,7 +2,9 @@ package com.study.utils.functional;
 
 import com.study.utils.entity.Album;
 import com.study.utils.entity.Artist;
+import com.study.utils.entity.Dog;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +37,21 @@ public class StreamQuestion {
     public static Optional<String> mostLowercaseString(List<String> stringList) {
         return stringList.stream()
                 .max(Comparator.comparingLong(StreamQuestion::countLowercaseLetters));
+    }
+
+    public static void SortTest() {
+        List<Dog> list = new ArrayList<>();
+        list.add(new Dog(3, "qq"));
+        list.add(new Dog(20, "www"));
+        list.add(new Dog(1, "ee"));
+
+        System.out.println(list);
+        list.sort((d1, d2) ->
+                d2.getAge() - d1.getAge()
+        );
+        System.out.println(list);
+        list.sort(Comparator.comparingInt(Dog::getAge));
+        System.out.println(list);
     }
 
 }

@@ -46,4 +46,9 @@ public class StreamTest {
 
     }
 
+    @Test
+    public void SortTest(){
+        StreamQuestion.SortTest();
+    }
+
 }
