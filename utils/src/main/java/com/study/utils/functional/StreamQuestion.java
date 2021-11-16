@@ -5,6 +5,7 @@ import com.study.utils.entity.Artist;
 import com.study.utils.entity.Dog;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,8 +61,17 @@ public class StreamQuestion {
 
     }
 
-    public static void MapUsingReduce(){
-
+    public static <I, O> List<O> mapUsingReduce(Stream<I> stream, Function<I, O> mapper) {
+        return stream.reduce(new ArrayList<O>(), (acc, x) -> {
+            List<O> newAcc = new ArrayList<>(acc);
+            newAcc.add(mapper.apply(x));
+            return newAcc;
+        }, (List<O> left, List<O> right) -> {
+            // We are copying left to new list to avoid mutating it.
+            List<O> newLeft = new ArrayList<>(left);
+            newLeft.addAll(right);
+            return newLeft;
+        });
     }
 
 }
