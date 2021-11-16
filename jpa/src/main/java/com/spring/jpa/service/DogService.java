@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class DogService {
@@ -15,10 +16,11 @@ public class DogService {
     private DogRepository dogRepository;
 
     @Async
-    public void asyncTest(Dog dog) throws InterruptedException {
-        Random random = new Random(dog.getId());
+    public CompletableFuture<Dog> asyncTest(Dog dog) throws InterruptedException {
+        Random random = new Random(dog.getNum());
         dog.setAge(random.nextInt(100));
-        dogRepository.save(dog);
+        dog = dogRepository.save(dog);
         Thread.sleep(1_000);
+        return CompletableFuture.completedFuture(dog);
     }
 }

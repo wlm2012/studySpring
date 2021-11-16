@@ -1,8 +1,10 @@
 package com.spring.jpa.DO;
 
+import jdk.jfr.TransitionTo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,16 +12,18 @@ import javax.persistence.*;
 @Table(name = "t_dog")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private long num;
     private int age;
     private String name;
 
-    public Dog(Long id) {
-        this.id = id;
+    public Dog(Long num) {
+        this.num = num;
     }
 }
