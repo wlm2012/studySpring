@@ -57,7 +57,7 @@ public class StreamQuestion {
 
         List<Dog> list =
                 Arrays.asList(new Dog(3, "qq"), new Dog(20, "www"), new Dog(1, "ee"));
-//        int computedAges = list.stream().reduce(0, (init, dog) -> init + dog.getAge());
+//        int computedAges1 = list.stream().reduce(0, (init, dog) -> init + dog.getAge());
         int computedAges = list.stream().reduce(0, (init, dog) -> init + dog.getAge(), Integer::sum);
 
     }
