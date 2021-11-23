@@ -11,8 +11,10 @@ public class MapT {
         map.put(2, "ww");
         map.put(3, "ee");
 
+        //如果key存在则执行lambda表达式
         map.merge(3, "aa", (v1, v2) -> v1 + v2);
         System.out.println(map);
+        //否则赋值value
         map.merge(4, "aa", (v1, v2) -> v1 + v2);
         System.out.println(map);
 
