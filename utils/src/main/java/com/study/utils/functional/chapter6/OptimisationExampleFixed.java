@@ -1,62 +1,50 @@
 package com.study.utils.functional.chapter6;
 
-import lombok.extern.slf4j.Slf4j;
-import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-@Slf4j
-@BenchmarkMode(Mode.AverageTime)
-@State(Scope.Thread)
-@Fork(1)
-@Threads(4)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Warmup(iterations = 3)
-@Measurement(iterations = 5)
+
 public class OptimisationExampleFixed {
 
-    public static void main(String[] args) throws RunnerException {
-        Options build = new OptionsBuilder()
-                .include(OptimisationExampleFixed.class.getSimpleName())
-                .build();
-        new Runner(build).run();
-    }
 
-    @Benchmark
-    public void sum(Blackhole blackhole) {
+    public static List<Integer> init() {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        IntStream.range(0, 10).forEach(arrayList::add);
-
-        blackhole.consume(slowSumOfSquares(arrayList));
+        IntStream.range(0, 10000).forEach(arrayList::add);
+        return arrayList;
     }
 
-    @Benchmark
-    public void sum1(Blackhole blackhole) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        IntStream.range(0, 10).forEach(arrayList::add);
-
-        blackhole.consume(slowSumOfSquares1(arrayList));
+    public static List<Integer> init1() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        IntStream.range(0, 1000).forEach(linkedList::add);
+        return linkedList;
     }
 
-    public static int slowSumOfSquares1(List<Integer> linkedListOfNumbers) {
+    public static int slowSumOfSquares(List<Integer> lists) {
+
+        return lists.stream().parallel()
+                .reduce(0, (acc, x) -> acc + x * x);
+    }
+
+    public static int slowSumOfSquares1(List<Integer> lists) {
         int result = 0;
-        for (Integer linkedListOfNumber : linkedListOfNumbers) {
-            result += linkedListOfNumber * linkedListOfNumber;
+        for (Integer list : lists) {
+            result += list * list;
         }
         return result;
     }
 
-    public static int slowSumOfSquares(List<Integer> linkedListOfNumbers) {
-        return linkedListOfNumbers.stream().parallel()
-                .reduce(0, (acc, x) -> acc + x * x);
+    public static int slowSumOfSquares2(List<Integer> lists) {
+        return lists.parallelStream()
+                .map(x -> x * x)
+                .reduce(0, Integer::sum);
+    }
+
+    public static int slowSumOfSquares3(List<Integer> lists) {
+        return lists.parallelStream()
+                .mapToInt(x -> x * x)
+                .sum();
     }
 
 
