@@ -6,15 +6,15 @@ public class SNode<T> {
 
     private SNode<T> next;
 
-    public void rmByNum(){
+    public void rmByNum() {
 
     }
 
-    public void rmByValue(){
+    public void rmByValue() {
 
     }
 
-    public void add(T element){
+    public void add(T element) {
 
     }
 
