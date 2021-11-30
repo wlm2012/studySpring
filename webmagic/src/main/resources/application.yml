@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 9906
+
+
+#配置actuator，开启所有endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+
+
+
+#配置log等级
+logging:
+  file:
+    path: ./log
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+#    org.hibernate.type..descriptor.sql.BasicBinder: trace
+    druid.sql.Statement: DEBUG
