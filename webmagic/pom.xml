@@ -18,7 +18,10 @@
     </properties>
     <dependencies>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
@@ -30,7 +33,7 @@
             <version>1.2.8</version>
         </dependency>
 
-<!--    webmagic   -->
+        <!--    webmagic   -->
         <dependency>
             <groupId>us.codecraft</groupId>
             <artifactId>webmagic-core</artifactId>

@@ -1,6 +1,5 @@
 package com.spring.jpa.DO;
 
-import jdk.jfr.TransitionTo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
