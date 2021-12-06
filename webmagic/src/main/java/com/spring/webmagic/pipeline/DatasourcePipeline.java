@@ -29,6 +29,8 @@ public class DatasourcePipeline implements PageModelPipeline<Spider> {
             spiderUpdate = optional.get();
             spiderUpdate.setUpdated(false);
             if (!spiderUpdate.getContent().equals(spider.getContent())) {
+                spiderUpdate.setBeforeContent(spiderUpdate.getContent());
+                spiderUpdate.setContent(spider.getContent());
                 spiderUpdate.setUpdated(true);
             }
         }

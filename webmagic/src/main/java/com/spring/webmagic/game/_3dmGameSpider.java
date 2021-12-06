@@ -1,10 +1,11 @@
 package com.spring.webmagic.game;
 
 import com.spring.webmagic.BO.Spider;
+import lombok.Getter;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
-
+@Getter
 @TargetUrl("https://bbs.3dmgame.com/forum-3402-1.html")
 public class _3dmGameSpider extends Spider {
 

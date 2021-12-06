@@ -6,7 +6,6 @@ import com.spring.webmagic.pipeline.DatasourcePipeline;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.OOSpider;
 
 import javax.annotation.Resource;

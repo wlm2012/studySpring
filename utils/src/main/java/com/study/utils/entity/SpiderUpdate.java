@@ -1,4 +1,4 @@
-package com.spring.webmagic.entity;
+package com.study.utils.entity;
 
 
 import lombok.Getter;
@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@ToString
 @Table(name = "t_spider_update")
 public class SpiderUpdate {
 
@@ -21,9 +22,6 @@ public class SpiderUpdate {
 
     @Lob
     private String content;
-
-    @Lob
-    private String beforeContent;
 
     private String url;
 
