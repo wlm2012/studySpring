@@ -1,6 +1,7 @@
 package com.spring.webmagic.entity;
 
 
+import com.spring.webmagic.entityEnum.Inquired;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,6 +29,8 @@ public class SpiderUpdate {
     private String url;
 
     private boolean updated = false;
+
+    private Inquired inquired;
 
 
 }
