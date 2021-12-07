@@ -4,7 +4,6 @@ package com.spring.webmagic.entity;
 import com.spring.webmagic.entityEnum.Inquired;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
