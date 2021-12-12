@@ -18,7 +18,7 @@
     <bean id="user" class="com.study.thinkinspring.ioc.overview.domain.User">
         <property name="id" value="1"/>
         <property name="name" value="小马哥"/>
-<!--        <property name="city" value="HANGZHOU"/>-->
+        <property name="city" value="HANGZHOU"/>
 <!--        <property name="workCities" value="BEIJING,HANGZHOU"/>-->
 <!--        <property name="lifeCities">-->
 <!--            <list>-->
@@ -26,7 +26,7 @@
 <!--                <value>SHANGHAI</value>-->
 <!--            </list>-->
 <!--        </property>-->
-<!--        <property name="configFileLocation" value="classpath:/META-INF/user-config.properties"/>-->
+        <property name="configFileLocation" value="classpath:/META-INF/user-config.properties"/>
     </bean>
 
     <!-- 普通 beanDefinition GenericBeanDefinition -->
