@@ -30,6 +30,9 @@ public class AsyncController {
 
         log.info("Elapsed time1: " + (System.currentTimeMillis() - start));
 
+        CompletableFuture<Object> future4 = CompletableFuture.anyOf(future1, future2);
+        log.info(future4.get().toString());
+
         log.info(future1.get().toString());
         log.info(future2.get().toString());
         log.info(future3.get().toString());

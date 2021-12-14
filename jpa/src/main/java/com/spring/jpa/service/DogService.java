@@ -20,7 +20,7 @@ public class DogService {
         Random random = new Random(dog.getNum());
         dog.setAge(random.nextInt(100));
         dog = dogRepository.save(dog);
-        Thread.sleep(1_000);
+        Thread.sleep(dog.getNum() * 10_000);
         return CompletableFuture.completedFuture(dog);
     }
 }
