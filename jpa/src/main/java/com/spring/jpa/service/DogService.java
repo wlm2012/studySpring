@@ -23,4 +23,13 @@ public class DogService {
         Thread.sleep(dog.getNum() * 10_000);
         return CompletableFuture.completedFuture(dog);
     }
+
+    @Async
+    public Dog asyncTest1(Dog dog) throws InterruptedException {
+        Random random = new Random(dog.getNum());
+        dog.setAge(random.nextInt(100));
+        dog = dogRepository.save(dog);
+        Thread.sleep(dog.getNum() * 10_000);
+        return dog;
+    }
 }

@@ -27,6 +27,9 @@ public class AsyncController {
         CompletableFuture<Dog> future2 = dogService.asyncTest(new Dog(2L));
         CompletableFuture<Dog> future3 = dogService.asyncTest(new Dog(3L));
 
+        //由于新的线程没有执行完任务，导致没有成功获取到dog，空指针异常
+//        Dog dog = dogService.asyncTest1(new Dog(4L));
+//        log.info(dog.toString());
 
         log.info("Elapsed time1: " + (System.currentTimeMillis() - start));
 
