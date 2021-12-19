@@ -1,4 +1,4 @@
-package com.studyspring.diveinspringboot.condition;
+package com.studyspring.diveinspringboot.autoconfigure.condition;
 
 
 import org.springframework.context.annotation.Conditional;
@@ -12,13 +12,11 @@ import java.lang.annotation.*;
 public @interface ConditionalOnSystemProperty {
     /**
      * Java 系统属性名称
-     *
      */
     String name();
 
     /**
      * Java 系统属性值
-     *
      */
     String value();
 }

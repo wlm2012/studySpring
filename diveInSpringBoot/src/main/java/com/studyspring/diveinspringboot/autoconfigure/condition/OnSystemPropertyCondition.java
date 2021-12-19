@@ -1,4 +1,4 @@
-package com.studyspring.diveinspringboot.condition;
+package com.studyspring.diveinspringboot.autoconfigure.condition;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;

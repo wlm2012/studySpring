@@ -1,4 +1,4 @@
-package com.studyspring.diveinspringboot.service;
+package com.studyspring.diveinspringboot.autoconfigure.service;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.studyspring.diveinspringboot.bootstrap;
+package com.studyspring.diveinspringboot.autoconfigure.bootstrap;
 
-import com.studyspring.diveinspringboot.condition.ConditionalOnSystemProperty;
+import com.studyspring.diveinspringboot.autoconfigure.condition.ConditionalOnSystemProperty;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;

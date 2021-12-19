@@ -1,4 +1,4 @@
-package com.studyspring.diveinspringboot.service;
+package com.studyspring.diveinspringboot.autoconfigure.service;
 
 public interface CalculateService {
 

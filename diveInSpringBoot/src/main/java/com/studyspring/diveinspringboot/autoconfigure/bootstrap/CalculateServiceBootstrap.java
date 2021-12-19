@@ -1,8 +1,7 @@
-package com.studyspring.diveinspringboot.bootstrap;
+package com.studyspring.diveinspringboot.autoconfigure.bootstrap;
 
-import com.studyspring.diveinspringboot.service.CalculateService;
+import com.studyspring.diveinspringboot.autoconfigure.service.CalculateService;
 import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class CalculateServiceBootstrap {
 
     public static void main(String[] args) {
+//        SpringApplication.run(CalculateServiceBootstrap.class, args);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(CalculateServiceBootstrap.class)
                 .web(WebApplicationType.NONE)
                 .profiles("java8")

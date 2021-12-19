@@ -1,6 +1,6 @@
-package com.studyspring.diveinspringboot.annotation;
+package com.studyspring.diveinspringboot.autoconfigure.annotation;
 
-import com.studyspring.diveinspringboot.configuration.HelloWorldConfiguration;
+import com.studyspring.diveinspringboot.autoconfigure.configuration.HelloWorldConfiguration;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 

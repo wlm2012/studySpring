@@ -1,4 +1,4 @@
-package com.studyspring.diveinspringboot.configuration;
+package com.studyspring.diveinspringboot.autoconfigure.configuration;
 
 import org.springframework.context.annotation.Bean;
 
