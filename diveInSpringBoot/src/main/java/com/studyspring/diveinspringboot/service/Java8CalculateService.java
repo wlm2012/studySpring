@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class Java8CalculateService implements CalculateService {
     @Override
     public Integer sum(Integer... values) {
-        System.out.println("java8");
+        System.out.println("java 8");
         return Math.toIntExact(Stream.of(values).reduce(0, Integer::sum));
     }
 }
