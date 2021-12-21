@@ -1,2 +1,11 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.studyspring.diveinspringboot.springApplication.context.AfterHelloWorldApplicationContextInitializer,\
+com.studyspring.diveinspringboot.springApplication.context.HelloApplicationContextInitializer
+
+org.springframework.context.ApplicationListener=\
+com.studyspring.diveinspringboot.springApplication.listener.AfterHelloWorldApplicationListener,\
+com.studyspring.diveinspringboot.springApplication.listener.HelloWorldApplicationListener
+
+
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.studyspring.diveinspringboot.autoconfigure.configuration.HelloWorldAutoConfiguration
