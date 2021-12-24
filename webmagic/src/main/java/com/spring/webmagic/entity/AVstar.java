@@ -1,6 +1,8 @@
 package com.spring.webmagic.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Lombok;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ import javax.persistence.*;
 public class AVstar {
 
     @Id
+    @Setter(AccessLevel.NONE)
     @GeneratedValue
     private Long id;
 
@@ -24,6 +27,10 @@ public class AVstar {
     private String chineseName;
     private int score;
     private String description;
+    private boolean confirm = false;
+    private boolean exist = false;
+
+
     private byte[] photo;
 
 
