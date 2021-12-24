@@ -2,7 +2,6 @@ package com.spring.webmagic.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Lombok;
 import lombok.Setter;
 
 import javax.persistence.*;
