@@ -11,4 +11,8 @@ public class Teacher extends Person {
         students = size;
     }
 
+    protected static long getClazz(long clazz) {
+        return 1 + clazz;
+    }
+
 }

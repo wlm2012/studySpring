@@ -18,8 +18,12 @@ public class Person {
         System.out.println("sex: " + sex);
     }
 
+    protected void printOld(){
+        System.out.println("old: " + old);
+    }
 
-    public Person(String name, int old) {
+
+    private Person(String name, int old) {
         this(name, old, "1");
     }
 
