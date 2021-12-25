@@ -6,9 +6,9 @@ import com.study.utils.entityEnum.Inquired;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Slf4j
 public class ReflectClass {
@@ -158,20 +158,6 @@ public class ReflectClass {
 
     }
 
-    public static void ResourceTest() throws ClassNotFoundException, IOException {
-        Class<?> c1 = Class.forName("com.study.utils.entity.Person");
-        //create 1.txt under Person.class fold for test
-        System.out.println(c1.getResource("1.txt"));
-        InputStream inputStream = c1.getResourceAsStream("1.txt");
-        StringBuffer stringBuffer = new StringBuffer();
-        byte[] buf = new byte[1024 * 10];
-        int temp;
-        while ((temp = inputStream.read(buf)) > 0) {
-            stringBuffer.append(new String(buf, 0, temp));
-        }
-        System.out.println(stringBuffer);
-
-    }
 
     public static void printField(Class<Person> c1) {
         Field[] fields = c1.getDeclaredFields();
@@ -184,16 +170,28 @@ public class ReflectClass {
         }
     }
 
+    public static void ResourceTest() throws ClassNotFoundException, IOException {
+        Class<?> c1 = Class.forName("com.study.utils.entity.Person");
+        // /C:/study_java/studySpring/utils/target/classes/com/study/utils/entity/
+        String path = Objects.requireNonNull(c1.getResource("")).getPath();
+        System.out.println(path);
+        //  /C:/study_java/studySpring/utils/target/test-classes/
+        path = Objects.requireNonNull(c1.getResource("/")).getPath();
+        System.out.println(path);
+    }
 
-    public static Object copyArray(Object a, int newLength) {
-        Class c1 = a.getClass();
+
+    public static <T> T[] copyArray(T[] list, int newLength) {
+        Class<?> c1 = list.getClass();
         if (!c1.isArray()) {
             return null;
         }
-        Class type = c1.getComponentType();
-        int length = Array.getLength(a);
-        Object newArray = Array.newInstance(type, newLength);
-        System.arraycopy(a, 0, newArray, 0, Math.min(newLength, length));
+        Class<?> type = c1.getComponentType();
+        int length = Array.getLength(list);
+        Object o = Array.newInstance(type, newLength);
+
+        T[] newArray = (T[])o;
+        System.arraycopy(list, 0, newArray, 0, Math.min(newLength, length));
         return newArray;
     }
 }

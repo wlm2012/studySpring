@@ -1,8 +1,10 @@
 package com.study.utils;
 
+import com.study.utils.entity.Person;
 import com.study.utils.reflect.ReflectClass;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 
@@ -36,5 +38,16 @@ public class ReflectTest {
     @Test
     public void testField() throws NoSuchFieldException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         ReflectClass.testField();
+    }
+
+    @Test
+    public void printField(){
+        ReflectClass.printField(Person.class);
+    }
+
+
+    @Test
+    public void ResourceTest() throws IOException, ClassNotFoundException {
+        ReflectClass.ResourceTest();
     }
 }
