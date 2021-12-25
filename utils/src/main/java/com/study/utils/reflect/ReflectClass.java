@@ -1,6 +1,7 @@
 package com.study.utils.reflect;
 
 import com.study.utils.entity.Person;
+import com.study.utils.entity.Teacher;
 import com.study.utils.entityEnum.Inquired;
 import lombok.extern.slf4j.Slf4j;
 
@@ -104,14 +105,61 @@ public class ReflectClass {
 
 
         log.info("public 成员方法调用");
-        Person person = (Person)clazz.getConstructor().newInstance();
+        Person person = (Person) clazz.getConstructor().newInstance();
         Method printYear = clazz.getMethod("printYear", String.class);
         printYear.invoke(person, "2020");
 
     }
 
+
+    public static void testField() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
+        Class<?> c1 = Class.forName("com.study.utils.entity.Teacher");
+
+        log.info("获取该类的所有字段，但不能获取父类字段");
+        Field[] fields1 = c1.getDeclaredFields();
+        for (Field field : fields1) {
+            System.out.println(field);
+        }
+
+        log.info("获取该类和父类所有的public字段");
+        fields1 = c1.getFields();
+        for (Field field : fields1) {
+            System.out.println(field);
+        }
+
+
+        var harry = (Teacher) c1.getConstructor(String.class, int.class, String.class, long.class).newInstance("Harry", 14, "1", 100);
+        //change the value of "students", 100->20
+        System.out.println(harry.getStudents());
+        Field sex = c1.getDeclaredField("students");
+        sex.setAccessible(true);
+        sex.set(harry, 20);
+        System.out.println(harry.getStudents());
+
+
+        //static field  set xxx.class or object，实例字段只能通过实例赋值
+        System.out.println(harry.getLike());
+        Field like = c1.getField("like");
+
+        like.set(Person.class, "kde");
+        System.out.println(harry.getLike());
+
+        like.set(harry, "unix");
+        System.out.println(harry.getLike());
+
+
+        //获取field字段的值
+        Field[] fields = c1.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object s = field.get(harry);
+            System.out.println(field + " : " + s);
+        }
+
+    }
+
     public static void ResourceTest() throws ClassNotFoundException, IOException {
-        Class<Person> c1 = (Class<Person>) Class.forName("com.study.utils.entity.Person");
+        Class<?> c1 = Class.forName("com.study.utils.entity.Person");
         //create 1.txt under Person.class fold for test
         System.out.println(c1.getResource("1.txt"));
         InputStream inputStream = c1.getResourceAsStream("1.txt");
@@ -134,40 +182,6 @@ public class ReflectClass {
             }
             System.out.println(field.getType().getName() + "   " + field.getName());
         }
-    }
-
-    public static void setAndGetField() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
-        Class<Person> c1 = (Class<Person>) Class.forName("wlm.entity.Person");
-        var harry = c1.getConstructor(String.class, int.class, String.class).newInstance("Harry", 14, "1");
-
-        //change the value of "sex", 1->2
-        Field sex = c1.getDeclaredField("sex");
-        sex.set(harry, "2");
-
-        //change the value of "name" , Harry->potter
-        Field name = c1.getDeclaredField("name");
-        //private field ,need setAccessible(true)
-        name.setAccessible(true);
-        name.set(harry, "potter");
-
-        //static field  set xxx.class or object
-        Field like = c1.getDeclaredField("like");
-        like.set(Person.class, "kde");
-        like.set(harry, "unix");
-
-        /**
-         * output:
-         * potter
-         * 14
-         * 2
-         */
-        Field[] fields = c1.getDeclaredFields();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            Object s = field.get(harry);
-            System.out.println(s);
-        }
-
     }
 
 

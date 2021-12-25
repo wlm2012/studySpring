@@ -1,18 +1,23 @@
 package com.study.utils.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
+
 
     private String name;
     private int old;
     public String sex;
     public static String like = "linux";
+
+
+    public String getLike(){
+        return like;
+    }
 
     private void printSex() {
         System.out.println("sex: " + sex);

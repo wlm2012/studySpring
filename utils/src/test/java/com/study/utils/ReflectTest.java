@@ -32,4 +32,9 @@ public class ReflectTest {
     public void testMethod() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         ReflectClass.testMethod();
     }
+
+    @Test
+    public void testField() throws NoSuchFieldException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        ReflectClass.testField();
+    }
 }
