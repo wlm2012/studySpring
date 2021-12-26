@@ -4,8 +4,8 @@ import com.study.utils.entity.Person;
 import com.study.utils.reflect.ReflectClass;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 
 public class ReflectTest {
@@ -41,16 +41,25 @@ public class ReflectTest {
     }
 
     @Test
-    public void printField(){
+    public void printField() {
         ReflectClass.printField(Person.class);
     }
 
 
     @Test
-    public void ResourceTest() throws IOException, ClassNotFoundException {
+    public void ResourceTest() throws ClassNotFoundException {
         ReflectClass.ResourceTest();
     }
-//
-//    @Test
-//    public void
+
+    @Test
+    public void copyArray() {
+        Integer[] ints = new Integer[]{1, 2, 3};
+        Integer[] integers = ReflectClass.copyArray(ints, 2);
+        assert integers != null;
+        for (Integer i : integers) {
+            System.out.println(i);
+        }
+    }
+
+
 }

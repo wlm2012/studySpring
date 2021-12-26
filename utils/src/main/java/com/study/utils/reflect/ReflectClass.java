@@ -5,7 +5,6 @@ import com.study.utils.entity.Teacher;
 import com.study.utils.entityEnum.Inquired;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.Objects;
@@ -170,7 +169,7 @@ public class ReflectClass {
         }
     }
 
-    public static void ResourceTest() throws ClassNotFoundException, IOException {
+    public static void ResourceTest() throws ClassNotFoundException {
         Class<?> c1 = Class.forName("com.study.utils.entity.Person");
         // /C:/study_java/studySpring/utils/target/classes/com/study/utils/entity/
         String path = Objects.requireNonNull(c1.getResource("")).getPath();
@@ -180,19 +179,23 @@ public class ReflectClass {
         System.out.println(path);
     }
 
-
-    public static <T> T[] copyArray(T[] list, int newLength) {
-        Class<?> c1 = list.getClass();
+    @SuppressWarnings("unchecked")
+    public static <T> T[] copyArray(T[] array, int newLength) {
+        Class<?> c1 = array.getClass();
         if (!c1.isArray()) {
             return null;
         }
         Class<?> type = c1.getComponentType();
-        int length = Array.getLength(list);
+        int length = Array.getLength(array);
+        // Unchecked cast: 'java.lang.Object' to 'T[]'
         T[] newArray = (T[]) Array.newInstance(type, newLength);
 
-        System.arraycopy(list, 0, newArray, 0, Math.min(newLength, length));
+        System.arraycopy(array, 0, newArray, 0, Math.min(newLength, length));
         return newArray;
     }
+
+    
+
 
 
 }
