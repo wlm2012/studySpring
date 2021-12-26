@@ -50,4 +50,7 @@ public class ReflectTest {
     public void ResourceTest() throws IOException, ClassNotFoundException {
         ReflectClass.ResourceTest();
     }
+//
+//    @Test
+//    public void
 }

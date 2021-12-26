@@ -188,10 +188,11 @@ public class ReflectClass {
         }
         Class<?> type = c1.getComponentType();
         int length = Array.getLength(list);
-        Object o = Array.newInstance(type, newLength);
+        T[] newArray = (T[]) Array.newInstance(type, newLength);
 
-        T[] newArray = (T[])o;
         System.arraycopy(list, 0, newArray, 0, Math.min(newLength, length));
         return newArray;
     }
+
+
 }
