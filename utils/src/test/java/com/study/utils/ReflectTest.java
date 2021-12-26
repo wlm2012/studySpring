@@ -61,5 +61,10 @@ public class ReflectTest {
         }
     }
 
+    @Test
+    public void GenericTest() throws NoSuchFieldException {
+        ReflectClass.GenericTest();
+    }
+
 
 }

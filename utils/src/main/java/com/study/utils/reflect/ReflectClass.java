@@ -194,8 +194,21 @@ public class ReflectClass {
         return newArray;
     }
 
-    
-
+    public static void GenericTest() throws NoSuchFieldException {
+        Class<Teacher> clazz = Teacher.class;
+        Field score = clazz.getDeclaredField("score");
+        Class<?> type = score.getType();
+        System.out.println("getType "+type);
+        Type genericType = score.getGenericType();
+        if (genericType instanceof ParameterizedType parameterizedType){
+            Type rawType = parameterizedType.getRawType();
+            System.out.println("rawType "+ rawType);
+            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+            for (Type actualTypeArgument : actualTypeArguments) {
+                System.out.println("泛型类型是：" + actualTypeArgument);
+            }
+        }
+    }
 
 
 }
