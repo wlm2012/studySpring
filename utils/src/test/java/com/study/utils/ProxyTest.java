@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class ProxyTest {
 
     @Test
-    public void proxy(){
+    public void proxy() {
         JDKProxy.proxy();
     }
 }
