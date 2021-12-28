@@ -15,6 +15,7 @@
 		<module>javaConcurrencyInPractice</module>
 		<module>webmagic</module>
 		<module>diveInSpringBoot</module>
+		<module>io</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
