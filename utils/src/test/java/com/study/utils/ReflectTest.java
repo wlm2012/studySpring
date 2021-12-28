@@ -62,7 +62,7 @@ public class ReflectTest {
     }
 
     @Test
-    public void GenericTest() throws NoSuchFieldException {
+    public void GenericTest() throws NoSuchFieldException, NoSuchMethodException {
         ReflectClass.GenericTest();
     }
 

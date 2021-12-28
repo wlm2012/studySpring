@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Slf4j
@@ -194,23 +196,59 @@ public class ReflectClass {
         return newArray;
     }
 
-    public static void GenericTest() throws NoSuchFieldException {
+    public static void GenericTest() throws NoSuchFieldException, NoSuchMethodException {
         Class<Teacher> clazz = Teacher.class;
         Field score = clazz.getDeclaredField("score");
         Class<?> type = score.getType();
-        System.out.println("getType "+type);
+        System.out.println("getType " + type);
         Type genericType = score.getGenericType();
-        if (genericType instanceof ParameterizedType parameterizedType){
+        if (genericType instanceof ParameterizedType parameterizedType) {
             Type rawType = parameterizedType.getRawType();
-            System.out.println("rawType "+ rawType);
+            System.out.println("rawType " + rawType);
             Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
             for (Type actualTypeArgument : actualTypeArguments) {
                 System.out.println("泛型类型是：" + actualTypeArgument);
             }
         }
+
+
+        Method method = clazz.getMethod("getScore", Map.class, List.class);
+
+
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        for (Class<?> parameterType : parameterTypes) {
+            System.out.println(parameterType);
+        }
+
+
+        log.info("获取入参的泛型信息");
+        Type[] genericParameterTypes = method.getGenericParameterTypes();
+        for (Type genericParameterType : genericParameterTypes) {
+            if (genericParameterType instanceof ParameterizedType parameterizedType) {
+                System.out.println("rawType " + parameterizedType.getRawType());
+                System.out.println("TypeName   " + parameterizedType.getTypeName());
+                Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                for (Type actualTypeArgument : actualTypeArguments) {
+                    System.out.println("actualTypeArgument  " + actualTypeArgument);
+                }
+            }
+        }
+
+        Class<?> returnType = method.getReturnType();
+        System.out.println(returnType);
+
+        log.info("获取出参的泛型信息");
+        Type genericReturnType = method.getGenericReturnType();
+        if (genericReturnType instanceof ParameterizedType parameterizedType) {
+            System.out.println("rawType " + parameterizedType.getRawType());
+            System.out.println("TypeName   " + parameterizedType.getTypeName());
+            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+            for (Type actualTypeArgument : actualTypeArguments) {
+                System.out.println("actualTypeArgument  " + actualTypeArgument);
+            }
+        }
+
     }
-
-
 
 
 }
