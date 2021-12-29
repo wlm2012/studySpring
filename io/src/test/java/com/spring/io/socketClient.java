@@ -18,13 +18,22 @@ public class socketClient {
         try (Socket socket = new Socket("127.0.0.1", 7700);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true, Charset.forName("gbk"));
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            String text = new String("""
-                    C330300000000000000805<?xml version="1.0" encoding="GBK"?>
+            String text = """
+                    C330300000000000002537<?xml version="1.0" encoding="GBK"?>
                         <message>\s
                         <head>
                         <field name="SendDate">20201007</field>
                         <field name="SendTime">085533</field>
-                        <field name="SendSeqNo">33030201009050001125</field>
+                        <field name="SendSeqNo">1张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红
+                        张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红张金红33030201009050001125</field>
                         <field name="TxUnitNo">330300000000000</field>
                         <field name="SendNode">C33030</field>
                         <field name="TxCode">BDC300</field>
@@ -44,7 +53,7 @@ public class socketClient {
                          <field name="Bk5"></field>
                          <field name="Bk6"></field>
                          </body>\s
-                        </message>""");
+                        </message>""";
 
             out.println(text);
 
