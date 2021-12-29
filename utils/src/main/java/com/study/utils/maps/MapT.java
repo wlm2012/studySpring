@@ -1,6 +1,8 @@
 package com.study.utils.maps;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapT {
@@ -18,5 +20,16 @@ public class MapT {
         map.merge(4, "aa", (v1, v2) -> v1 + v2);
         System.out.println(map);
 
+        map.putIfAbsent(6, "11");
+        System.out.println(map);
+    }
+
+    public static void computeIfAbsent() {
+        Map<String, List<String>> result = new HashMap<>();
+        result.computeIfAbsent("1", key -> new ArrayList<>())
+                .add("a".trim());
+        result.computeIfAbsent("1", key -> new ArrayList<>())
+                .add("a");
+        System.out.println(result);
     }
 }

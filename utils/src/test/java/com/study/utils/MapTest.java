@@ -9,4 +9,9 @@ public class MapTest {
     public void test(){
         MapT.test();
     }
+
+    @Test
+    public void computeIfAbsent(){
+        MapT.computeIfAbsent();
+    }
 }
