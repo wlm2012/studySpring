@@ -13,7 +13,7 @@ import java.util.concurrent.*;
 @Slf4j
 public class EventController {
 
-    private EventBus eventBus;
+    private final EventBus eventBus;
 
     private static final int DEFAULT_EVENTBUS_THREAD_POOL_SIZE = 20;
 
@@ -39,14 +39,5 @@ public class EventController {
         eventBus.post(new EventB(123));
         TimeUnit.SECONDS.sleep(5);
     }
-
-    public void eventTest() throws InterruptedException {
-        List<Object> observers = new ArrayList<>();
-        observers.add(new UserObserver());
-        observers.add(new CarObserver());
-        setRegObservers(observers);
-        send();
-    }
-
 
 }
