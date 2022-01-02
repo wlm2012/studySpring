@@ -1,7 +1,6 @@
 package com.study.utils.httpUtil;
 
-/*import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;*/
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -29,6 +28,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -70,11 +70,7 @@ public class HttpUtil {
 			HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
 			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
 			return HttpClients.custom().setSSLSocketFactory(sslsf).build();
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (KeyStoreException e) {
+		} catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
 			e.printStackTrace();
 		}
 		return HttpClients.createDefault();
@@ -130,7 +126,7 @@ public class HttpUtil {
 			httpPost.addHeader("Content-type", "application/json; charset=utf-8");
 			httpPost.setHeader("Accept", "application/json");
 //			httpPost.setHeader("con","");
-			httpPost.setEntity(new StringEntity(jsonString, Charset.forName("UTF-8")));
+			httpPost.setEntity(new StringEntity(jsonString, StandardCharsets.UTF_8));
 			response = httpClient.execute(httpPost);
 			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			StringBuffer sb = new StringBuffer("");
@@ -222,12 +218,12 @@ public class HttpUtil {
 			httpGet.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
 			response = httpClient.execute(httpGet);
-			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-			StringBuffer sb = new StringBuffer("");
+			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.UTF_8));
+			StringBuilder sb = new StringBuilder("");
 			String line = "";
 			String NL = System.getProperty("line.separator");
 			while ((line = in.readLine()) != null) {
-				sb.append(line + NL);
+				sb.append(line).append(NL);
 			}
 			in.close();
 			result = sb.toString();
