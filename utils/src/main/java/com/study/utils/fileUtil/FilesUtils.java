@@ -209,12 +209,12 @@ public class FilesUtils {
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     public static String getMD5One(String path) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] b = md.digest(FileUtils.readFileToByteArray(new File(path)));
-            for (int i = 0; i < b.length; i++) {
-                int d = b[i];
+            for (int j : b) {
+                int d = j;
                 if (d < 0) {
                     d += 256;
                 }
@@ -256,8 +256,6 @@ public class FilesUtils {
                 stringBuffer.append(new String(buf, 0, temp));
             }
             return stringBuffer.toString();
-        } catch (IOException e) {
-            throw e;
         }
     }
 }
