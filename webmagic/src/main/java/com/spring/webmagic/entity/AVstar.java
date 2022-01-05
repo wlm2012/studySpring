@@ -30,6 +30,8 @@ public class AVstar {
     private boolean exist = false;
 
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] photo;
 
 

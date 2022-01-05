@@ -51,6 +51,14 @@
         </dependency>
 
 
+        <!-- 引入utils项目 -->
+        <dependency>
+            <groupId>com.study</groupId>
+            <artifactId>utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
         <!-- QueryDsl -->
         <dependency>
             <groupId>com.querydsl</groupId>

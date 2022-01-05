@@ -36,11 +36,22 @@ public class FilesUtils {
     }
 
 
+    public static byte[] readFileToByte(String path) throws IOException {
+        path = RepalceSeparator(path);
+        File file = new File(path);
+        byte[] bytes = new byte[(int) file.length()];
+        if (file.exists() && file.isFile()) {
+            try (FileInputStream fileInputStream = new FileInputStream(file);
+                 BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream)) {
+                bufferedInputStream.read(bytes);
+            }
+            return bytes;
+        }
+        return null;
+    }
 
     public static void createFile(String path, byte[] file) {
         String s = new String(file);
-        s = s.replace("\u0000", "").replace("\\u0000", "").replace(System.getProperty("line.separator"),"");
-        log.info(String.valueOf(s.length()));
         byte[] buffer = decode(s);
         try (FileOutputStream fos = new FileOutputStream(path)) {
             fos.write(buffer);
@@ -50,18 +61,6 @@ public class FilesUtils {
         }
     }
 
-    public static String getFileSize(byte[] file) {
-        String s = new String(file);
-        s = s.replace("\u0000", "").replace("\\u0000", "");
-        byte[] buffer = decode(s);
-        return getSize(buffer);
-    }
-
-    public static byte[] getByte(byte[] file){
-        String s = new String(file);
-        s = s.replace("\u0000", "").replace("\\u0000", "");
-        return decode(s);
-    }
 
     public static byte[] decode(String base64String) {
         return Base64.getDecoder().decode(base64String.getBytes(StandardCharsets.UTF_8));
