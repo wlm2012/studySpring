@@ -50,7 +50,16 @@ public class FilesUtils {
         return null;
     }
 
-    public static void createFile(String path, byte[] file) {
+    public static boolean createFile(String path, String fileName, byte[] file) {
+        return createFile(path + File.separator + fileName, file);
+
+    }
+
+    public static boolean createFile(String path, byte[] file) {
+        return false;
+    }
+
+    public static void createFileBase64(String path, byte[] file) {
         String s = new String(file);
         byte[] buffer = decode(s);
         try (FileOutputStream fos = new FileOutputStream(path)) {

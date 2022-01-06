@@ -31,7 +31,7 @@ public class RestTemplateController {
 
     }
 
-    @RequestMapping("/rest")
+/*    @RequestMapping("/rest")
     public void rest() {
         String url = "http://10.68.10.6:8090/api/get_img";
         url = "http://127.0.0.1:8016/get_img";
@@ -51,7 +51,7 @@ public class RestTemplateController {
                 .build();
         response = okhttpRestTemplate.postForEntity(url, imgRequest, String.class);
         FilesUtils.createFile("./2.jpg", response.getBody().getBytes());
-    }
+    }*/
 
     @RequestMapping("/get_img")
     public String getImg(@RequestBody ImgRequest imgRequest) {

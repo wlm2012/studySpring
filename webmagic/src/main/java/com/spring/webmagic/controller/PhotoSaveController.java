@@ -32,8 +32,10 @@ public class PhotoSaveController {
             byte[] bytes = FilesUtils.readFileToByte(path);
             AVstar aVstar1 = aVstar.get();
             aVstar1.setPhoto(bytes);
-            System.out.println(aVstar1.getChineseName());
+            System.out.println(aVstar1.getName());
         }
     }
+
+
 
 }

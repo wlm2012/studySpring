@@ -27,6 +27,7 @@ public class RestTest {
     @Resource
     private HttpClient httpClient;
 
+    /*
     @Test
     public void restTest() {
         ImgRequest imgRequest = ImgRequest.builder().ckyt("yes").fjmc("身份证")
@@ -35,7 +36,7 @@ public class RestTest {
                 .xh("1")
                 .build();
         String url = "http://10.10.60.62:8015/api/get_img2";
-   /*     Gson gson = new Gson();
+        Gson gson = new Gson();
         String json = gson.toJson(imgRequest);
         byte[] result = HttpUtil.postStr(url, json);
         byte[] bytes=new byte[result.length-10];
@@ -47,7 +48,7 @@ public class RestTest {
         ByteArrayOutputStream out =  new ByteArrayOutputStream();
         out.write(num);
         log.info(out.toString());
-        FilesUtils.createFile("D:\\1.jpg", bytes);*/
+        FilesUtils.createFile("D:\\1.jpg", bytes);
         Gson gson = new Gson();
         String json = gson.toJson(imgRequest);
         String result = HttpUtil.post(url, json);
@@ -56,14 +57,16 @@ public class RestTest {
         log.info(String.valueOf(result.length()));
         FilesUtils.createFile("D:\\1.jpg", result.getBytes());
 
-/*        ResponseEntity<String> response = okhttpRestTemplate.postForEntity(url, imgRequest, String.class);
+        ResponseEntity<String> response = okhttpRestTemplate.postForEntity(url, imgRequest, String.class);
         if (response.getStatusCode().equals(HttpStatus.OK)) {
             String result = response.getBody();
             log.info(result);
             result = result.substring(10);
             FilesUtils.createFile("D:\\1.jpg", result.getBytes());
-        }*/
+        }
     }
+*/
+
 
     @Test
     public void java11httpTest() throws ExecutionException, InterruptedException {
