@@ -12,6 +12,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -58,6 +59,7 @@ public class FilesUtils {
         try (FileOutputStream fileOutputStream = new FileOutputStream(path);
              BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)) {
             bufferedOutputStream.write(file);
+            bufferedOutputStream.flush();
         }
     }
 
@@ -112,7 +114,6 @@ public class FilesUtils {
     private static void addEntry(File file, ZipOutputStream zos, String root) throws IOException {
         byte[] buffer = new byte[10240];
         for (File file1 : Objects.requireNonNull(file.listFiles())) {
-            //      System.out.println(file1.getName());
             if (file1.isDirectory()) {
                 addEntry(file1, zos, file1.getName());
             } else {
@@ -131,13 +132,23 @@ public class FilesUtils {
     }
 
     public static void writeFile(String path, String s) throws IOException {
+        writeFile(path, s, StandardCharsets.UTF_8, true);
+    }
+
+    public static void writeFile(String path, String s, Charset charset) throws IOException {
+        writeFile(path, s, charset, true);
+    }
+
+    public static void writeFile(String path, String s, Charset charset, boolean append) throws IOException {
         path = RepalceSeparator(path);
         File file = new File(path);
         if (!file.exists()) {
             creatFile(path);
         }
-        try (FileWriter fileWriter = new FileWriter(file, true)) {
-            fileWriter.write(s);
+        try (FileWriter fileWriter = new FileWriter(file, charset, append);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.write(s);
+            bufferedWriter.flush();
         }
     }
 
@@ -257,13 +268,19 @@ public class FilesUtils {
     }
 
     public static String readFile(String path) throws IOException {
+        return readFile(path, StandardCharsets.UTF_8);
+    }
+
+
+    public static String readFile(String path, Charset charset) throws IOException {
         path = RepalceSeparator(path);
         File file = new File(path);
         StringBuilder stringBuffer = new StringBuilder();
-        try (FileReader fReader = new FileReader(file)) {
+        try (FileReader fReader = new FileReader(file, charset);
+             BufferedReader bufferedReader = new BufferedReader(fReader)) {
             char[] buf = new char[1024 * 10];
             int temp = 0;
-            while ((temp = fReader.read(buf)) > 0) {
+            while ((temp = bufferedReader.read(buf)) > 0) {
                 stringBuffer.append(new String(buf, 0, temp));
             }
             return stringBuffer.toString();
