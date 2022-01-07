@@ -17,7 +17,7 @@ public class socketClient {
 
         try (Socket socket = new Socket("127.0.0.1", 7700);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true, Charset.forName("gbk"));
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), Charset.forName("gbk")))) {
             String text = """
                     C330300000000000002537<?xml version="1.0" encoding="GBK"?>
                         <message>\s
