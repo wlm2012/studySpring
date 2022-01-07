@@ -50,13 +50,15 @@ public class FilesUtils {
         return null;
     }
 
-    public static boolean createFile(String path, String fileName, byte[] file) {
-        return createFile(path + File.separator + fileName, file);
-
+    public static void createFile(String path, String fileName, byte[] file) throws IOException {
+        createFile(path + File.separator + fileName, file);
     }
 
-    public static boolean createFile(String path, byte[] file) {
-        return false;
+    public static void createFile(String path, byte[] file) throws IOException {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(path);
+             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)) {
+            bufferedOutputStream.write(file);
+        }
     }
 
     public static void createFileBase64(String path, byte[] file) {

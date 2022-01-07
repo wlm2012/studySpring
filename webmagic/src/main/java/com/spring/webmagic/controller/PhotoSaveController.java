@@ -36,6 +36,15 @@ public class PhotoSaveController {
         }
     }
 
+    @RequestMapping("/get")
+    public void get() throws IOException {
+        Optional<AVstar> aVstar = repository.findById(1L);
+        if (aVstar.isPresent()) {
+            String path = "C:\\Users\\wlm\\Desktop\\av.png";
+            FilesUtils.createFile(path, aVstar.get().getPhoto());
+            System.out.println(aVstar.get().getName());
+        }
+    }
 
 
 }

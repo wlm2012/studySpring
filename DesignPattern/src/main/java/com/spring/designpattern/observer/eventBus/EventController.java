@@ -6,9 +6,11 @@ import com.spring.designpattern.observer.eventBus.event.EventA;
 import com.spring.designpattern.observer.eventBus.event.EventB;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class EventController {
