@@ -2,6 +2,7 @@ package com.spring.webmagic.entity;
 
 
 import com.spring.webmagic.entityEnum.Inquired;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,8 @@ import javax.persistence.*;
 public class SpiderUpdate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     private String name;

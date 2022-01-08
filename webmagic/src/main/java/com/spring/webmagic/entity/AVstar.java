@@ -1,13 +1,16 @@
 package com.spring.webmagic.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Setter
 @Getter
+@Builder
 @Entity
 @Table(name = "t_av_star",
         indexes = {
