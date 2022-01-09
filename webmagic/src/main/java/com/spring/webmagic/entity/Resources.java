@@ -1,15 +1,18 @@
 package com.spring.webmagic.entity;
 
 import com.spring.webmagic.entityEnum.ResourcesEnum;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_resources")
 public class Resources {
 
@@ -24,7 +27,8 @@ public class Resources {
 
     private ResourcesEnum type;
 
-    private Long avId;
+    @ManyToMany
+    private Set<AVstar> aVstarList;
 
     private boolean exist;
 }

@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class ScanServiceImp {
+public class ScanService {
 
     private final DiskRepository diskRepository;
     private final PathRepository pathRepository;
@@ -27,7 +27,7 @@ public class ScanServiceImp {
     }
 
     @Autowired
-    public ScanServiceImp(DiskRepository diskRepository, PathRepository pathRepository) {
+    public ScanService(DiskRepository diskRepository, PathRepository pathRepository) {
         this.diskRepository = diskRepository;
         this.pathRepository = pathRepository;
     }

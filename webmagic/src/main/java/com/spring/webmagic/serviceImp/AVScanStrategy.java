@@ -1,6 +1,8 @@
 package com.spring.webmagic.serviceImp;
 
 import com.spring.webmagic.entity.AVstar;
+import com.spring.webmagic.entity.Resources;
+import com.spring.webmagic.entityEnum.ResourcesEnum;
 import com.spring.webmagic.repository.AVstarRepository;
 import com.spring.webmagic.repository.ResourcesReposity;
 import com.spring.webmagic.service.ScanStrategy;
@@ -9,15 +11,13 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AVScanStrategy implements ScanStrategy {
 
-    private AVstarRepository aVstarRepository;
-    private ResourcesReposity resourcesReposity;
+    private final AVstarRepository aVstarRepository;
+    private final ResourcesReposity resourcesReposity;
 
     @Autowired
     public AVScanStrategy(AVstarRepository aVstarRepository, ResourcesReposity resourcesReposity) {
@@ -28,11 +28,16 @@ public class AVScanStrategy implements ScanStrategy {
     @Override
     @Transactional
     public void scan(String path) {
-        List<AVstar> aVstars = aVstarRepository.findAll();
+        List<AVstar> aVstarList = aVstarRepository.findAll();
+        List<Resources> resourcesList = resourcesReposity.findByType(ResourcesEnum.av);
+        List<Resources> resourcesExist = new ArrayList<>();
 
         File[] files = new File(path).listFiles();
         assert files != null;
         for (File file : files) {
+            Set<AVstar> aVstarSet = new HashSet<>();
+            Set<Resources> resourcesSet = new HashSet<>();
+
             String name = file.getName();
             List<String> nameList = new ArrayList<>();
             if (name.contains(",")) {
@@ -42,7 +47,61 @@ public class AVScanStrategy implements ScanStrategy {
                 nameList.add(name);
             }
 
+            for (String n : nameList) {
+                Optional<AVstar> first = aVstarList.stream().filter(s -> {
+                    if (s.getName() != null && s.getName().contains(n)) {
+                        return true;
+                    }
+                    return s.getChineseName() != null && s.getChineseName().contains(n);
+                }).findFirst();
+                if (first.isPresent()) {
+                    AVstar aVstar = first.get();
+                    aVstar.setExist(true);
+                    aVstarSet.add(aVstar);
+                } else {
+                    AVstar build = AVstar.builder().name(n).score(70).exist(true).build();
+                    AVstar save = aVstarRepository.save(build);
+                    aVstarSet.add(save);
+                    aVstarList.add(save);
+                }
+            }
+
+            File[] listFiles = file.listFiles();
+            assert listFiles != null;
+            for (File listFile : listFiles) {
+                Optional<Resources> first = resourcesList.stream()
+                        .filter(r -> r.getName().equals(listFile.getName()))
+                        .findFirst();
+
+                if (first.isPresent()) {
+                    Resources resources = first.get();
+                    resources.setExist(true);
+                    resourcesSet.add(resources);
+                } else {
+                    Resources build = Resources.builder().name(listFile.getName()).path(listFile.getPath())
+                            .type(ResourcesEnum.av).exist(true).build();
+                    resourcesSet.add(build);
+                    resourcesList.add(build);
+                }
+            }
+            resourcesExist.addAll(resourcesSet);
+            AVstarResourceService.addresources(resourcesSet, aVstarSet);
+
+
         }
+
+        resourcesList.stream().filter(Resources::isExist)
+                .filter(r -> {
+                    for (Resources resources : resourcesExist) {
+                        if (r.getId().equals(resources.getId())) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .forEach(r -> r.setExist(false));
+
+
     }
 
 }
