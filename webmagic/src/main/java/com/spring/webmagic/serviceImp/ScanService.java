@@ -23,7 +23,7 @@ public class ScanService {
 
     @Autowired
     public void setAVScanStrategy(AVScanStrategy avScanStrategy) {
-        scanStrategyMap.put(avScanStrategy.getClass().getSimpleName(), avScanStrategy);
+        scanStrategyMap.put(avScanStrategy.getClass().getSuperclass().getSimpleName(), avScanStrategy);
     }
 
     @Autowired
@@ -43,7 +43,8 @@ public class ScanService {
         List<Path> paths = pathRepository.findByEnable(true);
 
 
-        if (!System.getProperty("os.version").contains("win")) {
+        if (!System.getProperty("os.name").contains("Windows")) {
+            System.out.println(System.getProperty("os.name"));
             System.out.println("该系统未配置");
             return;
         }

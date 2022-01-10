@@ -30,7 +30,9 @@ public class AVScanStrategy implements ScanStrategy {
     public void scan(String path) {
         List<AVstar> aVstarList = aVstarRepository.findAll();
         List<Resources> resourcesList = resourcesReposity.findByType(ResourcesEnum.av);
+
         List<Resources> resourcesExist = new ArrayList<>();
+        List<AVstar> aVstarsExist = new ArrayList<>();
 
         File[] files = new File(path).listFiles();
         assert files != null;
@@ -48,21 +50,38 @@ public class AVScanStrategy implements ScanStrategy {
             }
 
             for (String n : nameList) {
-                Optional<AVstar> first = aVstarList.stream().filter(s -> {
-                    if (s.getName() != null && s.getName().contains(n)) {
-                        return true;
-                    }
-                    return s.getChineseName() != null && s.getChineseName().contains(n);
-                }).findFirst();
+                String actress = n.replace("\\)", "");
+                String[] split = actress.split("\\(");
+                Optional<AVstar> first = aVstarList.stream()
+                        .filter(a -> {
+                            if (a.getName() != null) {
+                                for (String s : split) {
+                                    if (a.getName().contains(s)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                            if (a.getChineseName() != null) {
+                                for (String s : split) {
+                                    if (a.getChineseName().contains(s)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                            return false;
+                        }).findFirst();
+
                 if (first.isPresent()) {
                     AVstar aVstar = first.get();
                     aVstar.setExist(true);
                     aVstarSet.add(aVstar);
+                    aVstarsExist.add(aVstar);
+                    aVstarRepository.save(aVstar);
                 } else {
                     AVstar build = AVstar.builder().name(n).score(70).exist(true).build();
-                    AVstar save = aVstarRepository.save(build);
-                    aVstarSet.add(save);
-                    aVstarList.add(save);
+                    aVstarSet.add(build);
+                    aVstarList.add(build);
+                    aVstarsExist.add(build);
                 }
             }
 
@@ -90,7 +109,9 @@ public class AVScanStrategy implements ScanStrategy {
 
         }
 
-        resourcesList.stream().filter(Resources::isExist)
+        resourcesList.stream()
+                .filter(r -> r.getId() != null)
+                .filter(Resources::isExist)
                 .filter(r -> {
                     for (Resources resources : resourcesExist) {
                         if (r.getId().equals(resources.getId())) {
@@ -101,6 +122,21 @@ public class AVScanStrategy implements ScanStrategy {
                 })
                 .forEach(r -> r.setExist(false));
 
+        aVstarList.stream()
+                .filter(r -> r.getId() != null)
+                .filter(AVstar::isExist)
+                .filter(r -> {
+                            for (AVstar aVstar : aVstarsExist) {
+                                if (r.getId().equals(aVstar.getId())) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                ).forEach(a -> a.setExist(false));
+
+        resourcesReposity.saveAll(resourcesList);
+        aVstarRepository.saveAll(aVstarList);
 
     }
 
