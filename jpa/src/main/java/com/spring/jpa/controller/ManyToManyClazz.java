@@ -48,11 +48,14 @@ public class ManyToManyClazz {
             teachers.add(teacherId);
 
             // id不改关系不更新，即使其它参数已经修改，teacher也不更新
-//            Teacher build = Teacher.builder().id(10L).name("10teacher").build();
+            // 如果Set<Teacher> teachers已经改变，则会再次尝试在关系表插入id为10的数据
+            Teacher build = Teacher.builder().id(10L).name("10teacher").build();
 //            teachers.add(build);
 
-            //
-            Teacher build1 = Teacher.builder().id(11L).name("10teacher").build();
+            // 不能加上.id(11L) 会导致teacher的id为自动生成，关系的id则为赋值的值，导致插入失败
+            // 没有id的话，自动生成id，并维护关系表
+            Teacher build1 = Teacher.builder().name("10teacher").build();
+            //如果是关系维护的类维护关系，则会维护关系表，反之不会
             teachers.add(build1);
             build1.setStudents(Set.of(student));
 

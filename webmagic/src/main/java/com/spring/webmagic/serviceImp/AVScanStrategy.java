@@ -31,8 +31,8 @@ public class AVScanStrategy implements ScanStrategy {
         List<AVstar> aVstarList = aVstarRepository.findAll();
         List<Resources> resourcesList = resourcesReposity.findByType(ResourcesEnum.av);
 
-        List<Resources> resourcesExist = new ArrayList<>();
         List<AVstar> aVstarsExist = new ArrayList<>();
+        List<Resources> resourcesExist = new ArrayList<>();
 
         File[] files = new File(path).listFiles();
         assert files != null;
@@ -123,11 +123,11 @@ public class AVScanStrategy implements ScanStrategy {
                 .forEach(r -> r.setExist(false));
 
         aVstarList.stream()
-                .filter(r -> r.getId() != null)
+                .filter(a -> a.getId() != null)
                 .filter(AVstar::isExist)
-                .filter(r -> {
+                .filter(a -> {
                             for (AVstar aVstar : aVstarsExist) {
-                                if (r.getId().equals(aVstar.getId())) {
+                                if (a.getId().equals(aVstar.getId())) {
                                     return false;
                                 }
                             }
