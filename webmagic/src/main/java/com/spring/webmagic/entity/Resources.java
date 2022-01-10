@@ -4,6 +4,7 @@ import com.spring.webmagic.entityEnum.ResourcesEnum;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,7 @@ public class Resources {
     private ResourcesEnum type;
 
     @ManyToMany(mappedBy = "resourcesSet")
-    private Set<AVstar> aVstarList;
+    private Set<AVstar> aVstarSet = new HashSet<>();
 
     private boolean exist;
 }

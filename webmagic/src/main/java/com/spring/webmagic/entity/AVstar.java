@@ -1,8 +1,10 @@
 package com.spring.webmagic.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -33,18 +35,17 @@ public class AVstar {
     private boolean exist = false;
 
     @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinTable(
             name = "t_av_star_resources",
             joinColumns = @JoinColumn(name = "av_star_id"),
             inverseJoinColumns = @JoinColumn(name = "resources_id"))
-    private Set<Resources> resourcesSet;
+    private Set<Resources> resourcesSet = new HashSet<>();
 
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] photo;
-
-
 
 
 }

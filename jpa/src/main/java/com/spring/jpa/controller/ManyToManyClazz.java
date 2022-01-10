@@ -66,16 +66,46 @@ public class ManyToManyClazz {
 
     @RequestMapping("/change")
     public void change() {
-        Student student = studentRepository.getById(1L);
         Optional<Student> optionalStudent = studentRepository.findById(1L);
-        optionalStudent.ifPresent(System.out::println);
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(10L);
 
-        Teacher teacher = teacherRepository.getById(10L);
+        if (optionalStudent.isPresent() && optionalTeacher.isPresent()) {
+            Student student = optionalStudent.get();
+            Teacher teacher = optionalTeacher.get();
 
-        student.setTeachers(Set.of(teacher));
-        teacher.setStudents(Set.of(student));
+            Set<Student> students = new HashSet<>();
+            students.add(student);
+            Set<Teacher> teachers = new HashSet<>();
+            teachers.add(teacher);
 
-        studentRepository.save(student);
-        teacherRepository.save(teacher);
+            //如果不维护主类的关系，则不会更新关系表
+            student.setTeachers(teachers);
+            teacher.setStudents(students);
+
+            studentRepository.save(student);
+            teacherRepository.save(teacher);
+
+        }
+
+
+    }
+
+
+    @RequestMapping("/change1")
+    public void change1() {
+        Optional<Student> optionalStudent = studentRepository.findById(1L);
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(10L);
+
+        if (optionalStudent.isPresent() && optionalTeacher.isPresent()) {
+            Student student = optionalStudent.get();
+            Teacher teacher = optionalTeacher.get();
+
+            student.getTeachers().add(teacher);
+            teacher.getStudents().add(student);
+
+            studentRepository.save(student);
+            teacherRepository.save(teacher);
+
+        }
     }
 }

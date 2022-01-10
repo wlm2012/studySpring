@@ -56,7 +56,10 @@ public class UserController {
         saveUser(getUser(1L));
         throw new Exception("会回滚");
     }
-
+/*
+总结：如果是RuntimeException会回滚，如果是Exception错误，则不会回滚，
+除非标注@Transactional(rollbackFor = Exception.class)
+* */
     @Transactional()
     @RequestMapping("/saveTest2")
     public void saveTest2() {
@@ -70,6 +73,7 @@ public class UserController {
         saveUser(getUser(1L));
     }
 
+    //直接调用方法，则方法上的@Transactional(rollbackFor = Exception.class)不生效
     @Transactional
     @RequestMapping("/saveTest4")
     public void saveTest4() throws Exception {
@@ -86,6 +90,7 @@ public class UserController {
     }
 
 
+    //不使用事务，不回滚
     @RequestMapping("/saveTest6")
     public void saveTest6() {
         saveUser(getUser(1L));
