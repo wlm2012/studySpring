@@ -1,9 +1,7 @@
 package com.spring.jpa.DO;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,6 +10,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "t_teacher")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
 
     @Id
