@@ -5,7 +5,6 @@ import com.spring.jpa.repository.OrderRepository;
 import com.spring.jpa.service.OrderService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -72,6 +71,18 @@ public class OrderController {
     public void addOrder(Order order) {
         System.out.println(order.toString());
         orderRepository.save(order);
+    }
+
+
+    //如果加上@Transactional，则order实例变动会更新到数据库
+//    @Transactional
+    @RequestMapping("/find")
+    public void find(){
+        Optional<Order> optionalOrder = orderRepository.findById(1L);
+        if (optionalOrder.isPresent()){
+            Order order = optionalOrder.get();
+            order.setMenuId(100L);
+        }
     }
 
 

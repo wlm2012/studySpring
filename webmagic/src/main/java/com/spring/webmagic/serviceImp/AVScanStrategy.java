@@ -9,7 +9,6 @@ import com.spring.webmagic.service.ScanStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.io.File;
 import java.util.*;
 
@@ -26,7 +25,6 @@ public class AVScanStrategy implements ScanStrategy {
     }
 
     @Override
-    @Transactional
     public void scan(String path) {
         List<AVstar> aVstarList = aVstarRepository.findAll();
         List<Resources> resourcesList = resourcesReposity.findByType(ResourcesEnum.av);
@@ -78,7 +76,7 @@ public class AVScanStrategy implements ScanStrategy {
             assert listFiles != null;
             for (File listFile : listFiles) {
                 Optional<Resources> first = resourcesList.stream()
-                        .filter(r -> r.getName().equals(listFile.getName()))
+                        .filter(r -> r.getPath().equals(listFile.getPath()))
                         .findFirst();
 
                 if (first.isPresent()) {
