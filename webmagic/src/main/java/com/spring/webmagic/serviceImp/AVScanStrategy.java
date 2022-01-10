@@ -40,29 +40,21 @@ public class AVScanStrategy implements ScanStrategy {
             Set<AVstar> aVstarSet = new HashSet<>();
             Set<Resources> resourcesSet = new HashSet<>();
 
-            String name = file.getName();
-            List<String> nameList = new ArrayList<>();
-            if (name.contains(",")) {
-                String[] names = name.split(",");
-                Collections.addAll(nameList, names);
-            } else {
-                nameList.add(name);
-            }
+            Set<Set<String>> splitName = splitName(file);
 
-            for (String n : nameList) {
-                String actress = n.replace("\\)", "");
-                String[] split = actress.split("\\(");
+            for (Set<String> n : splitName) {
+
                 Optional<AVstar> first = aVstarList.stream()
                         .filter(a -> {
                             if (a.getName() != null) {
-                                for (String s : split) {
+                                for (String s : n) {
                                     if (a.getName().contains(s)) {
                                         return true;
                                     }
                                 }
                             }
                             if (a.getChineseName() != null) {
-                                for (String s : split) {
+                                for (String s : n) {
                                     if (a.getChineseName().contains(s)) {
                                         return true;
                                     }
@@ -75,13 +67,10 @@ public class AVScanStrategy implements ScanStrategy {
                     AVstar aVstar = first.get();
                     aVstar.setExist(true);
                     aVstarSet.add(aVstar);
-                    aVstarsExist.add(aVstar);
-                    aVstarRepository.save(aVstar);
                 } else {
-                    AVstar build = AVstar.builder().name(n).score(70).exist(true).build();
+                    AVstar build = AVstar.builder().name(n.iterator().next()).score(70).exist(true).build();
                     aVstarSet.add(build);
                     aVstarList.add(build);
-                    aVstarsExist.add(build);
                 }
             }
 
@@ -103,6 +92,7 @@ public class AVScanStrategy implements ScanStrategy {
                     resourcesList.add(build);
                 }
             }
+            aVstarsExist.addAll(aVstarSet);
             resourcesExist.addAll(resourcesSet);
             AVstarResourceService.addresources(resourcesSet, aVstarSet);
         }
@@ -136,6 +126,33 @@ public class AVScanStrategy implements ScanStrategy {
         resourcesReposity.saveAll(resourcesList);
         aVstarRepository.saveAll(aVstarList);
 
+    }
+
+
+    public static Set<Set<String>> splitName(File file) {
+        String name = file.getName();
+        Set<Set<String>> nameSet = new HashSet<>();
+
+        Set<String> nameList = new HashSet<>();
+        if (name.contains(",")) {
+            String[] names = name.split(",");
+            Collections.addAll(nameList, names);
+        } else {
+            nameList.add(name);
+        }
+
+        for (String n : nameList) {
+            if (n.contains("\\)")) {
+                Set<String> set = new HashSet<>();
+                String actress = n.replace("\\)", "");
+                String[] split = actress.split("\\(");
+                Collections.addAll(set, split);
+                nameSet.add(set);
+            } else {
+                nameSet.add(Set.of(n));
+            }
+        }
+        return nameSet;
     }
 
 }
