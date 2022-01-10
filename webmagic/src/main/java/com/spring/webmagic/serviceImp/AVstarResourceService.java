@@ -7,13 +7,13 @@ import java.util.Set;
 
 public class AVstarResourceService {
 
-    public static void addresources(Set<Resources> resourcesSet, Set<AVstar> aVstars) {
+    public static void addresources(Set<Resources> resourcesSet, Set<AVstar> aVstarSet) {
 
         for (Resources resource : resourcesSet) {
-            resource.setAVstarList(aVstars);
+            resource.setAVstarList(aVstarSet);
         }
 
-        for (AVstar aVstar : aVstars) {
+        for (AVstar aVstar : aVstarSet) {
             aVstar.setResourcesSet(resourcesSet);
         }
     }
