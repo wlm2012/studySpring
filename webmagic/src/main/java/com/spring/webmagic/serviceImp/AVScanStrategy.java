@@ -105,8 +105,6 @@ public class AVScanStrategy implements ScanStrategy {
             }
             resourcesExist.addAll(resourcesSet);
             AVstarResourceService.addresources(resourcesSet, aVstarSet);
-
-
         }
 
         resourcesList.stream()

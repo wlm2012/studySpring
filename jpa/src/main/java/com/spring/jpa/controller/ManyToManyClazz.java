@@ -47,7 +47,7 @@ public class ManyToManyClazz {
             //不更新
             teachers.add(teacherId);
 
-            // id不改关系不更新，即使其它参数已经修改，teacher也不更新
+            // id不改关系不更新，即使其它参数已经修改，如果不主动更新teacher，则teacher也不更新
             // 如果Set<Teacher> teachers已经改变，则会再次尝试在关系表插入id为10的数据
             Teacher build = Teacher.builder().id(10L).name("10teacher").build();
 //            teachers.add(build);
@@ -61,8 +61,21 @@ public class ManyToManyClazz {
 
             teacherRepository.save(build1);
             studentRepository.save(student);
-
-
         }
+    }
+
+    @RequestMapping("/change")
+    public void change() {
+        Student student = studentRepository.getById(1L);
+        Optional<Student> optionalStudent = studentRepository.findById(1L);
+        optionalStudent.ifPresent(System.out::println);
+
+        Teacher teacher = teacherRepository.getById(10L);
+
+        student.setTeachers(Set.of(teacher));
+        teacher.setStudents(Set.of(student));
+
+        studentRepository.save(student);
+        teacherRepository.save(teacher);
     }
 }
