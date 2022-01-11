@@ -1,0 +1,9 @@
+<configuration>
+
+    <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    <property name="jdbcUrl" value="jdbc:mariadb://localhost:3306/study?serverTimezone=Etc/GMT-8"/>
+    <property name="user" value="root"/>
+    <property name="password" value="123456"/>
+
+    <mapper resource="mapper.xml"/>
+</configuration>

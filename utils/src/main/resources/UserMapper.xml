@@ -1,0 +1,9 @@
+<mapper namespace="User">
+    <select id="selectOne" paramterType="com.study.utils.diyMybatis.DO.User"
+            resultType="com.study.utils.diyMybatis.DO.User">
+        select * from user where id = #{id} and username =#{username}
+    </select>
+    <select id="selectList" resultType="com.study.utils.diyMybatis.DO.User">
+        select * from user
+    </select>
+</mapper>
