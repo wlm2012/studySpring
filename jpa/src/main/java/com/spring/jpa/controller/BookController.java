@@ -33,7 +33,8 @@ public class BookController {
             Book book = optionalBook.get();
             Author author = optionalAuthor.get();
             book.setPrice(996.01);
-            //需使用set，而不能使用list，如果使用list，且维护多条重复的关系，会将这些重复的关系全部插入数据库，set则会过滤掉重复关系
+            //需使用set，而不能使用list。
+            // 如果使用list，且维护多条重复的关系，会将这些重复的关系全部插入数据库，set则会过滤掉重复关系
             Set<Author> authors = book.getAuthors();
             authors.add(author);
 
