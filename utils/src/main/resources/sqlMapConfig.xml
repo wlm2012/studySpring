@@ -5,5 +5,5 @@
     <property name="user" value="root"/>
     <property name="password" value="123456"/>
 
-    <mapper resource="mapper.xml"/>
+    <mapper resource="UserMapper.xml"/>
 </configuration>
