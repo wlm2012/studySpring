@@ -1,7 +1,7 @@
-package com.study.utils.diyMybatis.configure;
+package com.study.mybatis.diyMybatis.configure;
 
-import com.study.utils.diyMybatis.configure.Configuration;
-import com.study.utils.diyMybatis.configure.MappedStatement;
+import com.study.mybatis.diyMybatis.pojo.Configuration;
+import com.study.mybatis.diyMybatis.pojo.MappedStatement;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 

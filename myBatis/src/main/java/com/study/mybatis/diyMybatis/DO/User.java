@@ -1,4 +1,4 @@
-package com.study.utils.diyMybatis.DO;
+package com.study.mybatis.diyMybatis.DO;
 
 import lombok.Data;
 

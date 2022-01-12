@@ -1,4 +1,4 @@
-package com.study.utils.diyMybatis.configure;
+package com.study.mybatis.diyMybatis.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

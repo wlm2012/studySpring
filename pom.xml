@@ -16,6 +16,7 @@
 		<module>webmagic</module>
 		<module>diveInSpringBoot</module>
 		<module>io</module>
+		<module>myBatis</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

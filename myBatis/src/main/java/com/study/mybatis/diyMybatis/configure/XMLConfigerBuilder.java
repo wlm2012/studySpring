@@ -1,6 +1,7 @@
-package com.study.utils.diyMybatis.configure;
+package com.study.mybatis.diyMybatis.configure;
 
-import com.study.utils.diyMybatis.util.Resources;
+import com.study.mybatis.diyMybatis.pojo.Configuration;
+import com.study.mybatis.diyMybatis.util.Resources;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.dom4j.Document;
