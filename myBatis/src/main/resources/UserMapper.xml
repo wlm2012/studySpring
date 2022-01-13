@@ -1,9 +1,10 @@
 <mapper namespace="User">
     <select id="selectOne" paramterType="com.study.mybatis.diyMybatis.DO.User"
             resultType="com.study.mybatis.diyMybatis.DO.User">
-        select * from user where id = #{id} and username =#{username}
+        select id,name from t_user where id = #{id} and username =#{username}
     </select>
-    <select id="selectList" resultType="com.study.mybatis.diyMybatis.DO.User">
-        select * from user
+    <select id="selectList" paramterType="com.study.mybatis.diyMybatis.DO.User"
+            resultType="com.study.mybatis.diyMybatis.DO.User">
+        select id,name from t_user
     </select>
 </mapper>
