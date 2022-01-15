@@ -1,6 +1,7 @@
 package com.study.mybatis;
 
 import com.study.mybatis.diyMybatis.DO.User;
+import com.study.mybatis.diyMybatis.dao.UserDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -48,7 +49,19 @@ public class initMybatis {
         sqlSession.commit();
 
         sqlSession.close();
+    }
+
+    @Test
+    public void test2() throws IOException {
+        InputStream inputStream = Resources.getResourceAsStream("init/SqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
 
 
+        User build = User.builder().id(1L).name("wlm").build();
+        User byCondition = mapper.findByCondition(build);
+        System.out.println(byCondition);
     }
 }
