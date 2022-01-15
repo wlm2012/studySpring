@@ -4,9 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mybatis.diyMybatis.dao.UserDao">
     <select id="findByCondition" parameterType="User" resultType="User">
-        select id, name
+        select id, name ,sex
         from t_user
-        where id = #{id}
-          and name = #{name}
+        <where>
+            sex='01'
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+            <if test="name!=null">
+                and name = #{name}
+            </if>
+        </where>
     </select>
 </mapper>
