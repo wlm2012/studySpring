@@ -1,9 +1,9 @@
-<mapper namespace="User">
-    <select id="selectOne" paramterType="com.study.mybatis.diyMybatis.DO.User"
+<mapper namespace="com.study.mybatis.diyMybatis.dao.UserDao">
+    <select id="findByCondition" paramterType="com.study.mybatis.diyMybatis.DO.User"
             resultType="com.study.mybatis.diyMybatis.DO.User">
-        select id,name from t_user where id = #{id} and username =#{username}
+        select id,name from t_user where id = #{id} and name =#{name}
     </select>
-    <select id="selectList" paramterType="com.study.mybatis.diyMybatis.DO.User"
+    <select id="findAll" paramterType="com.study.mybatis.diyMybatis.DO.User"
             resultType="com.study.mybatis.diyMybatis.DO.User">
         select id,name from t_user
     </select>

@@ -22,15 +22,15 @@ public class DiyMybatis {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        List<User> users = sqlSession.selectList("User.selectList");
+        List<User> users = sqlSession.selectList("com.study.mybatis.diyMybatis.dao.UserDao.findAll");
         users.forEach(System.out::println);
 
         System.out.println("--------------------");
         User user = new User();
         user.setId(1L);
         user.setName("qqq");
-        List<Object> list = sqlSession.selectOne("User.selectList", user);
-        list.forEach(System.out::println);
+        User user1 = sqlSession.selectOne("com.study.mybatis.diyMybatis.dao.UserDao.findByCondition", user);
+        System.out.println(user1);
 
         sqlSession.close();
     }

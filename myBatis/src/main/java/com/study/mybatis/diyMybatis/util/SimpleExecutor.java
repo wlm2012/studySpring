@@ -68,7 +68,7 @@ public class SimpleExecutor implements Executor {
     private BoundSql getBoundSql(String sql) {
 
         ParameterMappingTokenHandler parameterMappingTokenHandler = new ParameterMappingTokenHandler();
-        GenericTokenParser genericTokenParser = new GenericTokenParser("# {", "}", parameterMappingTokenHandler);
+        GenericTokenParser genericTokenParser = new GenericTokenParser("#{", "}", parameterMappingTokenHandler);
         String parse = genericTokenParser.parse(sql);
         List<ParameterMapping> parameterMappings = parameterMappingTokenHandler.getParameterMappings();
         return new BoundSql(parse, parameterMappings);
