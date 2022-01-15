@@ -36,24 +36,20 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T getMappper(Class<?> mapperClass) {
-        Proxy.newProxyInstance(mapperClass.getClassLoader(), new Class[]{mapperClass}, new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                String name = method.getName();
-                System.out.println(name);
-                String className = method.getDeclaringClass().getName();
-                System.out.println(className);
-                String key = className + "." + name;
-                MappedStatement mappedStatement = configuration.getMappedStatementMap().get(key);
-                Type genericReturnType = method.getGenericReturnType();
-                if (genericReturnType instanceof ParameterizedType) {
-
-                }
-                return null;
+    public <T> T getMappper(Class<T> mapperClass) {
+        Object o = Proxy.newProxyInstance(mapperClass.getClassLoader(), new Class[]{mapperClass}, (proxy, method, args) -> {
+            String name = method.getName();
+            System.out.println(name);
+            String className = method.getDeclaringClass().getName();
+            System.out.println(className);
+            String key = className + "." + name;
+            Type genericReturnType = method.getGenericReturnType();
+            if (genericReturnType instanceof ParameterizedType) {
+                return selectList(key, args);
             }
+            return selectOne(key, args);
         });
-        return null;
+        return (T)o;
     }
 
     @Override

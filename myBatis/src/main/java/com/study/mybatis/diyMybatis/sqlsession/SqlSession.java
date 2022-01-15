@@ -11,7 +11,7 @@ public interface SqlSession {
 
     <T> T selectOne(String statementId, Object... params) throws SQLException, IntrospectionException, NoSuchFieldException, InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException;
 
-    <T> T getMappper(Class<?> mapperClass);
+    <T> T getMappper(Class<T> mapperClass);
 
     void close() throws SQLException;
 }

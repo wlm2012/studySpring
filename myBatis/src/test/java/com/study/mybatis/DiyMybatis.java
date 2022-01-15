@@ -1,6 +1,7 @@
 package com.study.mybatis;
 
 import com.study.mybatis.diyMybatis.DO.User;
+import com.study.mybatis.diyMybatis.dao.UserDao;
 import com.study.mybatis.diyMybatis.sqlsession.SqlSession;
 import com.study.mybatis.diyMybatis.sqlsession.SqlSessionFactory;
 import com.study.mybatis.diyMybatis.sqlsession.SqlSessionFactoryBuilder;
@@ -33,6 +34,23 @@ public class DiyMybatis {
         System.out.println(user1);
 
         sqlSession.close();
+    }
+
+    @Test
+    public void test2() throws DocumentException, ClassNotFoundException {
+        InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserDao mappper = sqlSession.getMappper(UserDao.class);
+        List<User> all = mappper.findAll();
+        all.forEach(System.out::println);
+        User user = new User();
+        user.setId(1L);
+        user.setName("qqq");
+        User byCondition = mappper.findByCondition(user);
+        System.out.println(byCondition);
+
     }
 
 
