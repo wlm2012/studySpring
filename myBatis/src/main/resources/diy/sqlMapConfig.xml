@@ -5,5 +5,5 @@
     <property name="dataSource.user" value="root"/>
     <property name="dataSource.password" value="123456"/>
 
-    <mapper resource="UserMapper.xml"/>
+    <mapper resource="diy/UserMapper.xml"/>
 </configuration>

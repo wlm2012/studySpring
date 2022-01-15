@@ -14,7 +14,7 @@ public class XMLMapperBuilderTest {
     @Test
     public void parse() throws ClassNotFoundException, DocumentException {
 
-        InputStream inputStream = Resources.getResourceAsSteam("UserMapper.xml");
+        InputStream inputStream = Resources.getResourceAsSteam("diy/UserMapper.xml");
         XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(new Configuration());
         xmlMapperBuilder.parse(inputStream);
     }

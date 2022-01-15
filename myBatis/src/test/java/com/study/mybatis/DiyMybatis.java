@@ -19,7 +19,7 @@ public class DiyMybatis {
 
     @Test
     public void test() throws DocumentException, ClassNotFoundException, SQLException, IntrospectionException, NoSuchFieldException, InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
-        InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
+        InputStream resourceAsSteam = Resources.getResourceAsSteam("diy/sqlMapConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -38,7 +38,7 @@ public class DiyMybatis {
 
     @Test
     public void test2() throws DocumentException, ClassNotFoundException {
-        InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
+        InputStream resourceAsSteam = Resources.getResourceAsSteam("diy/sqlMapConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
