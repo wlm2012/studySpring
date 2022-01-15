@@ -4,6 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="userMapper">
     <select id="findAll" resultType="com.study.mybatis.diyMybatis.DO.User">
-        select * from t_user
+        select *
+        from t_user
     </select>
+    <insert id="add" parameterType="com.study.mybatis.diyMybatis.DO.User">
+        INSERT INTO t_user (id, name)
+        VALUES (#{id}, #{name})
+    </insert>
+
+    <update id="update" parameterType="com.study.mybatis.diyMybatis.DO.User">
+        UPDATE t_user
+        SET name=#{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="com.study.mybatis.diyMybatis.DO.User">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
 </mapper>

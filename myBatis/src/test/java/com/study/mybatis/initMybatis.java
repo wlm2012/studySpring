@@ -24,4 +24,31 @@ public class initMybatis {
 
         sqlSession.close();
     }
+
+
+    @Test
+    public void test1() throws IOException {
+        InputStream inputStream = Resources.getResourceAsStream("init/SqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+
+        User insert = User.builder().id(9L).name("rrr").build();
+        sqlSession.insert("userMapper.add",insert);
+        sqlSession.commit();
+
+
+        User delete = User.builder().id(2L).build();
+        sqlSession.delete("userMapper.delete",delete);
+        sqlSession.commit();
+
+
+        User update = User.builder().id(1L).name("wlm").build();
+        sqlSession.update("userMapper.update",update);
+        sqlSession.commit();
+
+        sqlSession.close();
+
+
+    }
 }
