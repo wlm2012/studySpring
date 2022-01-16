@@ -1,7 +1,9 @@
 package com.study.mybatis;
 
+import com.study.mybatis.DO.Order;
 import com.study.mybatis.diyMybatis.DO.User;
 import com.study.mybatis.diyMybatis.dao.UserDao;
+import com.study.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
 
 public class initMybatis {
 
@@ -70,5 +73,12 @@ public class initMybatis {
 
         List<User> users = mapper.findByName(List.of("rrr", "fff"));
         users.forEach(System.out::println);
+    }
+
+    @Test
+    public void test4() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<Order> orders = mapper.findByOrderId(List.of(2, 3));
+        orders.forEach(System.out::println);
     }
 }

@@ -3,14 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
-    <resultMap id="orderMap" type="com.study.mybatis.DO.Order">
-        <result column=""
+<mapper namespace="com.study.mybatis.mapper.UserMapper">
+    <resultMap id="orderMap" type="com.study.mybatis.DO.Order" autoMapping="true">
+        <result column="create_time" property="user.createTime"/>
+        <result column="name" property="user.name"/>
+        <result column="sex" property="user.sex"/>
+        <result column="user_id" property="user.id"/>
+        <!--
+        使用user.sex，或者 association
+        <association property="user" javaType="com.lagou.domain.User">
+        <result column="sex" property="sex"></result>
+        </association>
+        如果有重复的column，则自动匹配不生效，需要手动匹配
+        -->
+        <result column="user_id" property="userId"/>
     </resultMap>
-    <select id="findByOrderId" parameterType="list">
-        select * from t_order a,t_user b
+    <select id="findByOrderId" parameterType="list" resultMap="orderMap">
+        select a.* ,b.create_time, b.name ,b.sex from t_order a,t_user b
         <where>
-            a.user_id=b.id
+            a.user_id=b.id and
             <foreach collection="list" item="id" open="a.id in (" close=")" separator=",">
                 #{id}
             </foreach>
