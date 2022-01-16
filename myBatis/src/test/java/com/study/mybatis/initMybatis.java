@@ -63,4 +63,12 @@ public class initMybatis {
         User byCondition = mapper.findByCondition(build);
         System.out.println(byCondition);
     }
+
+    @Test
+    public void test3() {
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+
+        List<User> users = mapper.findByName(List.of("rrr", "fff"));
+        users.forEach(System.out::println);
+    }
 }

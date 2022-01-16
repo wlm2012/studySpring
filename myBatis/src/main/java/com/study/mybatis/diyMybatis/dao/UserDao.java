@@ -9,4 +9,6 @@ public interface UserDao {
     List<User> findAll();
 
     User findByCondition(User user);
+
+    List<User> findByName(List<String> names);
 }

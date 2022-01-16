@@ -19,5 +19,6 @@
     <mappers>
         <mapper resource="init/UserMapper.xml"/>
         <mapper resource="init/UserProxyMapper.xml"/>
+        <package name="com.study.mybatis.mapper"/>
     </mappers>
 </configuration>

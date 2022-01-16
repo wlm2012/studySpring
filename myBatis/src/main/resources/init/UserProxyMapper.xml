@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mybatis.diyMybatis.dao.UserDao">
+
+    <sql id="selectUser">
+        select *
+        from t_user
+    </sql>
+
     <select id="findByCondition" parameterType="User" resultType="User">
         select id, name ,sex
         from t_user
@@ -14,6 +20,15 @@
             <if test="name!=null">
                 and name = #{name}
             </if>
+        </where>
+    </select>
+
+    <select id="findByName" parameterType="list" resultType="User">
+        <include refid="selectUser"/>
+        <where>
+            <foreach collection="list" open="name in (" separator="," close=")" item="name">
+                #{name}
+            </foreach>
         </where>
     </select>
 </mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper>
+    <resultMap id="orderMap" type="com.study.mybatis.DO.Order">
+        <result column=""
+    </resultMap>
+    <select id="findByOrderId" parameterType="list">
+        select * from t_order a,t_user b
+        <where>
+            a.user_id=b.id
+            <foreach collection="list" item="id" open="a.id in (" close=")" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+</mapper>

@@ -7,12 +7,12 @@
         select *
         from t_user
     </select>
-    <insert id="add" parameterType="com.study.mybatis.diyMybatis.DO.User">
+    <insert id="add" parameterType="User">
         INSERT INTO t_user (id, name)
         VALUES (#{id}, #{name})
     </insert>
 
-    <update id="update" parameterType="com.study.mybatis.diyMybatis.DO.User">
+    <update id="update" parameterType="User">
         UPDATE t_user
         SET name=#{name}
         WHERE id = #{id}
@@ -23,4 +23,6 @@
         from t_user
         where id = #{id}
     </delete>
+
+
 </mapper>
