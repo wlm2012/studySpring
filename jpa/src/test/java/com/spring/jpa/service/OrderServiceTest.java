@@ -2,14 +2,12 @@ package com.spring.jpa.service;
 
 import com.spring.jpa.DO.Order;
 import com.spring.jpa.repository.OrderRepository;
-import org.hibernate.dialect.lock.PessimisticReadUpdateLockingStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.annotation.Resource;
