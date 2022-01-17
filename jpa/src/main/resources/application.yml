@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: postgreSql
   jpa:
     show-sql: false
     hibernate:

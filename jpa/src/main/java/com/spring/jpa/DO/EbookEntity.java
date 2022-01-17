@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Lock;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ebook", schema = "study")
+@Table(name = "ebook")
 @Getter
 @Setter
 public class EbookEntity {
