@@ -1,18 +1,20 @@
 package com.study.mybatis.diyMybatis.sqlsession;
 
 import com.study.mybatis.diyMybatis.pojo.Configuration;
-import com.study.mybatis.diyMybatis.pojo.MappedStatement;
 import com.study.mybatis.diyMybatis.util.Executor;
 import com.study.mybatis.diyMybatis.util.SimpleExecutor;
 
 import java.beans.IntrospectionException;
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Proxy;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.List;
 
 public class DefaultSqlSession implements SqlSession {
-    private Configuration configuration;
-    private Executor simpleExcutor;
+    private final Configuration configuration;
+    private final Executor simpleExcutor;
 
     public DefaultSqlSession(Configuration configuration) {
         this.configuration = configuration;
