@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.mybatis.mapper.UserMapper">
-    <resultMap id="orderMap" type="com.study.mybatis.DO.Order" autoMapping="true">
+    <resultMap id="orderMap" type="com.study.mybatis.DO.Order">
         <result column="create_time" property="user.createTime"/>
         <result column="name" property="user.name"/>
         <result column="sex" property="user.sex"/>
@@ -18,11 +18,32 @@
         -->
         <result column="user_id" property="userId"/>
     </resultMap>
+
+    <!--    使用collection的时候，需要增加 autoMapping，否则无法自动匹配，建议所有resultMap都增加 autoMapping="true"-->
+    <resultMap id="userMap" type="com.study.mybatis.DO.User" autoMapping="true">
+        <collection property="orders" ofType="com.study.mybatis.DO.Order">
+            <result column="oid" property="id"/>
+            <result column="menu_id" property="menuId"/>
+            <result column="user_id" property="userId"/>
+        </collection>
+    </resultMap>
+
     <select id="findByOrderId" parameterType="list" resultMap="orderMap">
         select a.* ,b.create_time, b.name ,b.sex from t_order a,t_user b
         <where>
             a.user_id=b.id and
             <foreach collection="list" item="id" open="a.id in (" close=")" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="list" resultMap="userMap">
+        select a.id, a.name, a.sex, a.create_time, b.id oid, b.menu_id, b.user_id
+        from t_user a
+        left join t_order b on a.id = b.user_id
+        <where>
+            <foreach collection="list" item="id" open=" a.id in (" close=")" separator=",">
                 #{id}
             </foreach>
         </where>

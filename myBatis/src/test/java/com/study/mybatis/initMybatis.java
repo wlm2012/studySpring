@@ -8,20 +8,20 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Set;
 
 public class initMybatis {
 
     private static SqlSession sqlSession;
 
     @BeforeAll
-    public static void sqlSession() throws IOException {
+    public static void openSqlSession() throws IOException {
         try (InputStream inputStream = Resources.getResourceAsStream("init/SqlMapConfig.xml")) {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
@@ -29,11 +29,15 @@ public class initMybatis {
 
     }
 
+    @AfterAll
+    public static void close() {
+        sqlSession.close();
+    }
+
     @Test
     public void test() {
         List<User> list = sqlSession.selectList("userMapper.findAll");
         list.forEach(System.out::println);
-        sqlSession.close();
     }
 
 
@@ -53,8 +57,6 @@ public class initMybatis {
         User update = User.builder().id(1L).name("wlm").build();
         sqlSession.update("userMapper.update", update);
         sqlSession.commit();
-
-        sqlSession.close();
     }
 
     @Test
@@ -80,5 +82,12 @@ public class initMybatis {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<Order> orders = mapper.findByOrderId(List.of(2, 3));
         orders.forEach(System.out::println);
+    }
+
+    @Test
+    public void test5() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<com.study.mybatis.DO.User> users = mapper.findById(List.of(1, 9, 19));
+        users.forEach(System.out::println);
     }
 }
