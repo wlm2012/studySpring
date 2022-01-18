@@ -10,7 +10,9 @@
         <result column="sex" property="user.sex"/>
         <result column="user_id" property="user.id"/>
         <!--
-        使用user.sex，或者 association
+        使用user.sex，
+        或者 association
+        或者将sql改为u.user_name as ＂user.userName＂,也可以直接赋值
         <association property="user" javaType="com.lagou.domain.User">
         <result column="sex" property="sex"></result>
         </association>
