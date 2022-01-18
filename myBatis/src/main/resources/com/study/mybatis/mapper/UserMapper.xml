@@ -19,7 +19,8 @@
         <result column="user_id" property="userId"/>
     </resultMap>
 
-    <!--    使用collection的时候，需要增加 autoMapping，否则无法自动匹配，建议所有resultMap都增加 autoMapping="true"-->
+    <!--    一对多，多对多需要使用 collection
+    使用collection的时候，需要增加 autoMapping，否则无法自动匹配，建议所有resultMap都增加 autoMapping="true"-->
     <resultMap id="userMap" type="com.study.mybatis.DO.User" autoMapping="true">
         <collection property="orders" ofType="com.study.mybatis.DO.Order">
             <result column="oid" property="id"/>
