@@ -51,4 +51,32 @@
             </foreach>
         </where>
     </select>
+
+
+    <!--    需要列启用自增-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_order1 (menu_id, user_id)
+        VALUES (#{menuId}, #{userId});
+    </insert>
+
+
+    <!--
+          oracle SELECT SEQ_ID.nextval from dual
+          DB2 使用 VALUES IDENTITY_VAL_LOCAL()。
+        · MYSQL 使用 SELECT LAST_INSERT_ID()。
+        · SQLSERVER 使用 SELECT SCOPE_IDENTITY()。
+        · CLOUDSCAPE 使用 VALUES IDENTITY_VAL_LOCAL()。
+        · DERBY 使用 VALUES IDENTITY_VAL_LOCAL()。
+        · HSQLDB 使用 CALL IDENTITY()。
+        · SYBASE 使用 SELECT @@IDENTITY。
+        · DB2_MF 使用 SELECT IDENTITY_VAL_LOCAL() FROM SYSIBM.SYSDUMMY1。
+        · INFORMIX 使用 select dbinfo('sqlca.sqlerrd1') from systables where
+        tabid=1。-->
+    <insert id="insert2">
+        INSERT INTO t_order1 (menu_id, user_id)
+        VALUES (#{menuId}, #{userId})
+        <selectKey keyProperty="id" keyColumn="id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 </mapper>

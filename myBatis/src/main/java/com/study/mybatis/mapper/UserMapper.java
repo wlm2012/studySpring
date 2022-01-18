@@ -38,4 +38,8 @@ public interface UserMapper {
 
     @Select("select * from t_order where user_id =#{id}")
     List<Order> getOrder(Integer id);
+
+    int insert(Order order);
+
+    int insert2(Order order);
 }
