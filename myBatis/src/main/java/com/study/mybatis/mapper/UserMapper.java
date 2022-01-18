@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 
 public interface UserMapper {
@@ -42,4 +43,6 @@ public interface UserMapper {
     int insert(Order order);
 
     int insert2(Order order);
+
+
 }

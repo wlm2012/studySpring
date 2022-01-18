@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class annotationMybatis {
+public class AnnotationMybatisTest {
 
     private static SqlSession sqlSession;
 

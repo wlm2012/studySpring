@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class initMybatis {
+public class InitMybatisTest {
 
     private static SqlSession sqlSession;
 

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class insertKey {
+public class InsertKeyTest {
 
     private static SqlSession sqlSession;
 
