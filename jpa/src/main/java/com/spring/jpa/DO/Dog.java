@@ -1,9 +1,6 @@
 package com.spring.jpa.DO;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,10 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Dog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BATCH_SEQ")
+    @SequenceGenerator(name = "BATCH_SEQ", sequenceName = "BATCH_SEQ", allocationSize = 500)
     private Long id;
 
     private long num;
