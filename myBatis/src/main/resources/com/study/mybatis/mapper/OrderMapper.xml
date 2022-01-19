@@ -28,4 +28,23 @@
           and a.menu_id = #{order.menuId}
     </select>
 
+
+    <select id="selectChoose" resultType="Order">
+        select * from t_order
+        <where>
+#             choose满足一个条件后，不再判断和拼接后面的条件
+            <choose>
+                <when test="id !=null and id !='' ">
+                    and id=#{id}
+                </when>
+                <when test="menuId !=null and menuId !='' ">
+                    and menu_id=#{menuId}
+                </when>
+                <otherwise>
+                    and 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
 </mapper>
