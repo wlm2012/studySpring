@@ -24,7 +24,7 @@ public class BatchDogTest {
         List<Dog> dogs = new ArrayList<>();
         com.github.javafaker.Dog dog = faker.dog();
         Number number = faker.number();
-        for (int i = 0; i < 1000_00; i++) {
+        for (int i = 0; i < 10_000; i++) {
             Dog build = Dog.builder().age(number.numberBetween(0, 20)).name(dog.name()).build();
             dogs.add(build);
         }

@@ -4,6 +4,7 @@ import com.study.mybatis.DO.Order;
 import com.study.mybatis.DO.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface OrderMapper {
@@ -17,4 +18,8 @@ public interface OrderMapper {
     Order selectChoose(Order order);
 
     void updateSet(Order order);
+
+    void insertList(List<Order> orderList);
+
+    List<Order> selectGte(Integer menuId);
 }

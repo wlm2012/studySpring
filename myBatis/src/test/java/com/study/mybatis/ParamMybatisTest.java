@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ParamMybatisTest {
@@ -58,6 +59,13 @@ public class ParamMybatisTest {
         User user = User.builder().name("rrr").sex("02").build();
         Order order1 = mapper.selectObjectParam(user, order);
         System.out.println(order1);
+    }
+
+    @Test
+    public void selectGte() {
+        OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+        List<Order> list = mapper.selectGte(10);
+        list.forEach(System.out::println);
     }
 
 

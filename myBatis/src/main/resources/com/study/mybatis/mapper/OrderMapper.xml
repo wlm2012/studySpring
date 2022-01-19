@@ -49,8 +49,8 @@
 
     <update id="updateSet">
         UPDATE t_order
-/*            set 与 where 相似，会在sql语句前面加上set ，并去掉最后的‘,’
-            where 则是 在前面加上where，去掉最后一句的 and、or   */
+        /* set 与 where 相似，会在sql语句前面加上set ，并去掉最后的‘,’
+        where 则是 在前面加上where，去掉最后一句的 and、or */
         <set>
             <if test="menuId !=null and menuId !='' ">
                 menu_id=#{menuId},
@@ -62,5 +62,21 @@
         </set>
         WHERE id = #{id}
     </update>
+
+    <!--
+    批量返回主键值，需要数据库支持主键自增，暂时支持mysql
+    取值使用类似 order.menuId 的方式     -->
+    <insert id="insertList" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_order1 ( menu_id, user_id) VALUES
+        <foreach collection="list" item="order" separator=",">
+            ( #{order.menuId}, #{order.userId})
+        </foreach>
+    </insert>
+
+    <select id="selectGte" resultType="order">
+        select *
+        from t_order
+        where menu_id &lt;= #{menuId}
+    </select>
 
 </mapper>

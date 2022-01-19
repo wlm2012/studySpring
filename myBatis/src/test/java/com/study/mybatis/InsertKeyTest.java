@@ -1,6 +1,7 @@
 package com.study.mybatis;
 
 import com.study.mybatis.DO.Order;
+import com.study.mybatis.mapper.OrderMapper;
 import com.study.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InsertKeyTest {
 
@@ -54,7 +57,7 @@ public class InsertKeyTest {
 
 
     @Test
-    public void insert3(){
+    public void insert3() {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         Order order = Order.builder().menuId(99L).userId(9L).build();
         long insert = mapper.insert3(order);
@@ -64,12 +67,26 @@ public class InsertKeyTest {
     }
 
     @Test
-    public void insert4(){
+    public void insert4() {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         Order order = Order.builder().menuId(99L).userId(9L).build();
         long insert = mapper.insert4(order);
         System.out.println(insert);
         System.out.println(order.getId());
         sqlSession.commit();
+    }
+
+
+    @Test
+    public void insertList() {
+        OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+        List<Order> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(Order.builder().menuId((long) i).userId((long) i).build());
+        }
+        mapper.insertList(list);
+        list.forEach(System.out::println);
+        sqlSession.commit();
+        list.forEach(System.out::println);
     }
 }
