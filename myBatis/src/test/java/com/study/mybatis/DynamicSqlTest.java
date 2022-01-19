@@ -38,4 +38,12 @@ public class DynamicSqlTest {
         Order order = mapper.selectChoose(build);
         System.out.println(order);
     }
+
+
+    @Test
+    public void updateSet() {
+        OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+        mapper.updateSet(Order.builder().id(1L).userId(996L).build());
+        sqlSession.commit();
+    }
 }

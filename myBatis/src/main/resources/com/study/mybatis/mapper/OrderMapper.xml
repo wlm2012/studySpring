@@ -32,7 +32,7 @@
     <select id="selectChoose" resultType="Order">
         select * from t_order
         <where>
-#             choose满足一个条件后，不再判断和拼接后面的条件
+            # choose满足一个条件后，不再判断和拼接后面的条件
             <choose>
                 <when test="id !=null and id !='' ">
                     and id=#{id}
@@ -46,5 +46,21 @@
             </choose>
         </where>
     </select>
+
+    <update id="updateSet">
+        UPDATE t_order
+/*            set 与 where 相似，会在sql语句前面加上set ，并去掉最后的‘,’
+            where 则是 在前面加上where，去掉最后一句的 and、or   */
+        <set>
+            <if test="menuId !=null and menuId !='' ">
+                menu_id=#{menuId},
+            </if>
+            <if test="userId !=null and userId !='' ">
+                user_id=#{userId},
+            </if>
+            id = #{id},
+        </set>
+        WHERE id = #{id}
+    </update>
 
 </mapper>
