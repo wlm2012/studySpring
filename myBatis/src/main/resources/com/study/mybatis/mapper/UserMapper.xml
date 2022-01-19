@@ -56,7 +56,7 @@
     <!--    需要列启用自增-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_order1 (menu_id, user_id)
-        VALUES (#{menuId}, #{userId});
+        VALUES (#{menuId}, #{userId})
     </insert>
 
 

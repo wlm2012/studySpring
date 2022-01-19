@@ -44,5 +44,16 @@ public interface UserMapper {
 
     int insert2(Order order);
 
+    @Insert("""
+            INSERT INTO t_order1 (menu_id, user_id)
+                    VALUES (#{menuId}, #{userId})""")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insert3(Order order);
 
+    @Insert("""
+            INSERT INTO t_order1 (menu_id, user_id)
+                    VALUES (#{menuId}, #{userId})""")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()",
+            keyProperty = "id", keyColumn = "key", resultType = Long.class, before = false)
+    int insert4(Order order);
 }

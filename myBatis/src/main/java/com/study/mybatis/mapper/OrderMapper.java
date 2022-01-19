@@ -13,4 +13,5 @@ public interface OrderMapper {
     Order selectParam(@Param("menuId") long menuId, @Param("userId") long userId);
 
     Order selectObjectParam(@Param("user") User user, @Param("order") Order order);
+
 }
