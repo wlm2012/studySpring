@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.study.mybatis.DO.TAuthor">
     <!--@mbg.generated -->
     <!--@Table t_author -->
-    <!-- generated on Fri Jan 21 14:55:39 CST 2022 -->
+    <!-- generated on Fri Jan 21 15:15:39 CST 2022 -->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
@@ -14,7 +14,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated -->
-    select
+    select 
     <include refid="Base_Column_List" />
     from t_author
     where id = #{id,jdbcType=BIGINT}
