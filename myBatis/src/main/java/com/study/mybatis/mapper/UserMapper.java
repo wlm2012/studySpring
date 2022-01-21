@@ -55,4 +55,6 @@ public interface UserMapper {
     @SelectKey(statement = "SELECT LAST_INSERT_ID()",
             keyProperty = "id", keyColumn = "key", resultType = Long.class, before = false)
     int insert4(Order order);
+
+    Order selectLazy(Integer id);
 }
