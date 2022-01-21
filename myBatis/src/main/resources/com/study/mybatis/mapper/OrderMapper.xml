@@ -73,7 +73,7 @@
         </foreach>
     </insert>
 
-    <select id="selectGte" resultType="order">
+    <select id="selectGte" resultType="Order">
         select *
         from t_order
         where menu_id &lt;= #{menuId}

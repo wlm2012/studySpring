@@ -64,8 +64,8 @@ public class ParamMybatisTest {
     @Test
     public void selectGte() {
         OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
-        List<Order> list = mapper.selectGte(10);
-        list.forEach(System.out::println);
+//        List<Order> list = mapper.selectGte(10);
+//        list.forEach(System.out::println);
     }
 
 
