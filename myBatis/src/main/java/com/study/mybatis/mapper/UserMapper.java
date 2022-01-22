@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.Collection;
 import java.util.List;
 
-
+@Mapper
 public interface UserMapper {
 
     List<Order> findByOrderId(Collection<Integer> integers);

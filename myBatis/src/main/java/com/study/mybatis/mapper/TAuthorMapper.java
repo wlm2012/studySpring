@@ -1,7 +1,9 @@
 package com.study.mybatis.mapper;
 
 import com.study.mybatis.DO.TAuthor;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface TAuthorMapper {
     /**
     * deleteByPrimaryKey

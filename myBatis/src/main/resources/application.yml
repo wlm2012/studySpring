@@ -7,6 +7,18 @@ server:
   port: 9907
 
 
+mybatis:
+  type-aliases-package: com.study.mybatis.DO
+  mapper-locations: classpath:com/study/mybatis/mapper/*.xml,mapper/*.xml
+#  type-handlers-package: com.example.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    lazyLoadingEnabled: true
+    autoMappingBehavior: full
+
+
 #配置actuator，开启所有endpoints
 management:
   endpoints:
