@@ -1,6 +1,15 @@
 spring:
   profiles:
     active: dev
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        enabled: true
+        max-wait: 1000
+
 
 
 server:
@@ -10,7 +19,7 @@ server:
 mybatis:
   type-aliases-package: com.study.mybatis.DO
   mapper-locations: classpath:com/study/mybatis/mapper/*.xml,mapper/*.xml
-#  type-handlers-package: com.example.typehandler
+  #  type-handlers-package: com.example.typehandler
   configuration:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
@@ -38,5 +47,5 @@ logging:
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
   level:
-#    org.hibernate.type..descriptor.sql.BasicBinder: trace
+    #    org.hibernate.type..descriptor.sql.BasicBinder: trace
     druid.sql.Statement: DEBUG
