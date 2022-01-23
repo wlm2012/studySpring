@@ -9,7 +9,6 @@ import org.springframework.data.redis.core.ValueOperations;
 @SpringBootTest
 class MyBatisApplicationTests {
 
-
     private final RedisTemplate<String, String> redisTemplate;
 
     @Autowired
