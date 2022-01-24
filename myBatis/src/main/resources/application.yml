@@ -10,6 +10,8 @@ spring:
         enabled: true
         max-wait: 1000
 
+pagehelper:
+  page-size-zero: true
 
 
 server:
