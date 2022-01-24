@@ -24,6 +24,8 @@ public interface TDogMapper {
      */
     int insert(TDog row);
 
+    int insertAll(List<TDog> dogs);
+
     /**
      * insertSelective
      *

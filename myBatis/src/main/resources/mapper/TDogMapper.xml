@@ -46,6 +46,18 @@
         values (#{id,jdbcType=BIGINT}, #{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
         #{num,jdbcType=BIGINT})
     </insert>
+
+    <insert id="insertAll" >
+        insert into t_dog1 (id, age, `name`,
+        num)
+        values
+        <foreach collection="list" item="dog" separator="," index="index">
+            (#{dog.id,jdbcType=BIGINT}, #{dog.age,jdbcType=INTEGER}, #{dog.name,jdbcType=VARCHAR},
+            #{dog.num,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+
     <insert id="insertSelective" parameterType="com.study.mybatis.DO.TDog">
         <!--@mbg.generated -->
         insert into t_dog
