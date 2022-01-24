@@ -57,4 +57,6 @@ public interface UserMapper {
     int insert4(Order order);
 
     Order selectLazy(Integer id);
+
+    User selectUserById();
 }
