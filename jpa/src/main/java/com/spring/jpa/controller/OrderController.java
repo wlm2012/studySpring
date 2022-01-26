@@ -5,6 +5,7 @@ import com.spring.jpa.repository.OrderRepository;
 import com.spring.jpa.service.OrderService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -68,7 +69,7 @@ public class OrderController {
     }
 
     @RequestMapping("/add")
-    public void addOrder(Order order) {
+    public void addOrder(@RequestBody Order order) {
         System.out.println(order.toString());
         orderRepository.save(order);
     }

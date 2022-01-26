@@ -5,6 +5,7 @@ import com.study.mybatis.mapper.TDogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -21,6 +22,7 @@ public class AsyncController {
 
 
     @Async
+    @Transactional
     public CompletableFuture<Integer> insertAll(List<TDog> list) {
         int i = tDogMapper.insertAll(list);
         System.out.println("i = " + i);

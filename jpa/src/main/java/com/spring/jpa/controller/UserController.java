@@ -56,10 +56,11 @@ public class UserController {
         saveUser(getUser(1L));
         throw new Exception("会回滚");
     }
-/*
-总结：如果是RuntimeException会回滚，如果是Exception错误，则不会回滚，
-除非标注@Transactional(rollbackFor = Exception.class)
-* */
+
+    /*
+    总结：如果是RuntimeException会回滚，如果是Exception错误，则不会回滚，
+    除非标注@Transactional(rollbackFor = Exception.class)
+    * */
     @Transactional()
     @RequestMapping("/saveTest2")
     public void saveTest2() {
@@ -135,7 +136,26 @@ public class UserController {
         user.setName("Transactional");
         Thread.sleep(1000);
         log.info(userRepository.saveAndFlush(user).toString());
+    }
 
+    @Transactional
+    @RequestMapping("/threadRollback")
+    public void threadRollback() throws InterruptedException {
+        User user = userRepository.getById(1L);
+        log.info(user.toString());
+
+        new Thread(() -> userService.UserTransactional()).start();
+        Thread.sleep(1000);
+//        throw new RuntimeException("threadRollback");
+    }
+
+    @Transactional
+    @RequestMapping("/UserTransactional")
+    public void UserTransactional() {
+        User user1 = userRepository.getById(1L);
+        log.info(user1.toString());
+        user1.setAge(11);
+        userRepository.save(user1);
     }
 
 

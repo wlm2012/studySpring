@@ -69,6 +69,7 @@ public class CursorController {
             System.out.println("join = " + join);
         }
         System.out.println("System.currentTimeMillis()-startTime = " + (System.currentTimeMillis() - startTime));
+        throw new RuntimeException("rollback");
     }
 
     @Transactional

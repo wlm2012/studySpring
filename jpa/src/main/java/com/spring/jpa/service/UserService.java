@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -39,7 +38,7 @@ public class UserService {
         User user1 = userRepository.getById(1L);
         log.info(user1.toString());
         user1.setAge(11);
-        log.info(userRepository.saveAndFlush(user1).toString());
+        log.info(userRepository.save(user1).toString());
     }
 
 

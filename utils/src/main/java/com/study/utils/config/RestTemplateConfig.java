@@ -14,9 +14,7 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class RestTemplateConfig {
