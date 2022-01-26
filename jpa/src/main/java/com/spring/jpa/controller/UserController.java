@@ -119,7 +119,8 @@ public class UserController {
 
     /*
      * getById()需要在事务中执行
-     * 如需使用在多线程中使用@Transactional，需要调用新的bean的方法，并标记@Transactional
+     * 无法在多线程中使用声明式事务，因为spring会在各个方法的开始时启动各自的事务，无法统一，即使使用spring中的bean
+     * 但使用编程式事务，类似2PC的模式，可以实现多线程事务（即分布式事务）
      * @Retryable会拦截相应报错
      * 如果数据相同，则不会更新
      * */
@@ -138,6 +139,7 @@ public class UserController {
         log.info(userRepository.saveAndFlush(user).toString());
     }
 
+    // 多线程中无法使用声明式事务来实现一致性
     @Transactional
     @RequestMapping("/threadRollback")
     public void threadRollback() throws InterruptedException {
@@ -146,16 +148,14 @@ public class UserController {
 
         new Thread(() -> userService.UserTransactional()).start();
         Thread.sleep(1000);
-//        throw new RuntimeException("threadRollback");
+        throw new RuntimeException("threadRollback");
     }
 
     @Transactional
     @RequestMapping("/UserTransactional")
     public void UserTransactional() {
-        User user1 = userRepository.getById(1L);
-        log.info(user1.toString());
-        user1.setAge(11);
-        userRepository.save(user1);
+        userService.UserTransactional();
+        throw new RuntimeException("UserTransactional");
     }
 
 

@@ -33,8 +33,9 @@ public class User extends BaseEntity {
     private String sex;
     private String email;
 
+    //如果数据库中为null，则为空指针错误
     @Version
-    private Integer version;
+    private Integer version = 0;
     private LocalDate birthday;
     private LocalDateTime registeredTime;
 
