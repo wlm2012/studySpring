@@ -7,6 +7,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
+        # N+1 问题，批量查询的量，用in代替，较少sql查询的次数
+        default_batch_fetch_size: 100
         jdbc:
           #每批500条提交
           batch_size: 500
