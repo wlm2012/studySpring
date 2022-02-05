@@ -1,10 +1,11 @@
 package com.study.utils.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 @Component
 @Aspect
@@ -27,6 +28,27 @@ public class AopAdvice {
             System.out.println("finally");
         }
         return result;
+    }
+
+    @Pointcut("@annotation(com.study.utils.aop.AopAnnotation)")
+    public void annotation() {
+    }
+
+    @Before("annotation()")
+    public void before(JoinPoint joinPoint) {
+        System.out.println("joinPoint.getArgs() = " + Arrays.toString(joinPoint.getArgs()));
+        System.out.println("joinPoint.getKind() = " + joinPoint.getKind());
+        System.out.println("joinPoint.getSignature() = " + joinPoint.getSignature());
+        System.out.println("joinPoint.getSourceLocation() = " + joinPoint.getSourceLocation());
+        System.out.println("joinPoint.getStaticPart() = " + joinPoint.getStaticPart());
+        System.out.println("joinPoint.getThis() = " + joinPoint.getThis());
+    }
+
+    @AfterReturning(value = "annotation()", returning = "result")
+    public void afterReturning(Object result) {
+        if (result instanceof Integer integer) {
+            System.out.println("integer = " + integer + 1);
+        }
     }
 
 }

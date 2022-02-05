@@ -2,7 +2,6 @@ package com.study.utils.config;
 
 import com.study.utils.controller.SchedulingTest;
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 

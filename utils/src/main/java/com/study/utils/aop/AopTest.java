@@ -11,4 +11,12 @@ public class AopTest {
         System.out.println(name);
         return name + " : " + System.currentTimeMillis();
     }
+
+    @AopAnnotation
+    @RequestMapping("/aopAnnotation")
+    public Integer aopAnnotation(String num) {
+        Integer integer = Integer.valueOf(num);
+        System.out.println("integer = " + integer);
+        return integer;
+    }
 }
