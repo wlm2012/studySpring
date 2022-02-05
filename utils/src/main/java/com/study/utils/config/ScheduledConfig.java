@@ -19,14 +19,6 @@ public class ScheduledConfig {
     private SchedulingTest schedulingTest;
 
 
-    @Bean
-    public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
-        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-        taskScheduler.setPoolSize(5);
-        taskScheduler.setThreadNamePrefix("task-");
-        return taskScheduler;
-    }
-
     @PostConstruct
     public void addTask() {
         taskScheduler.scheduleWithFixedDelay(new Runnable() {
