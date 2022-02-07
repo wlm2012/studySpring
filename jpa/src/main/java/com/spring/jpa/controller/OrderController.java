@@ -78,15 +78,21 @@ public class OrderController {
     //如果加上@Transactional，则order实例变动会更新到数据库
 //    @Transactional
     @RequestMapping("/find")
-    public void find(){
+    public void find() {
         Optional<Order> optionalOrder = orderRepository.findById(1L);
-        if (optionalOrder.isPresent()){
+        if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setMenuId(100L);
         }
     }
 
-
+    @RequestMapping("/query")
+    public List<Order> query(@RequestBody Order order) {
+        System.out.println("order = " + order);
+        List<Order> orders = orderRepository.findByOrder(order);
+        orders.forEach(System.out::println);
+        return orders;
+    }
 
 
 }
