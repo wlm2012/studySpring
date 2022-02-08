@@ -72,7 +72,9 @@
             ( #{order.menuId}, #{order.userId})
         </foreach>
     </insert>
-
+<!--
+<= 需要改为 &lt;
+-->
     <select id="selectGte" resultType="Order">
         select *
         from t_order

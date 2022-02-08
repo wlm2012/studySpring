@@ -24,6 +24,8 @@ public interface TDogMapper {
      */
     int insert(TDog row);
 
+    int insert1(TDog tDog);
+
     int insertAll(List<TDog> dogs);
 
     /**
@@ -33,6 +35,8 @@ public interface TDogMapper {
      * @return int int
      */
     int insertSelective(TDog row);
+
+    List<TDog> selective(TDog row);
 
     /**
      * selectByPrimaryKey

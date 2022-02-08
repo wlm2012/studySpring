@@ -47,7 +47,16 @@
         #{num,jdbcType=BIGINT})
     </insert>
 
-    <insert id="insertAll" >
+
+    <insert id="insert1" parameterType="com.study.mybatis.DO.TDog">
+        <!--@mbg.generated -->
+        insert into t_dog1 (id, age, `name`,
+        num)
+        values (#{id,jdbcType=BIGINT}, #{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{num,jdbcType=BIGINT})
+    </insert>
+
+    <insert id="insertAll">
         insert into t_dog1 (id, age, `name`,
         num)
         values
@@ -90,6 +99,26 @@
             </if>
         </trim>
     </insert>
+
+
+    <select id="selective" parameterType="com.study.mybatis.DO.TDog" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_dog
+        <where>
+            <if test="age !=null and age !='' ">
+                and age =#{age}
+            </if>
+            <if test="name !=null and name !='' ">
+                and name =#{name}
+            </if>
+            <if test="num !=null and num !='' ">
+                and num =#{num}
+            </if>
+        </where>
+    </select>
+
+
     <update id="updateByPrimaryKeySelective" parameterType="com.study.mybatis.DO.TDog">
         <!--@mbg.generated -->
         update t_dog
