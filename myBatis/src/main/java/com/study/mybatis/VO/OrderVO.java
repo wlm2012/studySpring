@@ -1,6 +1,8 @@
 package com.study.mybatis.VO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
@@ -22,5 +24,9 @@ public class OrderVO {
     private BigDecimal price;
 
     @Future
+    // 对json 格式无效
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // @JsonFormat 对参数传入 返回的格式转换都生效
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime orderTime;
 }
