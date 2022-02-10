@@ -11,6 +11,7 @@ spring:
         max-wait: 1000
 
 pagehelper:
+##  设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果
   page-size-zero: true
 
 
@@ -20,11 +21,15 @@ server:
 
 
 mybatis:
+  # DO 所在的包
   type-aliases-package: com.study.mybatis.DO
+  # xml文件所在的文件夹
   mapper-locations: classpath:com/study/mybatis/mapper/*.xml,mapper/*.xml
   #  type-handlers-package: com.example.typehandler
   configuration:
+    # 数据库的字段的_转驼峰
     map-underscore-to-camel-case: true
+    #
     default-fetch-size: 100
     default-statement-timeout: 30
     lazyLoadingEnabled: true

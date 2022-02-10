@@ -17,6 +17,8 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+
+<!--        mybatis 和 分页插件-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -39,7 +41,7 @@
             <version>1.2.8</version>
         </dependency>
 
-
+        <!--redis 缓存 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -65,6 +67,13 @@
             <groupId>jaxen</groupId>
             <artifactId>jaxen</artifactId>
             <version>1.2.0</version>
+        </dependency>
+
+<!--        hibernate-validator-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.2.Final</version>
         </dependency>
 
     </dependencies>
