@@ -5,7 +5,8 @@ import java.util.List;
 
 class Solution {
     public List<Integer> luckyNumbers(int[][] matrix) {
-        List<Integer> list = new ArrayList<>();
+        // 由于最多一定只有一个幸运数，所以容量大小设为1
+        List<Integer> list = new ArrayList<>(1);
         for (int[] value : matrix) {
             int b = 0;
             int num = value[0];
@@ -24,6 +25,7 @@ class Solution {
             }
             if (init == 0) {
                 list.add(num);
+                break;
             }
         }
         return list;
