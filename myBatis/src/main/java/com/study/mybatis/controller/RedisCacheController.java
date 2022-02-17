@@ -26,6 +26,12 @@ public class RedisCacheController {
         return tDogMapper.selectByPrimaryKey(id);
     }
 
+    @RequestMapping("/redisGetId")
+    @Cacheable(value = "TDog", key = "#id", unless = "#result == null")
+    public TDog redisGetId(String id) {
+        return tDogMapper.selectByPrimaryKey(Long.valueOf(id));
+    }
+
     @RequestMapping("/redisUpdate")
     @CachePut(value = "TDog", key = "#tDog.id", unless = "#result == null")
     public TDog redisUpdate(@RequestBody TDog tDog) {
