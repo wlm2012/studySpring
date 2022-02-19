@@ -19,12 +19,10 @@ public class Tut2Receiver {
     public void receive(String in) throws InterruptedException {
         StopWatch watch = new StopWatch();
         watch.start();
-        log.info("instance " + this.instance +
-                " {} Received ", "'" + in + "'");
+        log.info("instance " + this.instance + " [x] Received '" + in + "'");
         doWork(in);
         watch.stop();
-        log.info("instance " + this.instance +
-                " {} Done in ", watch.getTotalTimeSeconds() + "s");
+        log.info("instance " + this.instance + " [x] Done in " + watch.getTotalTimeSeconds() + "s");
     }
 
     private void doWork(String in) throws InterruptedException {
