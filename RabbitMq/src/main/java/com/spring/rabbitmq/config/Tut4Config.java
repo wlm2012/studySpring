@@ -1,6 +1,7 @@
 package com.spring.rabbitmq.config;
 
 import com.spring.rabbitmq.receiver.Tut4Receiver;
+import com.spring.rabbitmq.sender.Tut4Sender;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,5 +61,10 @@ public class Tut4Config {
     @Bean
     public Tut4Receiver receiver() {
         return new Tut4Receiver();
+    }
+
+    @Bean
+    public Tut4Sender sender() {
+        return new Tut4Sender();
     }
 }
