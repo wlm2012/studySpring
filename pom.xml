@@ -17,6 +17,7 @@
 		<module>diveInSpringBoot</module>
 		<module>io</module>
 		<module>myBatis</module>
+		<module>RabbitMq</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

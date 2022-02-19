@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: dev
+#  rabbitmq:
+#    port: 5672
+#    host: localhost
+#    username: guest
+#    password: guest
+#    #这个配置是保证提供者确保消息推送到交换机中，不管成不成功，都会回调
+#    publisher-confirm-type: correlated
+#    #保证交换机能把消息推送到队列中
+#    publisher-returns: true
+#    virtual-host: /
+#    #这个配置是保证消费者会消费消息，手动确认
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#    template:
+#      mandatory: true
+
+
+
+
+server:
+  port: 9907
+
+#配置actuator，开启所有endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+
+
+
+#配置log等级
+logging:
+  file:
+    path: ./log
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    #    org.hibernate.type..descriptor.sql.BasicBinder: trace
+    druid.sql.Statement: DEBUG
+
