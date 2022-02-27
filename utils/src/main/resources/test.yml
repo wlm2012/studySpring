@@ -1,0 +1,6 @@
+test:
+  id: 1
+  name: qqq
+  books: [ 333,996,icu ]
+  goods: { qqq: 111,ee: 222 }
+
