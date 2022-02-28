@@ -1,4 +1,4 @@
-package com.study.utils.propert;
+package com.study.utils.property;
 
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.env.PropertiesPropertySource;
