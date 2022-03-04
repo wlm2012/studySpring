@@ -15,12 +15,18 @@ public class TaskExecutorConfig {
     @Bean(name = "taskExecutor")
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(20);
+        executor.setCorePoolSize(2);
+        executor.setPrestartAllCoreThreads(true);
+        executor.setMaxPoolSize(8);
         executor.setQueueCapacity(100);
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.setThreadNamePrefix("TaskExecutor-");
+        executor.setKeepAliveSeconds(60);
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.setAwaitTerminationSeconds(100);
         executor.initialize();
         return executor;
+
+
     }
 }
