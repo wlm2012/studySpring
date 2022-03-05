@@ -2,6 +2,7 @@ package com.study.mybatis.controller;
 
 import com.study.mybatis.DO.TDog;
 import com.study.mybatis.mapper.TDogMapper;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class CursorController {
 
     @Transactional
     @RequestMapping("/cursor")
+    @Operation(summary = "测试")
     public void test() {
         Cursor<TDog> tDogs = tDogMapper.selectCursor();
         List<TDog> dogs = new ArrayList<>();
