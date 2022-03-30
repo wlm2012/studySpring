@@ -17,7 +17,6 @@ public class FirstCacheController {
 
     @RequestMapping("/first")
     public TOrder first(Long id) {
-        System.out.println(id);
         return tOrderMapper.selectByPrimaryKey(id);
     }
 
