@@ -72,13 +72,16 @@
             ( #{order.menuId}, #{order.userId})
         </foreach>
     </insert>
-<!--
-<= 需要改为 &lt;
--->
+    <!--
+    <= 需要改为 &lt;
+    -->
     <select id="selectGte" resultType="Order">
         select *
         from t_order
         where menu_id &lt;= #{menuId}
+    </select>
+    <select id="selectId" resultType="java.lang.String">
+
     </select>
 
 </mapper>

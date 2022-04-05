@@ -24,4 +24,6 @@ public interface OrderMapper {
     void insertList(List<Order> orderList);
 
     List<Order> selectGte(Integer menuId);
+
+    List<String> selectId(Long id);
 }
