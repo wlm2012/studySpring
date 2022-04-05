@@ -21,4 +21,7 @@ public class Solution {
             System.arraycopy(nums, num + 1, nums, num, nums.length - num - 1);
         }
     }
+
+
+
 }
