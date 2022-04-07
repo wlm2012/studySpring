@@ -12,7 +12,6 @@ import java.util.Map;
 @Component
 @PropertySource(value = "classpath:test.yml", factory = YamlPropertySourceFactory.class)
 //@PropertySources({@PropertySource("classpath:test.yml"),
-//@PropertySource("")})
 @ConfigurationProperties("test")
 public class PropertyConfig {
 
