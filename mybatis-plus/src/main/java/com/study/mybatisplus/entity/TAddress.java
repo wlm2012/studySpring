@@ -1,21 +1,25 @@
 package com.study.mybatisplus.entity;
 
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class TUserInfo {
-    @TableId(type = IdType.ASSIGN_ID)
+@TableName("t_address")
+@AllArgsConstructor
+@NoArgsConstructor
+public class TAddress {
+
+    @TableId(type = IdType.AUTO)
     private Long id;
 
-    private Integer age;
+    private String city;
 
-    private String name;
+    private String userInfoId;
 }
