@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active: dev
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        enabled: true
+        max-wait: 1000
+
+
+
+server:
+  port: 9907
+
+mybatis-plus:
+  configuration:
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    lazyLoadingEnabled: true
+    autoMappingBehavior: full
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+
+
+
+
+
+#配置actuator，开启所有endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+
+
+
+#配置log等级
+logging:
+  file:
+    path: ./log
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    #    org.hibernate.type..descriptor.sql.BasicBinder: trace
+    druid.sql.Statement: DEBUG
+
+# redis stream key
+stream:
+  key: t_dog
