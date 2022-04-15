@@ -11,21 +11,22 @@ import java.util.*;
  */
 class RandomizedSet {
 
-    private final HashMap<Integer, Integer> hashMap;
-
-    private final ArrayList<Integer> arrayList;
+    private final Map<Integer, Integer> hashMap;
+    private final List<Integer> arrayList;
+    Random random;
 
     public RandomizedSet() {
         hashMap = new HashMap<>();
         arrayList = new ArrayList<>();
+        random = new Random();
     }
 
     public boolean insert(int val) {
         if (hashMap.containsKey(val)) {
             return false;
         }
+        hashMap.put(val, arrayList.size());
         arrayList.add(val);
-        hashMap.put(val, arrayList.size() - 1);
         return true;
     }
 
@@ -34,15 +35,17 @@ class RandomizedSet {
         if (integer == null) {
             return false;
         }
+        Integer last = arrayList.get(arrayList.size() - 1);
+        arrayList.set(integer,last);
+        arrayList.remove(arrayList.size() - 1);
         hashMap.remove(val);
+        hashMap.put(last,integer);
         return true;
     }
 
     public int getRandom() {
-        Random random = new Random();
-        int i = random.nextInt(hashMap.size());
-        Integer integer = hashMap.get(i);
-        return arrayList.get(integer);
+        int i = random.nextInt(arrayList.size());
+        return arrayList.get(i);
     }
 }
 
