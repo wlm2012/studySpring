@@ -38,8 +38,8 @@ class RandomizedSet {
         Integer last = arrayList.get(arrayList.size() - 1);
         arrayList.set(integer,last);
         arrayList.remove(arrayList.size() - 1);
-        hashMap.remove(val);
         hashMap.put(last,integer);
+        hashMap.remove(val);
         return true;
     }
 
