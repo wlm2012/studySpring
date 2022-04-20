@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.study.mybatisplus.entity.TAddressInfo;
 import com.study.mybatisplus.entity.TUserInfo;
-import com.study.mybatisplus.mapper.TAddressMapper;
+import com.study.mybatisplus.mapper.TAddressInfoMapper;
 import com.study.mybatisplus.mapper.TUserInfoMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +20,7 @@ class TestMybatisPlusControllerTest {
     private TUserInfoMapper userInfoMapper;
 
     @Resource
-    private TAddressMapper tAddressMapper;
+    private TAddressInfoMapper tAddressMapper;
 
 
     @Test
