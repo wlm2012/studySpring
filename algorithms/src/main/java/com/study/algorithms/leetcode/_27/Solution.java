@@ -4,21 +4,22 @@ class Solution {
     public int removeElement(int[] nums, int val) {
         int head = 0;
         int tail = nums.length - 1;
-        while (tail > head) {
+        while (tail >= head) {
             while (nums[tail] == val) {
                 tail--;
+                if (tail < 0) {
+                    return 0;
+                }
             }
             if (head >= tail) {
                 break;
             }
             if (nums[head] == val) {
-                int temp = nums[tail];
-                nums[tail] = nums[head];
-                nums[head] = temp;
+                nums[head] = nums[tail];
                 tail--;
             }
             head++;
         }
-        return head == tail ? tail : tail + 1;
+        return tail + 1;
     }
 }
