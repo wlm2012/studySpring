@@ -11,4 +11,9 @@ public class LogClazz {
             log.info(stackTraceElement.toString());
         }
     }
+
+    public static void info1() {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        log.info("堆栈日志{}", stackTrace);
+    }
 }

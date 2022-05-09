@@ -1,14 +1,24 @@
 package com.study.utils.stackTrace;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FunctionTest {
 
+    private static Functions functions;
+
+    @BeforeAll
+    static void init() {
+        functions = new Functions();
+    }
+
     @Test
     void test() {
-        Functions function = new Functions();
-        function.test();
+        functions.test();
+    }
+
+    @Test
+    void test1() {
+        functions.test1();
     }
 }

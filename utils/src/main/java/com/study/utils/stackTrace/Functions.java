@@ -10,4 +10,10 @@ public class Functions {
         LogClazz.info();
         log.info("end");
     }
+
+    public void test1() {
+        log.info("begin");
+        LogClazz.info1();
+        log.info("end");
+    }
 }
