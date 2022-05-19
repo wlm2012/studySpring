@@ -1,4 +1,4 @@
-package com.study.algorithms.leetcode._01_05;
+package com.study.algorithms.leetcode.m_01_05;
 
 import org.junit.jupiter.api.Test;
 
