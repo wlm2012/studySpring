@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -31,6 +32,9 @@ public class AsyncController {
 
         log.info("Elapsed time1: " + (System.currentTimeMillis() - start));
 
+        ArrayList<CompletableFuture<Integer>> list = new ArrayList<>();
+        list.add(tset);
+        CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
         CompletableFuture<Object> future4 = CompletableFuture.anyOf(tset, tset1);
         log.info(future4.get().toString());
 
