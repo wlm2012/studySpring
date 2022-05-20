@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-/**
+/*
  * @Validated 注解可以使单独的入参检测生效 如：@NotBlank String name
  * 如果入参为对象，依旧需要注解上 @Valid
  * @NotNull：检验是否为null，可以为空字符串（“”），一般用在基本数据类型的非空校验上
@@ -34,6 +34,7 @@ public class ValidController {
         System.out.println("validVo = " + validVo);
     }
 
+    // @NotBlank 对对象入参无效，只对string有效
     @RequestMapping("/notblank")
     public void notBlank(@RequestBody @NotBlank ValidVo validVo) {
         System.out.println("validVo = " + validVo);
