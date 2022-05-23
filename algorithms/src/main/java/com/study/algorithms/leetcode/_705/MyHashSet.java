@@ -7,7 +7,7 @@ class MyHashSet {
     private static LinkedList<Integer>[] data;
 
     public MyHashSet() {
-        data = new LinkedList<>[BASE];
+        data = new LinkedList[BASE];
         for (int i = 0; i < data.length; i++) {
             data[i] = new LinkedList<>();
         }
