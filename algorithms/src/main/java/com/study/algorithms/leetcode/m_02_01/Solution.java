@@ -4,13 +4,18 @@ import java.util.HashSet;
 
 class Solution {
     public ListNode removeDuplicateNodes(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
         HashSet<Integer> set = new HashSet<>();
         ListNode first = head;
-        while (head != null) {
-            if (set.add(head.val)) {
+        set.add(head.val);
+        while (head.next != null) {
+            if (set.add(head.next.val)) {
                 head = head.next;
             } else {
-                head.next = (head.next == null ? null : head.next.next);
+                head.next = head.next.next;
             }
         }
         return first;
