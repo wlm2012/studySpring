@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 /*
  * @Validated 注解可以使单独的入参检测生效 如：@NotBlank String name
- * 如果入参为对象，依旧需要注解上 @Valid
+ * 如果入参为对象，依旧需要注解上 @Valid 或 @Validated
  * @NotNull：检验是否为null，可以为空字符串（“”），一般用在基本数据类型的非空校验上
  * @NotEmpty： 字符串不能为空，而且长度也必须大于0，集合也不能为空
  * @NotBlank：只能用于String类型，不能为null，而且调用trim()后（trim()用于移除字符串中的空白字符），长度必须大于0
