@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 public class FileController {
@@ -25,11 +26,10 @@ public class FileController {
 
     @GetMapping(value = "/download")
     private ResponseEntity<byte[]> download(String path) throws IOException {
-        HttpHeaders headers = new HttpHeaders();
-        // 指定以流的形式下载文件
-//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
-        MediaType mediaType = MediaTypeFactory.getMediaType(path.substring(path.lastIndexOf(File.separator))).get();
+        HttpHeaders headers = new HttpHeaders();
+        Optional<MediaType> type = MediaTypeFactory.getMediaType(path.substring(path.lastIndexOf(File.separator)));
+        MediaType mediaType = type.orElse(MediaType.IMAGE_JPEG);
         headers.setContentType(mediaType);
         return new ResponseEntity<>(FilesUtils.readFileToByte(path), headers, HttpStatus.OK);
 
