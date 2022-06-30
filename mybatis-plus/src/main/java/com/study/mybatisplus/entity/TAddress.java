@@ -1,9 +1,7 @@
 package com.study.mybatisplus.entity;
 
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +20,7 @@ public class TAddress {
     private String city;
 
     private String userInfoId;
+
+    @TableField(fill = FieldFill.INSERT)
+    private String createBy;
 }
