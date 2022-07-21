@@ -1,7 +1,7 @@
 package com.study.mybatisplus.controller;
 
 
-import com.study.mybatisplus.vo.ValidVo;
+import com.study.mybatisplus.domain.vo.ValidVo;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

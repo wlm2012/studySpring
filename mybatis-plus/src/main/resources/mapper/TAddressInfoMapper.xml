@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.mybatisplus.mapper.TAddressInfoMapper">
-    <select id="findById" resultType="com.study.mybatisplus.entity.TAddressInfo">
+    <select id="findById" resultType="com.study.mybatisplus.domain.entity.TAddressInfo">
         select * from t_address a,t_user_info b
         <where>
             a.user_info_id =b.id
