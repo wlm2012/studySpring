@@ -1,7 +1,7 @@
 package com.study.mybatisplus.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.study.mybatisplus.entity.TUserInfo;
+import com.study.mybatisplus.domain.entity.TUserInfo;
 import com.study.mybatisplus.mapper.TUserInfoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

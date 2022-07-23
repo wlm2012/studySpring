@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mybatisplus.mapper.EbookMapper">
 
-    <resultMap id="BaseResultMap" type="com.study.mybatisplus.entity.Ebook">
+    <resultMap id="BaseResultMap" type="com.study.mybatisplus.domain.entity.Ebook">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="category1id" column="category1id" jdbcType="BIGINT"/>
             <result property="category2id" column="category2id" jdbcType="BIGINT"/>
@@ -35,7 +35,7 @@
         delete from ebook
         where  id = #{id,jdbcType=BIGINT} 
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.study.mybatisplus.entity.Ebook" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.study.mybatisplus.domain.entity.Ebook" useGeneratedKeys="true">
         insert into ebook
         ( id,category1id,category2id
         ,cover,description,doc_count
@@ -46,7 +46,7 @@
         ,#{name,jdbcType=VARCHAR},#{version,jdbcType=INTEGER},#{viewCount,jdbcType=INTEGER}
         ,#{voteCount,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.mybatisplus.entity.Ebook" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.mybatisplus.domain.entity.Ebook" useGeneratedKeys="true">
         insert into ebook
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="id != null">id,</if>
@@ -73,7 +73,7 @@
                 <if test="voteCount != null">#{voteCount,jdbcType=INTEGER},</if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.study.mybatisplus.entity.Ebook">
+    <update id="updateByPrimaryKeySelective" parameterType="com.study.mybatisplus.domain.entity.Ebook">
         update ebook
         <set>
                 <if test="category1id != null">
@@ -106,7 +106,7 @@
         </set>
         where   id = #{id,jdbcType=BIGINT} 
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.study.mybatisplus.entity.Ebook">
+    <update id="updateByPrimaryKey" parameterType="com.study.mybatisplus.domain.entity.Ebook">
         update ebook
         set 
             category1id =  #{category1id,jdbcType=BIGINT},

@@ -1,6 +1,6 @@
 package com.study.mybatisplus.controller;
 
-import com.study.mybatisplus.entity.TAddress;
+import com.study.mybatisplus.domain.entity.TAddress;
 import com.study.mybatisplus.mapper.TAddressMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

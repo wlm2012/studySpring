@@ -1,4 +1,4 @@
-package com.study.mybatisplus.vo;
+package com.study.mybatisplus.domain.vo;
 
 import lombok.Data;
 

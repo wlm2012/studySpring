@@ -1,6 +1,6 @@
 package com.study.mybatisplus.mapper;
 
-import com.study.mybatisplus.entity.Ebook;
+import com.study.mybatisplus.domain.entity.Ebook;
 
 /**
 * @author wlm

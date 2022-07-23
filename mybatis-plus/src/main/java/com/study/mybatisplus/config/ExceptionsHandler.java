@@ -1,7 +1,7 @@
 package com.study.mybatisplus.config;
 
 
-import com.study.mybatisplus.entity.BaseEntity;
+import com.study.mybatisplus.domain.entity.BaseEntity;
 import com.study.mybatisplus.exception.BaseException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
