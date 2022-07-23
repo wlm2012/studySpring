@@ -7,11 +7,13 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class WebSocketController {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
+    @MessageMapping("/chat")
+    @SendTo("/topic/messages")
     public StudentVo greeting(StudentDto dto) {
         System.out.println("begin");
         try {
@@ -19,6 +21,6 @@ public class WebSocketController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return new StudentVo(dto.getId(),"wlm");
+        return new StudentVo(dto.getId(), "wlm" , LocalDateTime.now());
     }
 }

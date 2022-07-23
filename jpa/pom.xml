@@ -47,11 +47,16 @@
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc10</artifactId>
-            <version>19.13.0.0.1</version>
+            <version>19.15.0.0.1</version>
         </dependency>
 
 
-<!--        暂时解决方式，等待更新-->
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>-->
+
+        <!--        暂时解决方式，等待更新-->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
@@ -83,7 +88,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        web socket-->
+        <!--        web socket-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>

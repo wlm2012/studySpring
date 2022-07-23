@@ -10,7 +10,7 @@ fun main() {
 
 
 
-@RestController
+//@RestController
 class KotlinTestController {
 
 
