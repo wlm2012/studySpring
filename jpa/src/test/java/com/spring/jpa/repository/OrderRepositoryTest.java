@@ -1,12 +1,11 @@
 package com.spring.jpa.repository;
 
-import com.spring.jpa.DO.Order;
+import com.spring.jpa.domain.entity.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j

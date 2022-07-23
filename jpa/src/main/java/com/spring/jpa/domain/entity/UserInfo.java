@@ -1,10 +1,8 @@
-package com.spring.jpa.DO;
+package com.spring.jpa.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.lang.annotation.Target;
 import java.util.Set;
 
 

@@ -1,7 +1,7 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Student;
-import com.spring.jpa.DO.Teacher;
+import com.spring.jpa.domain.entity.Student;
+import com.spring.jpa.domain.entity.Teacher;
 import com.spring.jpa.repository.StudentRepository;
 import com.spring.jpa.repository.TeacherRepository;
 import org.springframework.web.bind.annotation.RequestMapping;

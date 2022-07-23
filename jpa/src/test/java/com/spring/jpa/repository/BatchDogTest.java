@@ -3,7 +3,7 @@ package com.spring.jpa.repository;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.Number;
-import com.spring.jpa.DO.Dog;
+import com.spring.jpa.domain.entity.Dog;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

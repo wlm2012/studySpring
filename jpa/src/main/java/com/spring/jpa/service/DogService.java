@@ -1,6 +1,6 @@
 package com.spring.jpa.service;
 
-import com.spring.jpa.DO.Dog;
+import com.spring.jpa.domain.entity.Dog;
 import com.spring.jpa.repository.DogRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

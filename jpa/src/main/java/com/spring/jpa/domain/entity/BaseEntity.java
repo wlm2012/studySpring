@@ -1,4 +1,4 @@
-package com.spring.jpa.DO;
+package com.spring.jpa.domain.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

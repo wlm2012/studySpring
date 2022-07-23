@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Order;
+import com.spring.jpa.domain.entity.Order;
 import com.spring.jpa.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

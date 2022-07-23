@@ -1,8 +1,8 @@
 package com.spring.jpa.controller;
 
 
-import com.spring.jpa.DO.Author;
-import com.spring.jpa.DO.Book;
+import com.spring.jpa.domain.entity.Author;
+import com.spring.jpa.domain.entity.Book;
 import com.spring.jpa.repository.AuthorRepository;
 import com.spring.jpa.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;

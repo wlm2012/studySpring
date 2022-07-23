@@ -1,7 +1,7 @@
 package com.spring.jpa.service;
 
 
-import com.spring.jpa.DO.User;
+import com.spring.jpa.domain.entity.User;
 import com.spring.jpa.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;

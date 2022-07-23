@@ -1,6 +1,6 @@
 package com.spring.jpa.service;
 
-import com.spring.jpa.DO.Order;
+import com.spring.jpa.domain.entity.Order;
 import com.spring.jpa.repository.OrderRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

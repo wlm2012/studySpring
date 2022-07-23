@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Order;
+import com.spring.jpa.domain.entity.Order;
 import com.spring.jpa.service.OrderService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
 package com.spring.jpa.repository;
 
-import com.spring.jpa.DO.User;
+import com.spring.jpa.domain.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;

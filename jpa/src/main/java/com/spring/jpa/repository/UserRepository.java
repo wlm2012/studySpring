@@ -1,7 +1,7 @@
 package com.spring.jpa.repository;
 
-import com.spring.jpa.DO.User;
-import com.spring.jpa.DO.UserOnlyNameEmailDto;
+import com.spring.jpa.domain.entity.User;
+import com.spring.jpa.domain.entity.UserOnlyNameEmailDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

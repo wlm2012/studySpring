@@ -2,8 +2,8 @@ package com.spring.jpa.repository;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spring.jpa.DO.User;
-import com.spring.jpa.DO.UserOnlyNameEmailDto;
+import com.spring.jpa.domain.entity.User;
+import com.spring.jpa.domain.entity.UserOnlyNameEmailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j

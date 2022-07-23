@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Order;
+import com.spring.jpa.domain.entity.Order;
 import com.spring.jpa.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

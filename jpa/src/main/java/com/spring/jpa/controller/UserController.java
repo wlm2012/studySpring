@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.User;
+import com.spring.jpa.domain.entity.User;
 import com.spring.jpa.repository.UserRepository;
 import com.spring.jpa.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,14 +8,12 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Slf4j
 @RestController

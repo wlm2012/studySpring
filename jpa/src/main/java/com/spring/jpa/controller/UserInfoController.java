@@ -1,7 +1,7 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Address;
-import com.spring.jpa.DO.UserInfo;
+import com.spring.jpa.domain.entity.Address;
+import com.spring.jpa.domain.entity.UserInfo;
 import com.spring.jpa.repository.AddressRepository;
 import com.spring.jpa.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

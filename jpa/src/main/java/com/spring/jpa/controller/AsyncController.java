@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.DO.Dog;
+import com.spring.jpa.domain.entity.Dog;
 import com.spring.jpa.service.DogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
