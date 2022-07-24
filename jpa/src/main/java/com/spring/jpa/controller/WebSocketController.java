@@ -6,13 +6,14 @@ import com.spring.jpa.domain.vo.StudentVo;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
 
 @Controller
 public class WebSocketController {
 
-    @MessageMapping("/chat")
+    @MessageMapping("/mapping")
     @SendTo("/topic/messages")
     public StudentVo greeting(StudentDto dto) {
         System.out.println("begin");
@@ -21,6 +22,14 @@ public class WebSocketController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return new StudentVo(dto.getId(), "wlm" , LocalDateTime.now());
+        return new StudentVo(dto.getId(), "wlm", LocalDateTime.now());
     }
+
+    @SendTo("/topic/messages")
+    public StudentVo greeting() {
+        System.out.println("begin1 = " + "begin");
+        return new StudentVo(2, "wlm", LocalDateTime.now());
+    }
+
+
 }
