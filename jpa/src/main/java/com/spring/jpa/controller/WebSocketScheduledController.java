@@ -37,9 +37,15 @@ public class WebSocketScheduledController {
 
 
     // 可以返回
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 1000)
     public void fixedDelay() {
         messagingTemplate.convertAndSend("/topic/messages",
                 new StudentVo(2, "wlm", LocalDateTime.now()));
     }
+
+/*    @Scheduled(fixedDelay = 3000)
+    public void fix(){
+        messagingTemplate.convertAndSendToUser();
+    }*/
+
 }

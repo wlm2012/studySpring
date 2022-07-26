@@ -4,6 +4,7 @@
     <script src="js/sockjs-0.3.4.js"></script>
     <script src="js/stomp.js"></script>
     <script type="text/javascript">
+
         var stompClient = null;
 
         function setConnected(connected) {
@@ -20,6 +21,7 @@
             stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
+                console.log('url: '+stompClient.ws._transport.url);
                 stompClient.subscribe('/topic/messages', function (messageOutput) {
                     showMessageOutput(JSON.parse(messageOutput.body));
                 });
