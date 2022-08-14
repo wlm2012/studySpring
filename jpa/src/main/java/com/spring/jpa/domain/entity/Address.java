@@ -25,6 +25,7 @@ public class Address {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
+    @ToString.Exclude
     private UserInfo userInfo;
 
 }
