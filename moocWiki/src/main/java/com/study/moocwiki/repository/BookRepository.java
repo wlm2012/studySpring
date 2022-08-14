@@ -1,6 +1,6 @@
 package com.study.moocwiki.repository;
 
-import com.study.moocwiki.entity.Book;
+import com.study.moocwiki.domain.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

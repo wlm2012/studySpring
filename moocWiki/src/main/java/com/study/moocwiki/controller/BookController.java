@@ -1,6 +1,6 @@
 package com.study.moocwiki.controller;
 
-import com.study.moocwiki.entity.Book;
+import com.study.moocwiki.domain.entity.Book;
 import com.study.moocwiki.service.impl.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

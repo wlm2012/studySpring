@@ -1,4 +1,4 @@
-package com.study.moocwiki.entity;
+package com.study.moocwiki.domain.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
