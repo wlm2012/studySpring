@@ -1,4 +1,4 @@
-package com.spring.jpa.service;
+package com.spring.jpa.service.impl;
 
 import com.spring.jpa.domain.entity.Order;
 import com.spring.jpa.repository.OrderRepository;

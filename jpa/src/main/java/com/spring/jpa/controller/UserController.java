@@ -2,7 +2,7 @@ package com.spring.jpa.controller;
 
 import com.spring.jpa.domain.entity.User;
 import com.spring.jpa.repository.UserRepository;
-import com.spring.jpa.service.UserService;
+import com.spring.jpa.service.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.retry.annotation.Backoff;

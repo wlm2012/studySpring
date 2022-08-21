@@ -1,4 +1,4 @@
-package com.spring.jpa.service;
+package com.spring.jpa.service.impl;
 
 import com.spring.jpa.domain.entity.Dog;
 import com.spring.jpa.repository.DogRepository;

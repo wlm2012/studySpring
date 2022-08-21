@@ -5,7 +5,10 @@ import com.spring.jpa.domain.entity.Author;
 import com.spring.jpa.domain.entity.Book;
 import com.spring.jpa.repository.AuthorRepository;
 import com.spring.jpa.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,15 +16,15 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
-    @Autowired
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository) {
-        this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
+    @GetMapping("listBooks")
+    public Page<Book> listBooks() {
+        return bookRepository.findAll(PageRequest.of(1, 2));
     }
 
     @RequestMapping("/book")
