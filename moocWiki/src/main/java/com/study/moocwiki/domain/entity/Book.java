@@ -24,9 +24,9 @@ public class Book {
     @Column(length = 50)
     private String name;
 
-    private long category1Id;
+    private Long category1Id;
 
-    private long category2Id;
+    private Long category2Id;
 
     @Column(length = 200)
     private String description;
@@ -34,11 +34,11 @@ public class Book {
     @Column(length = 200)
     private String cover;
 
-    private int docCount;
+    private Integer docCount;
 
-    private int viewCount;
+    private Integer viewCount;
 
-    private int voteCount;
+    private Integer voteCount;
 
     @Override
     public boolean equals(Object o) {
