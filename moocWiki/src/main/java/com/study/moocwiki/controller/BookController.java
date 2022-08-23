@@ -1,6 +1,6 @@
 package com.study.moocwiki.controller;
 
-import com.study.moocwiki.domain.entity.Book;
+import com.study.moocwiki.domain.entity.BookEntity;
 import com.study.moocwiki.service.impl.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,12 +18,12 @@ public class BookController {
     private final BookServiceImpl bookService;
 
     @GetMapping("/list")
-    public List<Book> listBook(String name) {
+    public List<BookEntity> listBook(String name) {
         return bookService.listBook(name);
     }
 
     @GetMapping("/pageBook")
-    public Page<Book> pageBook(String name) {
+    public Page<BookEntity> pageBook(String name) {
         return bookService.pageBook(name);
     }
 

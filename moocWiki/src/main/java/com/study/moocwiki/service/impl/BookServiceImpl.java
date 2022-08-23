@@ -1,7 +1,7 @@
 package com.study.moocwiki.service.impl;
 
 
-import com.study.moocwiki.domain.entity.Book;
+import com.study.moocwiki.domain.entity.BookEntity;
 import com.study.moocwiki.repository.BookRepository;
 import com.study.moocwiki.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +18,12 @@ public class BookServiceImpl {
     private final BookRepository bookRepository;
 
 
-    public List<Book> listBook(String name) {
+    public List<BookEntity> listBook(String name) {
         return bookRepository.findByNameContaining(name);
     }
 
 
-    public Page<Book> pageBook(String name) {
+    public Page<BookEntity> pageBook(String name) {
         PageRequest pageRequest = PageUtils.start();
         return bookRepository.findByNameContaining(name, pageRequest);
     }

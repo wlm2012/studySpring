@@ -14,7 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-public class Book {
+public class BookEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +44,7 @@ public class Book {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Book book = (Book) o;
+        BookEntity book = (BookEntity) o;
         return id != null && Objects.equals(id, book.id);
     }
 
