@@ -38,7 +38,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     @SneakyThrows
-    public Object beforeBodyWrite(Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType,
+                                  @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                  @NotNull ServerHttpRequest request, @NotNull ServerHttpResponse response) {
         if (body instanceof String) {
             return objectMapper.writeValueAsString(CommonResp.success(body));
         }
