@@ -34,8 +34,7 @@ public class AVstar {
     private boolean confirm = false;
     private boolean exist = false;
 
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "t_av_star_resources",
             joinColumns = @JoinColumn(name = "av_star_id"),
