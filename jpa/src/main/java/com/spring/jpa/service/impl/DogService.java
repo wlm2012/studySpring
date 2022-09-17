@@ -1,6 +1,6 @@
 package com.spring.jpa.service.impl;
 
-import com.spring.jpa.domain.entity.Dog;
+import com.spring.jpa.domain.entity.DogEntity;
 import com.spring.jpa.repository.DogRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -16,20 +16,20 @@ public class DogService {
     private DogRepository dogRepository;
 
     @Async
-    public CompletableFuture<Dog> asyncTest(Dog dog) throws InterruptedException {
-        Random random = new Random(dog.getNum());
-        dog.setAge(random.nextInt(100));
-        dog = dogRepository.save(dog);
-        Thread.sleep(dog.getNum() * 10_000);
-        return CompletableFuture.completedFuture(dog);
+    public CompletableFuture<DogEntity> asyncTest(DogEntity dogEntity) throws InterruptedException {
+        Random random = new Random(dogEntity.getNum());
+        dogEntity.setAge(random.nextInt(100));
+        dogEntity = dogRepository.save(dogEntity);
+        Thread.sleep(dogEntity.getNum() * 10_000);
+        return CompletableFuture.completedFuture(dogEntity);
     }
 
     @Async
-    public Dog asyncTest1(Dog dog) throws InterruptedException {
-        Random random = new Random(dog.getNum());
-        dog.setAge(random.nextInt(100));
-        dog = dogRepository.save(dog);
-        Thread.sleep(dog.getNum() * 10_000);
-        return dog;
+    public DogEntity asyncTest1(DogEntity dogEntity) throws InterruptedException {
+        Random random = new Random(dogEntity.getNum());
+        dogEntity.setAge(random.nextInt(100));
+        dogEntity = dogRepository.save(dogEntity);
+        Thread.sleep(dogEntity.getNum() * 10_000);
+        return dogEntity;
     }
 }

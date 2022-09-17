@@ -3,7 +3,7 @@ package com.spring.jpa.repository;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.Number;
-import com.spring.jpa.domain.entity.Dog;
+import com.spring.jpa.domain.entity.DogEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 @SpringBootTest
-public class BatchDogTest {
+public class BatchDogTestEntity {
 
     @Resource
     private DogRepository dogRepository;
@@ -21,15 +21,15 @@ public class BatchDogTest {
     @Test
     public void batch() {
         Faker faker = new Faker(new Locale("zh-CN"));
-        List<Dog> dogs = new ArrayList<>();
+        List<DogEntity> dogEntities = new ArrayList<>();
         com.github.javafaker.Dog dog = faker.dog();
         Number number = faker.number();
         for (int i = 0; i < 10_000; i++) {
-            Dog build = Dog.builder().age(number.numberBetween(0, 20)).name(dog.name()).build();
-            dogs.add(build);
+            DogEntity build = DogEntity.builder().age(number.numberBetween(0, 20)).name(dog.name()).build();
+            dogEntities.add(build);
         }
         long startTime = System.currentTimeMillis();
-        dogRepository.saveAll(dogs);
+        dogRepository.saveAll(dogEntities);
         System.out.println(System.currentTimeMillis() - startTime);
     }
 }

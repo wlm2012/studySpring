@@ -1,6 +1,6 @@
 package com.spring.jpa.controller;
 
-import com.spring.jpa.domain.entity.Dog;
+import com.spring.jpa.domain.entity.DogEntity;
 import com.spring.jpa.service.impl.DogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +23,9 @@ public class AsyncController {
     public void asyncTest() throws InterruptedException, ExecutionException {
         long start = System.currentTimeMillis();
 
-        CompletableFuture<Dog> future1 = dogService.asyncTest(new Dog(1L));
-        CompletableFuture<Dog> future2 = dogService.asyncTest(new Dog(2L));
-        CompletableFuture<Dog> future3 = dogService.asyncTest(new Dog(3L));
+        CompletableFuture<DogEntity> future1 = dogService.asyncTest(new DogEntity(1L));
+        CompletableFuture<DogEntity> future2 = dogService.asyncTest(new DogEntity(2L));
+        CompletableFuture<DogEntity> future3 = dogService.asyncTest(new DogEntity(3L));
 
         //由于新的线程没有执行完任务，导致没有成功获取到dog，空指针异常
 //        Dog dog = dogService.asyncTest1(new Dog(4L));
@@ -45,9 +45,9 @@ public class AsyncController {
     @RequestMapping("/asyncTest1")
     public void asyncTest1() throws InterruptedException, ExecutionException {
         long start = System.currentTimeMillis();
-        List<CompletableFuture<Dog>> list = new ArrayList<>();
+        List<CompletableFuture<DogEntity>> list = new ArrayList<>();
         for (long i = 0; i < 10_000; i++) {
-            list.add(dogService.asyncTest(new Dog(i)));
+            list.add(dogService.asyncTest(new DogEntity(i)));
             log.info("asyncTest1--=  " + i);
         }
 

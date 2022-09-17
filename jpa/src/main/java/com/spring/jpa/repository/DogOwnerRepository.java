@@ -1,9 +1,9 @@
 package com.spring.jpa.repository;
 
-import com.spring.jpa.domain.entity.DogEntity;
+import com.spring.jpa.domain.entity.DogOwnerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DogRepository extends JpaRepository<DogEntity,String> {
+public interface DogOwnerRepository extends JpaRepository<DogOwnerEntity,String> {
 }

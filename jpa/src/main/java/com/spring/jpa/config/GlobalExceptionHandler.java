@@ -2,6 +2,7 @@ package com.spring.jpa.config;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.jpa.common.ServiceException;
 import com.spring.jpa.domain.resp.CommonPageResp;
 import com.spring.jpa.domain.resp.CommonResp;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -57,9 +56,15 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     }
 
+    @ExceptionHandler(ServiceException.class)
+    public CommonResp<?> handleServiceException(ServiceException e) {
+        log.error(e.getMessage(), e);
+        return CommonResp.fail(e.getMessage());
+    }
+
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResp<String> exception(Exception e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',发生未知异常.", requestURI, e);

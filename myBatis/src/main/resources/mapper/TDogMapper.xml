@@ -60,9 +60,9 @@
         insert into t_dog1 (id, age, `name`,
         num)
         values
-        <foreach collection="list" item="dog" separator="," index="index">
-            (#{dog.id,jdbcType=BIGINT}, #{dog.age,jdbcType=INTEGER}, #{dog.name,jdbcType=VARCHAR},
-            #{dog.num,jdbcType=BIGINT})
+        <foreach collection="list" item="dogEntity" separator="," index="index">
+            (#{dogEntity.id,jdbcType=BIGINT}, #{dogEntity.age,jdbcType=INTEGER}, #{dogEntity.name,jdbcType=VARCHAR},
+            #{dogEntity.num,jdbcType=BIGINT})
         </foreach>
     </insert>
 
