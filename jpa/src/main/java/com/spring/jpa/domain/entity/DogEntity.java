@@ -2,6 +2,7 @@ package com.spring.jpa.domain.entity;
 
 import com.spring.jpa.domain.dto.DogDto;
 import com.spring.jpa.domain.dto.DogUpdateDto;
+import com.spring.jpa.listener.DogListener;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -16,6 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Access(AccessType.FIELD)
+@EntityListeners(DogListener.class)
 public class DogEntity {
     @Id
     @GeneratedValue(generator = "snowflakeId")
