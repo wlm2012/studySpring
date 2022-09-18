@@ -2,11 +2,12 @@ spring:
   profiles:
     active: postgresql
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
+        format_sql: true
         # N+1 问题，批量查询的量，用in代替，较少sql查询的次数
         default_batch_fetch_size: 100
         jdbc:
@@ -15,7 +16,7 @@ spring:
           batch_versioned_data: true
           order_inserts: true
           order_updates: true
-        format_sql: true
+
 
 server:
   port: 9904

@@ -6,46 +6,55 @@ import com.spring.jpa.repository.DogAuditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class DogListener {
 
 
-    private final DogAuditRepository dogAuditRepository;
+    private DogAuditRepository dogAuditRepository;
 
-    private String name;
 
     @Autowired
     public DogListener(@Lazy DogAuditRepository dogAuditRepository) {
         this.dogAuditRepository = dogAuditRepository;
     }
 
+    private final Map<String, String> map = new HashMap<>();
 
-    @PrePersist
-    @PreUpdate
+    public DogListener() {
+
+    }
+
+
+    @PostLoad
     public void preUpdate(DogEntity dogEntity) {
-        name = dogEntity.getName();
+        map.put(dogEntity.getId(), dogEntity.getName());
     }
 
     @PostPersist
     @PostUpdate
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void postUpdate(DogEntity dogEntity) {
-        if (StringUtils.hasText(name) && !name.equals(dogEntity.getName())) {
+        String oldName = map.get(dogEntity.getId());
+
+        if (StringUtils.hasText(oldName) && !oldName.equals(dogEntity.getName())) {
             dogAuditRepository.save(DogAuditEntity.builder()
-                    .oldName(name)
+                    .dogId(dogEntity.getId())
+                    .oldName(oldName)
                     .newName(dogEntity.getName())
                     .build());
+            map.remove(dogEntity.getId());
         } else {
             dogAuditRepository.save(DogAuditEntity.builder()
-                    .newName(name)
+                    .dogId(dogEntity.getId())
+                    .newName(dogEntity.getName())
                     .build());
         }
     }

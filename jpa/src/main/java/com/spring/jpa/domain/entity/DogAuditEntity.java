@@ -22,7 +22,12 @@ public class DogAuditEntity {
     @GenericGenerator(name = "snowflakeId", strategy = "com.spring.jpa.config.SnowIdGeneratorConfig")
     private String id;
 
+    @Column(name = "dog_id")
+    private String dogId;
+
+    @Column(name = "old_name")
     private String oldName;
 
+    @Column(name = "new_name")
     private String newName;
 }
