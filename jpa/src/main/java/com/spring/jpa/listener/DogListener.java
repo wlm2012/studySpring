@@ -3,16 +3,16 @@ package com.spring.jpa.listener;
 import com.spring.jpa.domain.entity.DogAuditEntity;
 import com.spring.jpa.domain.entity.DogEntity;
 import com.spring.jpa.repository.DogAuditRepository;
+import com.spring.jpa.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.PreUpdate;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Component
 public class DogListener {
@@ -20,43 +20,37 @@ public class DogListener {
 
     private DogAuditRepository dogAuditRepository;
 
+    private DogRepository dogRepository;
+
 
     @Autowired
-    public DogListener(@Lazy DogAuditRepository dogAuditRepository) {
+    public DogListener(@Lazy DogAuditRepository dogAuditRepository, @Lazy DogRepository dogRepository) {
         this.dogAuditRepository = dogAuditRepository;
+        this.dogRepository = dogRepository;
     }
 
-    private final Map<String, String> map = new HashMap<>();
 
     public DogListener() {
 
     }
 
 
-    @PostLoad
+    @PreUpdate
     public void preUpdate(DogEntity dogEntity) {
-        map.put(dogEntity.getId(), dogEntity.getName());
-    }
-
-    @PostPersist
-    @PostUpdate
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void postUpdate(DogEntity dogEntity) {
-        String oldName = map.get(dogEntity.getId());
-
-        if (StringUtils.hasText(oldName) && !oldName.equals(dogEntity.getName())) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        assert attributes != null;
+        HttpServletRequest request = attributes.getRequest();
+        System.out.println("request.getRequestURI() = " + request.getRequestURI());
+        Optional<DogEntity> dogEntityOptional = dogRepository.findById(dogEntity.getId());
+        if (dogEntityOptional.isPresent()) {
+            DogEntity dog = dogEntityOptional.get();
             dogAuditRepository.save(DogAuditEntity.builder()
-                    .dogId(dogEntity.getId())
-                    .oldName(oldName)
-                    .newName(dogEntity.getName())
-                    .build());
-            map.remove(dogEntity.getId());
-        } else {
-            dogAuditRepository.save(DogAuditEntity.builder()
-                    .dogId(dogEntity.getId())
+                    .dogId(dog.getId())
+                    .oldName(dog.getName())
                     .newName(dogEntity.getName())
                     .build());
         }
     }
+
 
 }
