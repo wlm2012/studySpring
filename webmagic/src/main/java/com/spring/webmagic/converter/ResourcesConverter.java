@@ -1,4 +1,6 @@
-package com.spring.webmagic.entityEnum;
+package com.spring.webmagic.converter;
+
+import com.spring.webmagic.entityEnum.ResourcesEnum;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
