@@ -1,7 +1,7 @@
 package com.spring.jpa.repository;
 
 import com.spring.jpa.domain.entity.User;
-import com.spring.jpa.domain.entity.UserOnlyNameEmailDto;
+import com.spring.jpa.domain.vo.UserOnlyNameEmailVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findTop3ByName(String name);
 
-    List<UserOnlyNameEmailDto> findByAge(int age);
+    List<UserOnlyNameEmailVo> findByAge(int age);
 
     @Lock(LockModeType.PESSIMISTIC_READ)
     @Transactional

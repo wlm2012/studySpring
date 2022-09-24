@@ -1,13 +1,12 @@
-package com.spring.jpa.domain.entity;
+package com.spring.jpa.domain.vo;
 
 import lombok.ToString;
-import lombok.Value;
 
 //@Value
 @ToString
-public class UserOnlyNameEmailDto {
+public class UserOnlyNameEmailVo {
 
-    public UserOnlyNameEmailDto(String name, String email) {
+    public UserOnlyNameEmailVo(String name, String email) {
         this.name = name;
         this.email = email;
     }

@@ -3,7 +3,7 @@ package com.spring.jpa.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.jpa.domain.entity.User;
-import com.spring.jpa.domain.entity.UserOnlyNameEmailDto;
+import com.spring.jpa.domain.vo.UserOnlyNameEmailVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -89,7 +89,7 @@ public class UserRepositoryTest {
 
     @Test
     public void UserOnlyNameEmailDtoTest() {
-        List<UserOnlyNameEmailDto> list = userRepository.findByAge(11);
+        List<UserOnlyNameEmailVo> list = userRepository.findByAge(11);
         System.out.println(list);
     }
 
