@@ -3,19 +3,16 @@ package com.study.utils.tdd;
 public class Dollar extends Money{
 
 
-    public Dollar(int amount) {
+    public Dollar(int amount,String currency) {
         this.amount = amount;
+        this.currency = "USD";
     }
 
 
     public Money time(int time) {
-        return new Dollar(amount * time);
+        return Money.dollar(amount * time);
     }
 
-    @Override
-    String currency() {
-        return "USD";
-    }
 
 
 }
