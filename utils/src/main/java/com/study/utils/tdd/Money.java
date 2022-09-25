@@ -1,6 +1,8 @@
 package com.study.utils.tdd;
 
-public abstract class Money {
+import java.util.Objects;
+
+public class Money {
 
     protected int amount;
 
@@ -11,23 +13,26 @@ public abstract class Money {
         this.currency = currency;
     }
 
-    public static Dollar dollar(int amount) {
-        return new Dollar(amount, "USD");
+    public static Money dollar(int amount) {
+        return new Money(amount, "USD");
     }
 
-    public static Franc franc(int amount) {
-        return new Franc(amount, "CHF");
+    public static Money franc(int amount) {
+        return new Money(amount, "CHF");
     }
 
-    abstract Money time(int time);
+    Money time(int time) {
+        return new Money(amount * time, currency);
+    }
 
     public boolean equals(Object object) {
-        if (null != object && !getClass().equals(object.getClass())) {
+        if (null == object) {
             return false;
         }
 
+
         if (object instanceof Money money) {
-            return amount == money.amount;
+            return amount == money.amount && Objects.equals(currency, money.currency);
         } else {
             return false;
         }
