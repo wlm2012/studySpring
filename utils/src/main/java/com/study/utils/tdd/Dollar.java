@@ -12,6 +12,10 @@ public class Dollar extends Money{
         return new Dollar(amount * time);
     }
 
+    @Override
+    String currency() {
+        return "USD";
+    }
 
 
 }

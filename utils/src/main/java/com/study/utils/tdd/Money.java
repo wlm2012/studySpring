@@ -4,11 +4,11 @@ public abstract class Money {
 
     protected int amount;
 
-    public static Dollar dollar(int amount){
+    public static Dollar dollar(int amount) {
         return new Dollar(amount);
     }
 
-    public static Franc franc(int amount){
+    public static Franc franc(int amount) {
         return new Franc(amount);
     }
 
@@ -25,4 +25,6 @@ public abstract class Money {
             return false;
         }
     }
+
+    abstract String currency();
 }

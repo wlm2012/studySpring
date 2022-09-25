@@ -11,4 +11,9 @@ public class Franc extends Money {
         return new Franc(amount * time);
     }
 
+    @Override
+    String currency() {
+        return "CHF";
+    }
+
 }
