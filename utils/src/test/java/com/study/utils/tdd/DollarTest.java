@@ -15,9 +15,9 @@ class DollarTest {
 
     @Test
     void test_equality() {
-        Dollar five = new Dollar(5);
-        assertEquals(five, new Dollar(5));
-        assertNotEquals(five, new Dollar(6));
+        Dollar five = Money.dollar(5);
+        assertEquals(five, Money.dollar(5));
+        assertNotEquals(five, Money.dollar(6));
         assertNotEquals(five, null);
 
         assertNotEquals(five, new Franc(5));

@@ -7,7 +7,7 @@ public class Franc extends Money {
     }
 
 
-    public Franc time(int time) {
+    public Money time(int time) {
         return new Franc(amount * time);
     }
 
