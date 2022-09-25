@@ -20,6 +20,8 @@ class DollarTest {
         assertNotEquals(five, new Dollar(6));
         assertNotEquals(five, null);
 
+        assertNotEquals(five, new Franc(5));
+
     }
 
 }
