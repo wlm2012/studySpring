@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
-@EnableScheduling
+//@EnableScheduling
 @SpringBootApplication
 public class UtilsApplication {
 

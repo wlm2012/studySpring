@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
-@Configuration
+//@Configuration
 public class ScheduledConfig {
 
     @Resource
