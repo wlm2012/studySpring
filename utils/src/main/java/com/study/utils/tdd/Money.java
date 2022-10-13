@@ -2,7 +2,7 @@ package com.study.utils.tdd;
 
 import java.util.Objects;
 
-public class Money {
+public class Money implements Expression {
 
     protected int amount;
 
@@ -30,7 +30,6 @@ public class Money {
             return false;
         }
 
-
         if (object instanceof Money money) {
             return amount == money.amount && Objects.equals(currency, money.currency);
         } else {
@@ -40,5 +39,13 @@ public class Money {
 
     String currency() {
         return currency;
+    }
+
+    Sum plus(Money money) {
+        return new Sum(this, money);
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 }
