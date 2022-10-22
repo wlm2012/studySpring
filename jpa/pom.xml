@@ -13,10 +13,6 @@
     <name>jpa</name>
     <description>jpa</description>
 
-    <properties>
-        <skipTests>true</skipTests>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.retry</groupId>

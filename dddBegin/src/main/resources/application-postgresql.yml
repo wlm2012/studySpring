@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://47.102.127.65:5433/dbc3336ece630249b090faa5fb78f9bb30study
+    username: postgre
+    password: HgmUXNXiKZp4NBj
+    hikari: # https://github.com/brettwooldridge/HikariCP (uses milliseconds for all time values)
+      maximumPoolSize: 10
+      minimumIdle: 2
+      idleTimeout: 600000
+      connectionTimeout: 30000
+      maxLifetime: 1800000
+
