@@ -11,7 +11,7 @@ public class SyncExample {
     }
     public static void doSomethingB() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
