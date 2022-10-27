@@ -3,6 +3,10 @@ package com.study.utils.concurrency.asynProgramming._2;
 import org.junit.jupiter.api.Test;
 import org.springframework.scheduling.annotation.Async;
 
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SyncExampleTest {
@@ -18,7 +22,7 @@ class SyncExampleTest {
     }
 
     @Test
-    void async() throws InterruptedException {
+    void asyncLambda() throws InterruptedException {
         long start = System.currentTimeMillis();
         // 1.开启异步单元执行任务A
         Thread thread = new Thread(() -> {
@@ -36,7 +40,35 @@ class SyncExampleTest {
         System.out.println(System.currentTimeMillis() - start);
     }
 
+    @Test
+    void async() throws InterruptedException {
+        long start = System.currentTimeMillis();
+        Thread thread = new Thread("threadA") {
+            public void run() {
+                SyncExample.doSomethingA();
+            }
+        };
 
+        thread.start();
+        SyncExample.doSomethingB();
+        thread.join();
+        System.out.println(System.currentTimeMillis() - start);
+    }
+
+
+    @Test
+    void threadPoolExecutor() throws InterruptedException {
+        // 0自定义线程池
+        int AVALIABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(AVALIABLE_PROCESSORS, AVALIABLE_PROCESSORS * 2,
+                1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5), new ThreadPoolExecutor.CallerRunsPolicy());
+        long start = System.currentTimeMillis();
+        threadPoolExecutor.execute(SyncExample::doSomethingA);
+        SyncExample.doSomethingB();
+        System.out.println(System.currentTimeMillis() - start);
+        Thread.currentThread().join();
+
+    }
 
 
 }
