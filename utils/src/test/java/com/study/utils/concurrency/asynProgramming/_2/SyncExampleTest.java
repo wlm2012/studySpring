@@ -1,15 +1,23 @@
 package com.study.utils.concurrency.asynProgramming._2;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.scheduling.annotation.Async;
 
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.PrimitiveIterator;
+import java.util.concurrent.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SyncExampleTest {
+
+
+    private final int AVALIABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
+    private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(AVALIABLE_PROCESSORS,
+            AVALIABLE_PROCESSORS * 2, 1,
+            TimeUnit.MINUTES, new LinkedBlockingQueue<>(5), new ThreadPoolExecutor.CallerRunsPolicy());
+
 
     @Test
     void syncExample() {
@@ -58,16 +66,20 @@ class SyncExampleTest {
 
     @Test
     void threadPoolExecutor() throws InterruptedException {
-        // 0自定义线程池
-        int AVALIABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(AVALIABLE_PROCESSORS, AVALIABLE_PROCESSORS * 2,
-                1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5), new ThreadPoolExecutor.CallerRunsPolicy());
+
         long start = System.currentTimeMillis();
         threadPoolExecutor.execute(SyncExample::doSomethingA);
         SyncExample.doSomethingB();
         System.out.println(System.currentTimeMillis() - start);
         Thread.currentThread().join();
 
+    }
+
+    @Test
+    void executorSubmit() throws ExecutionException, InterruptedException {
+        Future<?> future = threadPoolExecutor.submit(SyncExample::returnA);
+
+        System.out.println("future = " + future.get());
     }
 
 
