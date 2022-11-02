@@ -7,7 +7,6 @@ import com.study.moocwiki.domain.resp.CommonResp;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -32,13 +31,13 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     private final ObjectMapper objectMapper;
 
     @Override
-    public boolean supports(@NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
+    public boolean supports( MethodParameter returnType,  Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
     }
 
     @Override
     @SneakyThrows
-    public Object beforeBodyWrite(Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body,  MethodParameter returnType,  MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         if (body instanceof String) {
             return objectMapper.writeValueAsString(CommonResp.success(body));
         }
