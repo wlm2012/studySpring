@@ -64,5 +64,11 @@ public class TwoCompletableFutureTest {
         System.out.println(System.currentTimeMillis() - start);
     }
 
+    @Test
+    void exceptionTest() throws ExecutionException, InterruptedException {
+        CompletableFuture<Integer> exception = TwoCompletableFuture.exception(-1);
+        System.out.println("exception.exceptionally(t -> 0).get() = " + exception.exceptionally(t -> 0).get());
+    }
+
 
 }
