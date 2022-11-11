@@ -24,14 +24,12 @@ public class StringUtilTest {
 
     @Test
     void reduce() {
-        String[] split = "com.google.gson.JsonSyntaxException".split("\\.");
-        if (split.length > 0) {
-            Optional<String> reduce1 = Arrays.stream(split).reduce((t, s) -> t + "," + s);
+        String[] splits = "com.google.gson.JsonSyntaxException".split("\\.");
+        if (splits.length > 0) {
+            Optional<String> reduce1 = Arrays.stream(splits).reduce((t, s) -> t + "," + s);
             String reduce = reduce1.get();
             System.out.println("reduce = " + reduce);
         }
-
-
     }
 
 
