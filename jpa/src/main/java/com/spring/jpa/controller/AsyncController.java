@@ -27,10 +27,6 @@ public class AsyncController {
         CompletableFuture<DogEntity> future2 = dogService.asyncTest(new DogEntity(2L));
         CompletableFuture<DogEntity> future3 = dogService.asyncTest(new DogEntity(3L));
 
-        //由于新的线程没有执行完任务，导致没有成功获取到dog，空指针异常
-//        Dog dog = dogService.asyncTest1(new Dog(4L));
-//        log.info(dog.toString());
-
         log.info("Elapsed time1: " + (System.currentTimeMillis() - start));
 
         CompletableFuture<Object> future4 = CompletableFuture.anyOf(future1, future2);
@@ -57,6 +53,11 @@ public class AsyncController {
         log.info("Elapsed time2: " + (System.currentTimeMillis() - start));
         log.info(list.get(9999).get().toString());
         log.info("Elapsed time3: " + (System.currentTimeMillis() - start));
+    }
+
+    @RequestMapping("/asyncTest2")
+    public void asyncTest2(){
+
     }
 
 }

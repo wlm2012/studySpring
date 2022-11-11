@@ -24,12 +24,8 @@ public class DogService {
         return CompletableFuture.completedFuture(dogEntity);
     }
 
-    @Async
-    public DogEntity asyncTest1(DogEntity dogEntity) throws InterruptedException {
-        Random random = new Random(dogEntity.getNum());
-        dogEntity.setAge(random.nextInt(100));
-        dogEntity = dogRepository.save(dogEntity);
-        Thread.sleep(dogEntity.getNum() * 10_000);
-        return dogEntity;
-    }
+
+
+
+
 }
