@@ -1,10 +1,12 @@
 package com.spring.jpa.domain.entity;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "t_user",
@@ -23,8 +25,10 @@ import java.time.LocalDateTime;
 public class User extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "snowflakeId")
+    @GenericGenerator(name = "snowflakeId", strategy = "com.spring.jpa.config.SnowIdGeneratorConfig")
+    private String id;
+
     private String name;
     private Integer age;
     @Column(length = 2)
@@ -37,7 +41,12 @@ public class User extends BaseEntity {
     @Version
     private Integer version = 0;
     private LocalDate birthday;
+
     private LocalDateTime registeredTime;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FamilyEntity> familyEntities;
 
 
 }
