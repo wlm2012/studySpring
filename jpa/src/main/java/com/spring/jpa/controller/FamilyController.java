@@ -23,7 +23,7 @@ public class FamilyController {
     @RequestMapping("/add")
     @Transactional
     public void add() {
-        User user = userRepository.findById(1L).orElseThrow(() -> new ServiceException("1"));
+        User user = userRepository.findById("1").orElseThrow(() -> new ServiceException("1"));
         FamilyEntity family = FamilyEntity.builder()
                 .name("wlm")
                 .user(user)

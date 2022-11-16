@@ -35,7 +35,7 @@ public class UserService {
 
     @Transactional
     public void UserTransactional() {
-        User user1 = userRepository.getById(1L);
+        User user1 = userRepository.getById("1");
         log.info(user1.toString());
         user1.setAge(11);
         log.info(userRepository.save(user1).toString());

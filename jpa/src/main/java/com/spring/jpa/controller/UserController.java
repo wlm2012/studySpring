@@ -26,7 +26,7 @@ public class UserController {
     private UserService userService;
 
 
-    public User getUser(long id) {
+    public User getUser(String id) {
         return userRepository.findById(id).get();
     }
 
@@ -42,7 +42,7 @@ public class UserController {
     @Transactional
     @RequestMapping("/saveTest")
     public void saveTest() throws Exception {
-        User user = getUser(1);
+        User user = getUser("1");
         saveUser(user);
         throw new Exception("不会回滚");
     }
@@ -51,7 +51,7 @@ public class UserController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping("/saveTest1")
     public void saveTest1() throws Exception {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new Exception("会回滚");
     }
 
@@ -62,14 +62,14 @@ public class UserController {
     @Transactional()
     @RequestMapping("/saveTest2")
     public void saveTest2() {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new RuntimeException("会回滚");
     }
 
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping("/saveTest3")
     public void saveTest3() {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
     }
 
     //直接调用方法，则方法上的@Transactional(rollbackFor = Exception.class)不生效
@@ -84,7 +84,7 @@ public class UserController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping("/saveTest5")
     public void saveTest5() {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new RuntimeException("会回滚");
     }
 
@@ -92,7 +92,7 @@ public class UserController {
     //不使用事务，不回滚
     @RequestMapping("/saveTest6")
     public void saveTest6() {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new RuntimeException("不会回滚");
     }
 
@@ -100,11 +100,11 @@ public class UserController {
     @RequestMapping("/versionTest")
     public void versionTest() throws InterruptedException {
 
-        User user = userRepository.findById(1L).get();
+        User user = userRepository.findById("1").get();
         log.info(user.toString());
 
         new Thread(() -> {
-            User user1 = userRepository.findById(1L).get();
+            User user1 = userRepository.findById("1").get();
             log.info(user1.toString());
             user1.setAge(11);
             log.info(userRepository.saveAndFlush(user1).toString());
@@ -127,7 +127,7 @@ public class UserController {
     @Retryable(value = ObjectOptimisticLockingFailureException.class, backoff = @Backoff(multiplier = 1.5, random = true))
     public void versionTest2() throws InterruptedException {
 
-        User user = userRepository.getById(1L);
+        User user = userRepository.getById("1");
         log.info(user.toString());
 
         new Thread(() -> userService.UserTransactional()).start();
@@ -141,7 +141,7 @@ public class UserController {
     @Transactional
     @RequestMapping("/threadRollback")
     public void threadRollback() throws InterruptedException {
-        User user = userRepository.getById(1L);
+        User user = userRepository.getById("1");
         log.info(user.toString());
 
         new Thread(() -> userService.UserTransactional()).start();
