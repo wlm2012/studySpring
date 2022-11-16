@@ -20,10 +20,10 @@ public class SignEntity {
     @GenericGenerator(name = "snowflakeId", strategy = "com.spring.jpa.config.SnowIdGeneratorConfig")
     private String id;
 
-    @ToString.Exclude
+/*    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "family_id")
-    private FamilyEntity familyEntity;
+    private FamilyEntity familyEntity;*/
 
     @ToString.Exclude
     @JoinColumn(name = "doctor_id")

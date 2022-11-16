@@ -23,12 +23,12 @@ public class FamilyEntity {
     private String name;
 
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ToString.Exclude
+/*    @ToString.Exclude
     @OneToMany(mappedBy = "familyEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SignEntity> signEntities;
+    private List<SignEntity> signEntities;*/
 
 }
