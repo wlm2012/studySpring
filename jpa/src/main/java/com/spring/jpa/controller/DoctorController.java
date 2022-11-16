@@ -2,6 +2,7 @@ package com.spring.jpa.controller;
 
 import com.spring.jpa.common.ServiceException;
 import com.spring.jpa.domain.dto.SignAddDto;
+import com.spring.jpa.domain.entity.DoctorEntity;
 import com.spring.jpa.domain.entity.FamilyEntity;
 import com.spring.jpa.repository.DoctorRepository;
 import com.spring.jpa.repository.FamilyRepository;
@@ -26,7 +27,7 @@ public class DoctorController {
         FamilyEntity familyEntity = familyRepository.findById(signAddDto.getFamilyId())
                 .orElseThrow(() -> new ServiceException("家人不存在"));
 
-        doctorRepository.findById(signAddDto.getDoctorId())
+        DoctorEntity doctorEntity = doctorRepository.findById(signAddDto.getDoctorId())
                 .orElseThrow(() -> new ServiceException("this doctor is not exist"));
     }
 }
