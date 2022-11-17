@@ -15,7 +15,7 @@ public class TransactionalTest {
     @Resource
     private UserRepository userRepository;
 
-    public User getUser(long id) {
+    public User getUser(String id) {
         return userRepository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class TransactionalTest {
     @Commit
     @Transactional
     public void saveTest() throws Exception {
-        User user = getUser(1);
+        User user = getUser("1");
         saveUser(user);
         throw new Exception("不会回滚");
     }
@@ -41,7 +41,7 @@ public class TransactionalTest {
     @Commit
     @Transactional(rollbackFor = Exception.class)
     public void saveTest1() throws Exception {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new Exception("不会回滚");
     }
 
@@ -50,7 +50,7 @@ public class TransactionalTest {
     @Commit
     @Transactional()
     public void saveTest2() {
-        saveUser(getUser(1L));
+        saveUser(getUser("1"));
         throw new RuntimeException("不会回滚");
     }
 

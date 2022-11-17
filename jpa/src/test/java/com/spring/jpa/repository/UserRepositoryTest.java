@@ -107,12 +107,12 @@ public class UserRepositoryTest {
     @Commit
     @Transactional
     public void versionTest() throws InterruptedException {
-        System.out.println(userRepository.findById(1L).get());
-        User user = userRepository.getById(1L);
+        System.out.println(userRepository.findById("1").get());
+        User user = userRepository.getById("1");
         System.out.println(user);
 
         new Thread(() -> {
-            User user1 = userRepository.findById(1L).get();
+            User user1 = userRepository.findById("1").get();
             user1.setAge(11);
             userRepository.saveAndFlush(user1);
         }).start();
