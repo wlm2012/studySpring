@@ -4,6 +4,7 @@ package com.spring.jpa.domain.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,7 +24,8 @@ public class Book {
 
     private double price;
 
-    @ManyToMany
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "books")
     private Set<Author> authors;
 
 }

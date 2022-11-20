@@ -46,4 +46,10 @@ public class BookController {
         }
 
     }
+
+    @GetMapping("/findByBookName")
+    public Set<Book> findByBookName(String name) {
+        System.out.println("name = " + name);
+        return bookRepository.findByBookName2(name);
+    }
 }
