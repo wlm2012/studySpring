@@ -17,19 +17,14 @@ public class BIOEchoServer {
                 Socket socket = serverSocket.accept();
                 System.out.println("one client conn: " + socket);
                 new Thread(() -> {
-                    try {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
+                    try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
                         String msg;
                         while (StringUtils.hasText(msg = reader.readLine())) {
                             System.out.println("msg = " + msg);
                         }
-                        System.out.println("finish!");
-                        writer.write("finish");
-                        writer.flush();
-                        writer.close();
                         log.info("finish!");
+                        writer.write("finish");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
