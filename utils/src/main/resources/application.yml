@@ -27,7 +27,7 @@ management:
 
 #配置log等级
 logging:
-  file:
-    path: ./log
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    root: info
