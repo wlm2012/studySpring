@@ -3,18 +3,18 @@ package com.study.algorithms.leetcode._86;
 class Solution {
     public ListNode partition(ListNode head, int x) {
         ListNode headNode = new ListNode();
-        ListNode pointNode = new ListNode();
+        ListNode pointNode = head;
         headNode.next = head;
-        pointNode.next = head;
-        if (head.val < x) {
-
-        }
-        while (head.next != null) {
-            if (head.next.val < x) {
-
-                head.next = head.next.next;
+        while (headNode.next != null) {
+            if (headNode.next.val < x && pointNode != headNode.next) {
+                ListNode next = pointNode.next;
+                pointNode.next = headNode.next;
+                pointNode.next.next = next;
+                pointNode = pointNode.next;
+                headNode.next = headNode.next.next;
             }
+            headNode = headNode.next;
         }
-
+        return head;
     }
 }
