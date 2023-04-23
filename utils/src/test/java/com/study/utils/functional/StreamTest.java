@@ -5,7 +5,9 @@ import com.study.utils.entity.Artist;
 import com.study.utils.entity.Track;
 import org.junit.jupiter.api.Test;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,8 +49,25 @@ public class StreamTest {
     }
 
     @Test
-    public void SortTest(){
+    public void SortTest() {
         StreamQuestion.SortTest();
+    }
+
+    @Test
+    public void ArrayTest() {
+        String[] strings = {"1", "2"};
+        String[] array = Arrays.stream(strings)
+                .filter("3"::equalsIgnoreCase)
+                .toArray(String[]::new);
+        System.out.println(array.length);
+        System.out.println(Arrays.toString(array));
+
+        strings = null;
+        Arrays.stream(strings)
+                .filter("3"::equalsIgnoreCase)
+                .toArray(String[]::new);
+        System.out.println(array.length);
+        System.out.println(Arrays.toString(array));
     }
 
 }
