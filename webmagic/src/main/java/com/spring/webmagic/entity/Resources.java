@@ -28,7 +28,7 @@ public class Resources {
     private ResourcesEnum type;
 
     @ManyToMany(mappedBy = "resourcesSet")
-    private Set<AVstar> aVstarSet = new HashSet<>();
+    private Set<AVstar> AVstarSet = new HashSet<>();
 
     private boolean exist;
 }
