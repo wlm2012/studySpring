@@ -1,7 +1,7 @@
 package com.study.mybatisplus.controller;
 
-import com.study.utils.fileUtil.FilesUtils;
-import okhttp3.internal.io.FileSystem;
+//import com.study.utils.fileUtil.FilesUtils;
+
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class FileController {
         String url = "./upload".replace("/", File.separator)
                 .replace("\\", File.separator);
         url = url + File.separator + file.getOriginalFilename();
-        FilesUtils.createFile(url, file.getBytes());
+//        FilesUtils.createFile(url, file.getBytes());
         return url;
     }
 
@@ -31,7 +31,7 @@ public class FileController {
         Optional<MediaType> type = MediaTypeFactory.getMediaType(path.substring(path.lastIndexOf(File.separator)));
         MediaType mediaType = type.orElse(MediaType.IMAGE_JPEG);
         headers.setContentType(mediaType);
-        return new ResponseEntity<>(FilesUtils.readFileToByte(path), headers, HttpStatus.OK);
-
+//        return new ResponseEntity<>(FilesUtils.readFileToByte(path), headers, HttpStatus.OK);
+        return null;
     }
 }
